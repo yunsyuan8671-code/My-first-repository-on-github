@@ -24,7 +24,7 @@ window.scrollTo(0,0);
 }
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;scroll-padding-top:calc(68px + env(safe-area-inset-top,0px))}
-body{font-family:"Zen Maru Gothic","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--paper) var(--tex);color:var(--ink);line-height:1.7;font-size:14px;padding-bottom:40px}
+body{font-family:"Zen Maru Gothic","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--paper) var(--tex);color:var(--ink);line-height:1.7;font-size:14px;padding-bottom:50px}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .wrap{max-width:640px;margin:0 auto;padding:0 16px}
@@ -111,9 +111,9 @@ h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;bor
 .stay:nth-child(1) .ic{background:var(--sky)} .stay:nth-child(2) .ic{background:var(--blue)} .stay:nth-child(3) .ic{background:var(--sand)}
 .stay h3{font-size:16px;font-weight:400;line-height:1.4;margin-bottom:2px}
 .stay .d{font-size:12px;line-height:1.6}
-.btn{display:inline-block;margin-top:6px;border:var(--line);border-radius:999px;padding:0 14px;text-decoration:none;background:var(--sand);font-size:12px}
+.btn{display:inline-block;border:var(--line);border-radius:999px;padding:4px 18px;text-decoration:none;background:var(--sand);font-size:13px;cursor:pointer;line-height:1.6}
 .btn:active{background:var(--taupe)}
-footer{text-align:center;margin-top:36px;font-size:12px}
+footer{text-align:center;margin-top:40px;font-size:12px}
 
 /* 總花費紀錄（日幣 / 台幣雙幣別 + 可收納明細 + 代墊統計） */
 .cost-sum{background:var(--sand);margin-bottom:14px;padding:14px}
@@ -125,11 +125,6 @@ footer{text-align:center;margin-top:36px;font-size:12px}
 .cstat.twd{background:var(--paper)}
 .payer-summary{margin-top:10px;padding-top:10px;border-top:1.5px dashed var(--ink);font-size:12px}
 .payer-pill{display:inline-block;padding:2px 10px;border:var(--line);border-radius:999px;font-size:11px;background:var(--paper);margin:3px 4px 3px 0}
-.exp-form{border:var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;background:var(--paper) var(--tex);margin-bottom:14px}
-.exp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.exp-amt-wrap{display:flex;gap:6px}
-.exp-amt-wrap select{flex:0 0 88px;padding:6px 8px}
-.exp-amt-wrap input{flex:1;min-width:0}
 
 /* 可收納明細抽屜 */
 .exp-drawer{border:var(--line);border-radius:var(--r);background:var(--paper) var(--tex);overflow:hidden}
@@ -152,33 +147,48 @@ footer{text-align:center;margin-top:36px;font-size:12px}
 .c-food{background:var(--sand)} .c-trans{background:var(--sky)} .c-stay{background:var(--blue)} .c-shop{background:var(--taupe)} .c-other{background:var(--paper)}
 .payer-tag{background:var(--taupe)}
 
-/* 編輯功能 */
+/* 編輯按鈕與小標籤 */
 .m-walk{background:var(--paper)}
-.fld{font:inherit;font-size:14px;color:var(--ink);border:var(--line);border-radius:var(--r);padding:6px 12px;background:var(--paper);width:100%}
+.fld{font:inherit;font-size:14px;color:var(--ink);border:var(--line);border-radius:var(--r);padding:7px 12px;background:var(--paper);width:100%}
 .fld::placeholder{color:#3E3A3980}
-button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
-.mini{font:inherit;font-size:11px;color:var(--ink);border:var(--line);border-radius:999px;padding:3px 12px;background:var(--paper);cursor:pointer;line-height:1.7;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.mini{font:inherit;font-size:11px;color:var(--ink);border:var(--line);border-radius:999px;padding:3px 10px;background:var(--paper);cursor:pointer;line-height:1.7;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
 .mini:active{background:var(--taupe)}
 .mini.map-btn{background:var(--sky)}
-.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.addf{border:var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;background:var(--sand);margin-top:6px}
-.addf.edit{background:var(--sky)}
-.ftitle{font-size:15px}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{position:relative}
-.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
-.chip span{display:inline-block;border:var(--line);border-radius:999px;padding:3px 12px;font-size:12px;background:var(--paper)}
-.chip input:checked + span{background:var(--blue)}
-.chip input:focus-visible + span{outline:3px solid var(--blue);outline-offset:2px}
-.fbtns{display:flex;gap:8px;flex-wrap:wrap}
-.fbtns .btn{margin-top:0}
-.empty{border:1.5px dashed var(--ink);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;font-size:13px}
+.mini.sort-btn{padding:2px 8px;font-weight:700}
+.acts{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.empty{border:1.5px dashed var(--ink);border-radius:var(--r);padding:14px;margin-bottom:12px;font-size:13px;text-align:center}
 .todo li{display:flex;gap:8px;align-items:stretch}
 .todo label{flex:1}
 .todo .x{flex:0 0 42px;font:inherit;font-size:18px;line-height:1;color:var(--ink);border:var(--line);border-radius:var(--r);background:var(--paper);cursor:pointer}
 .todo .x:active{background:var(--taupe)}
 .addrow{display:flex;gap:8px;margin-top:12px}
 .addrow .btn{margin-top:0;flex:0 0 auto;padding:0 18px;background:var(--sky)}
+
+/* 彈出視窗（Dialog / Bottom Sheet）保持主頁面極度乾淨 */
+.paper-modal{border:2px solid var(--ink);border-radius:20px;padding:0;max-width:520px;width:92%;box-shadow:4px 6px 0 var(--ink);background:var(--paper) var(--tex);color:var(--ink);margin:auto}
+.paper-modal::backdrop{background:rgba(0,0,0,.45);backdrop-filter:blur(2px)}
+.modal-box{padding:20px}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.modal-head h3{font-size:18px;font-weight:700}
+.modal-close{width:32px;height:32px;font:inherit;font-size:18px;line-height:1;border:var(--line);border-radius:10px;background:var(--paper);cursor:pointer;display:grid;place-content:center}
+.modal-close:active{background:var(--taupe)}
+.modal-form{display:grid;gap:12px}
+.exp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.exp-amt-wrap{display:flex;gap:6px}
+.exp-amt-wrap select{flex:0 0 88px;padding:6px 8px}
+.exp-amt-wrap input{flex:1;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.chip span{display:inline-block;border:var(--line);border-radius:999px;padding:3px 12px;font-size:12px;background:var(--paper)}
+.chip input:checked + span{background:var(--blue)}
+.chip input:focus-visible + span{outline:3px solid var(--blue);outline-offset:2px}
+.fbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+
+/* 觸發新增按鈕 */
+.add-action-wrap{text-align:center;margin:16px 0 8px}
+.add-trigger-btn{background:var(--sand);padding:8px 24px;font-size:14px;box-shadow:2px 2px 0 var(--ink);font-weight:500}
+.add-trigger-btn:hover{background:var(--taupe)}
 
 /* 匯率合計、今天／下一個、更多設定 */
 .rate-row{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12px}
@@ -557,33 +567,10 @@ textarea.fld{resize:vertical;min-height:72px}
     <div class="payer-summary" id="payerSummary"></div>
   </div>
 
-  <form class="exp-form" id="expForm">
-    <div class="ftitle">新增花費紀錄</div>
-    <div class="exp-row">
-      <select class="fld" name="day" id="expDay" aria-label="消費日期"></select>
-      <select class="fld" name="cat" aria-label="花費類別">
-        <option value="food">餐飲美食</option>
-        <option value="trans">交通票券</option>
-        <option value="stay">住宿飯店</option>
-        <option value="shop">購物伴手禮</option>
-        <option value="other">門票與其他</option>
-      </select>
-    </div>
-    <div class="exp-row">
-      <input class="fld" name="title" maxlength="40" required placeholder="項目名稱（例如 富士回遊車票）" aria-label="花費項目名稱">
-      <div class="exp-amt-wrap">
-        <select class="fld" name="cur" aria-label="幣別">
-          <option value="JPY">日幣 ¥</option>
-          <option value="TWD">台幣 $</option>
-        </select>
-        <input type="number" class="fld" name="amt" min="1" step="1" required placeholder="金額" aria-label="花費金額">
-      </div>
-    </div>
-    <div class="exp-row">
-      <input class="fld" name="payer" maxlength="20" placeholder="代墊人（選填，例如：阿圓、小明、公費）" aria-label="代墊人">
-    </div>
-    <div class="fbtns"><button class="btn" type="submit" style="background:var(--sky)">加入花費</button></div>
-  </form>
+  <!-- 簡潔的「記一筆花費」按鈕，取代原先冗長常駐的表單 -->
+  <div class="add-action-wrap">
+    <button type="button" class="btn add-trigger-btn" id="openAddExpBtn" style="background:var(--sky)">＋ 記一筆花費</button>
+  </div>
 
   <details class="exp-drawer" id="expDrawer">
     <summary>
@@ -595,6 +582,94 @@ textarea.fld{resize:vertical;min-height:72px}
     </div>
   </details>
 </section>
+
+<!-- 行程新增/編輯 彈出視窗 (Modal) -->
+<dialog id="dayDialog" class="paper-modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="dayDialogTitle">新增行程</h3>
+      <button type="button" class="modal-close" id="closeDayDialogBtn" aria-label="關閉">×</button>
+    </div>
+    <form class="modal-form" id="dayForm">
+      <div>
+        <label class="hint" style="display:block;margin-bottom:3px">時間</label>
+        <input class="fld" name="time" maxlength="20" placeholder="例如 10:00、上午、晚餐後" aria-label="時間">
+      </div>
+      <div>
+        <label class="hint" style="display:block;margin-bottom:3px">行程內容（必填）</label>
+        <input class="fld" name="tx" maxlength="80" required placeholder="例如 淺草寺參拜、富士回遊搭乘" aria-label="行程內容">
+      </div>
+      <div>
+        <label class="hint" style="display:block;margin-bottom:3px">Google Maps 搜尋或連結（選填）</label>
+        <input class="fld" name="map" maxlength="300" placeholder="例如 淺草寺、或貼上 Google Maps 網址" aria-label="地點搜尋或連結">
+      </div>
+      <div>
+        <label class="hint" style="display:block;margin-bottom:6px">標記與交通方式</label>
+        <div class="chips" role="group" aria-label="標記與交通方式">
+          <label class="chip"><input type="checkbox" name="tg" value="0"><span>飛機</span></label>
+          <label class="chip"><input type="checkbox" name="tg" value="1"><span>電車</span></label>
+          <label class="chip"><input type="checkbox" name="tg" value="2"><span>巴士</span></label>
+          <label class="chip"><input type="checkbox" name="tg" value="3"><span>步行</span></label>
+          <label class="chip"><input type="checkbox" name="must"><span>必去</span></label>
+        </div>
+      </div>
+      <div class="fbtns" style="margin-top:6px">
+        <button class="btn" type="submit" style="background:var(--blue);flex:1">儲存行程</button>
+        <button class="btn" type="button" id="cancelDayDialogBtn" style="background:var(--taupe)">取消</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<!-- 花費新增 彈出視窗 (Modal) -->
+<dialog id="expDialog" class="paper-modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>新增花費紀錄</h3>
+      <button type="button" class="modal-close" id="closeExpDialogBtn" aria-label="關閉">×</button>
+    </div>
+    <form class="modal-form" id="expForm">
+      <div class="exp-row">
+        <div>
+          <label class="hint" style="display:block;margin-bottom:3px">消費日期</label>
+          <select class="fld" name="day" id="expDay" aria-label="消費日期"></select>
+        </div>
+        <div>
+          <label class="hint" style="display:block;margin-bottom:3px">花費類別</label>
+          <select class="fld" name="cat" aria-label="花費類別">
+            <option value="food">餐飲美食</option>
+            <option value="trans">交通票券</option>
+            <option value="stay">住宿飯店</option>
+            <option value="shop">購物伴手禮</option>
+            <option value="other">門票與其他</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="hint" style="display:block;margin-bottom:3px">項目名稱（必填）</label>
+        <input class="fld" name="title" maxlength="40" required placeholder="例如 一蘭拉麵、富士回遊車票" aria-label="花費項目名稱">
+      </div>
+      <div>
+        <label class="hint" style="display:block;margin-bottom:3px">幣別與金額</label>
+        <div class="exp-amt-wrap">
+          <select class="fld" name="cur" aria-label="幣別">
+            <option value="JPY">日幣 ¥</option>
+            <option value="TWD">台幣 $</option>
+          </select>
+          <input type="number" class="fld" name="amt" min="1" step="1" required placeholder="金額" aria-label="花費金額">
+        </div>
+      </div>
+      <div>
+        <label class="hint" style="display:block;margin-bottom:3px">代墊人（選填，方便結算）</label>
+        <input class="fld" name="payer" maxlength="20" placeholder="例如 阿圓、小明、公費" aria-label="代墊人">
+      </div>
+      <div class="fbtns" style="margin-top:6px">
+        <button class="btn" type="submit" style="background:var(--sky);flex:1">加入花費</button>
+        <button class="btn" type="button" id="cancelExpDialogBtn" style="background:var(--taupe)">取消</button>
+      </div>
+    </form>
+  </div>
+</dialog>
 
 <section id="settings">
   <details class="exp-drawer" id="moreDrawer">
@@ -739,9 +814,8 @@ textarea.fld{resize:vertical;min-height:72px}
     var day=days[i],p=document.getElementById("p"+i);
     if(!p)return;
     var nx=nextIdx(i);
-    var ed=(editing&&editing.day===i)?day.items[editing.idx]:null;
     var h='<div class="dayhead"><h3>'+day.d+'（週'+day.w+'）'+day.t+'</h3>'+(day.s?'<span class="tag m-train">住 '+day.s+'</span>':'')+'</div>';
-    if(!day.items.length)h+='<p class="empty">這天還沒有行程，從下方新增第一個吧。</p>';
+    if(!day.items.length)h+='<p class="empty">這天還沒有行程，點擊下方新增第一個吧！</p>';
     else{
       h+='<ul class="tl">';
       day.items.forEach(function(it,k){
@@ -750,27 +824,26 @@ textarea.fld{resize:vertical;min-height:72px}
         if(it.must)h+='<span class="tag must-tag">必去</span>';
         (it.tags||[]).forEach(function(t){h+='<span class="tag '+(cls[t[1]]||"m-bus")+'">'+esc(t[0])+'</span>'});
         if(it.tbd)h+='<span class="tag">待安排</span>';
-        h+='</div><p>'+esc(it.tx)+'</p><div class="acts">'+(url?'<a class="mini map-btn" href="'+esc(url)+'" target="_blank" rel="noopener" aria-label="在 Google Map 查看：'+esc(it.tx)+'">📍 查看地圖</a>':'')+'<button type="button" class="mini" data-act="edit" data-k="'+k+'" aria-label="編輯：'+esc(it.tx)+'">編輯</button><button type="button" class="mini" data-act="del" data-k="'+k+'" aria-label="刪除：'+esc(it.tx)+'">刪除</button></div></div></li>';
+        h+='</div><p>'+esc(it.tx)+'</p><div class="acts">';
+        if(url)h+='<a class="mini map-btn" href="'+esc(url)+'" target="_blank" rel="noopener" aria-label="地圖：'+esc(it.tx)+'">📍 地圖</a>';
+        // 排序按鈕：上移、下移
+        if(k>0)h+='<button type="button" class="mini sort-btn" data-act="up" data-k="'+k+'" title="上移">▲</button>';
+        if(k<day.items.length-1)h+='<button type="button" class="mini sort-btn" data-act="down" data-k="'+k+'" title="下移">▼</button>';
+        h+='<button type="button" class="mini" data-act="edit" data-k="'+k+'" aria-label="編輯：'+esc(it.tx)+'">編輯</button><button type="button" class="mini" data-act="del" data-k="'+k+'" aria-label="刪除：'+esc(it.tx)+'">刪除</button></div></div></li>';
       });
       h+='</ul>';
     }
-    var tg=(ed&&ed.tags)?ed.tags.map(function(t){return t[0]}):[];
-    h+='<form class="addf'+(ed?' edit':'')+'" data-day="'+i+'"><div class="ftitle">'+(ed?'編輯行程':'新增行程')+'</div>'
-      +'<input class="fld" name="time" maxlength="20" placeholder="時間（例如 10:00、上午）" aria-label="時間" value="'+(ed?esc(ed.time):'')+'">'
-      +'<input class="fld" name="tx" maxlength="80" required placeholder="行程內容（例如 淺草寺）" aria-label="行程內容" value="'+(ed?esc(ed.tx):'')+'">'
-      +'<input class="fld" name="map" maxlength="300" placeholder="Google Map 連結或地點名稱（選填，例如 淺草寺）" aria-label="Google Map 連結或地點名稱" value="'+(ed&&ed.map?esc(ed.map):'')+'">'
-      +'<div class="chips" role="group" aria-label="交通方式與標記">';
-    TAGS.forEach(function(t,k){h+='<label class="chip"><input type="checkbox" name="tg" value="'+k+'"'+(tg.indexOf(t[0])>-1?' checked':'')+'><span>'+t[0]+'</span></label>'});
-    h+='<label class="chip"><input type="checkbox" name="must"'+((ed&&ed.must)?' checked':'')+'><span>必去</span></label></div>'
-      +'<div class="fbtns"><button class="btn" type="submit">'+(ed?'儲存修改':'加入行程')+'</button>'+(ed?'<button class="mini" type="button" data-act="cancel">取消</button>':'')+'</div></form>';
+    // 乾淨的彈出觸發按鈕，取代原本長串的頁底表單
+    h+='<div class="add-action-wrap"><button type="button" class="btn add-trigger-btn" data-act="openAdd" data-day="'+i+'">＋ 新增行程</button></div>';
     p.innerHTML=h;
   }
+
   days.forEach(function(day,i){
     var b=document.createElement("button");
     b.className="tab";b.type="button";b.setAttribute("role","tab");
     b.id="tab"+i;b.setAttribute("aria-controls","p"+i);
     b.innerHTML="<span>週"+day.w+"</span><b>"+day.d+"</b>"+(i===todayIdx?'<span class="today">今天</span>':"");
-    b.onclick=function(){editing=null;renderPanel(cur);select(i,true)};
+    b.onclick=function(){select(i,true)};
     tabs.appendChild(b);
     var p=document.createElement("div");
     p.className="panel";p.id="p"+i;p.setAttribute("role","tabpanel");p.setAttribute("aria-labelledby","tab"+i);
@@ -790,41 +863,102 @@ textarea.fld{resize:vertical;min-height:72px}
     if(animate&&document.getElementById("tab"+i))document.getElementById("tab"+i).scrollIntoView({inline:"center",block:"nearest"});
   }
   tabs.addEventListener("keydown",function(e){
-    if(e.key==="ArrowRight"&&cur<days.length-1){editing=null;renderPanel(cur);select(cur+1,true);document.getElementById("tab"+cur).focus()}
-    if(e.key==="ArrowLeft"&&cur>0){editing=null;renderPanel(cur);select(cur-1,true);document.getElementById("tab"+cur).focus()}
+    if(e.key==="ArrowRight"&&cur<days.length-1){select(cur+1,true);document.getElementById("tab"+cur).focus()}
+    if(e.key==="ArrowLeft"&&cur>0){select(cur-1,true);document.getElementById("tab"+cur).focus()}
   });
   select(todayIdx>-1?todayIdx:0,false);
   if(todayIdx>-1){var tt=document.getElementById("tab"+todayIdx);if(tt)tabs.scrollLeft=tt.offsetLeft-tabs.clientWidth/2+tt.offsetWidth/2}
-  document.addEventListener("visibilitychange",function(){
-    if(document.hidden||todayIdx<0||editing)return;
-    var f=document.querySelector("#p"+todayIdx+' [name="tx"]');
-    if(f&&f.value==="")renderPanel(todayIdx);
-  });
 
+  /* 行程彈窗控制 */
+  var dayDialog=document.getElementById("dayDialog");
+  var dayDialogTitle=document.getElementById("dayDialogTitle");
+  var dayForm=document.getElementById("dayForm");
+  var currentFormDay=0;
+
+  function openDayModal(dayIdx, editIdx){
+    currentFormDay=dayIdx;
+    dayForm.reset();
+    var day=days[dayIdx];
+    if(editIdx!==undefined && editIdx!==null){
+      editing={day:dayIdx, idx:editIdx};
+      var it=day.items[editIdx];
+      dayDialogTitle.textContent="編輯行程（Day "+(dayIdx+1)+"・"+day.d+"）";
+      dayForm.elements.time.value=it.time||"";
+      dayForm.elements.tx.value=it.tx||"";
+      dayForm.elements.map.value=it.map||"";
+      dayForm.elements.must.checked=!!it.must;
+      var currentTags=(it.tags||[]).map(function(t){return t[0]});
+      var tgCheckboxes=dayForm.querySelectorAll('input[name="tg"]');
+      tgCheckboxes.forEach(function(cb){
+        var tagLabel=TAGS[+cb.value][0];
+        cb.checked=currentTags.indexOf(tagLabel)>-1;
+      });
+    } else {
+      editing=null;
+      dayDialogTitle.textContent="新增行程（Day "+(dayIdx+1)+"・"+day.d+"）";
+    }
+    if(typeof dayDialog.showModal==="function")dayDialog.showModal();
+    else dayDialog.setAttribute("open","");
+    setTimeout(function(){dayForm.elements.tx.focus()},100);
+  }
+
+  function closeDayModal(){
+    if(typeof dayDialog.close==="function")dayDialog.close();
+    else dayDialog.removeAttribute("open");
+    editing=null;
+  }
+  document.getElementById("closeDayDialogBtn").onclick=closeDayModal;
+  document.getElementById("cancelDayDialogBtn").onclick=closeDayModal;
+
+  // 監聽面板事件：新增、編輯、排序、刪除
   panels.addEventListener("click",function(e){
     var b=e.target.closest("button[data-act]");if(!b)return;
     var i=cur,act=b.dataset.act,k=+b.dataset.k;
-    if(act==="edit"){editing={day:i,idx:k};renderPanel(i);var f=document.querySelector("#p"+i+" .addf");if(f){f.scrollIntoView({block:"center"});f.querySelector('[name="tx"]').focus()}}
-    else if(act==="cancel"){editing=null;renderPanel(i)}
-    else if(act==="del"){
+    if(act==="openAdd"){
+      openDayModal(+b.dataset.day);
+    } else if(act==="edit"){
+      openDayModal(i, k);
+    } else if(act==="up"){
+      if(k>0){
+        var temp=days[i].items[k];
+        days[i].items[k]=days[i].items[k-1];
+        days[i].items[k-1]=temp;
+        save(DK,days);renderPanel(i);pushCloud();
+      }
+    } else if(act==="down"){
+      if(k<days[i].items.length-1){
+        var temp=days[i].items[k];
+        days[i].items[k]=days[i].items[k+1];
+        days[i].items[k+1]=temp;
+        save(DK,days);renderPanel(i);pushCloud();
+      }
+    } else if(act==="del"){
       if(!confirm("刪除這個行程？"))return;
-      days[i].items.splice(k,1);editing=null;save(DK,days);renderPanel(i);pushCloud();
+      days[i].items.splice(k,1);save(DK,days);renderPanel(i);pushCloud();
     }
   });
-  panels.addEventListener("submit",function(e){
+
+  dayForm.addEventListener("submit",function(e){
     e.preventDefault();
-    var f=e.target,i=+f.dataset.day,fd=new FormData(f);
+    var fd=new FormData(dayForm);
     var tx=(fd.get("tx")||"").trim();if(!tx)return;
     var mp=(fd.get("map")||"").trim();
     var item={time:(fd.get("time")||"").trim()||"未定",tx:tx,tags:fd.getAll("tg").map(function(k){return TAGS[+k]})};
     if(mp)item.map=mp;
     if(fd.get("must"))item.must=1;
-    if(editing&&editing.day===i)days[i].items[editing.idx]=item;else days[i].items.push(item);
-    editing=null;save(DK,days);renderPanel(i);pushCloud();
+    var i=currentFormDay;
+    if(editing&&editing.day===i){
+      days[i].items[editing.idx]=item;
+    } else {
+      days[i].items.push(item);
+    }
+    save(DK,days);renderPanel(i);pushCloud();
+    closeDayModal();
   });
+
   document.getElementById("resetDays").onclick=function(){
     if(!confirm("要把每日行程恢復成預設內容嗎？你新增與修改的內容會消失。"))return;
-    days=clone(DEF);editing=null;save(DK,days);days.forEach(function(_,i){renderPanel(i)});pushCloud();
+    days=clone(DEF);save(DK,days);days.forEach(function(_,i){renderPanel(i)});pushCloud();
   };
 
   /* ===== 出發前待辦 ===== */
@@ -926,7 +1060,7 @@ textarea.fld{resize:vertical;min-height:72px}
     updateSummary();
     renderPayerSummary();
     if(!expenses.length){
-      expList.innerHTML='<li class="empty" style="margin-bottom:0">目前還沒有花費紀錄，從上方新增第一筆吧。</li>';
+      expList.innerHTML='<li class="empty" style="margin-bottom:0">目前還沒有花費紀錄，點擊上方按鈕記一筆吧！</li>';
       return;
     }
     expList.innerHTML=expenses.map(function(it,i){
@@ -937,9 +1071,29 @@ textarea.fld{resize:vertical;min-height:72px}
       return '<li class="exp-item"><div class="exp-info"><div class="exp-meta"><span class="tag day-tag">'+esc(dayLabel(it.day))+'</span><span class="tag '+cat.c+'">'+cat.n+'</span>'+curTag+pTag+'</div><div class="exp-title">'+esc(it.title)+'</div></div><div class="exp-right"><b class="exp-amt">'+fmtCur(cur,it.amt)+'</b><button type="button" class="exp-x" data-edel="'+i+'" aria-label="刪除花費：'+esc(it.title)+'">×</button></div></li>';
     }).join("");
   }
-  document.getElementById("expForm").addEventListener("submit",function(e){
+
+  /* 花費彈窗控制 */
+  var expDialog=document.getElementById("expDialog");
+  var expForm=document.getElementById("expForm");
+  function openExpModal(){
+    expForm.reset();
+    // 自動帶入當前瀏覽的日期
+    if(days[cur])expDay.value=days[cur].d;
+    if(typeof expDialog.showModal==="function")expDialog.showModal();
+    else expDialog.setAttribute("open","");
+    setTimeout(function(){expForm.elements.title.focus()},100);
+  }
+  function closeExpModal(){
+    if(typeof expDialog.close==="function")expDialog.close();
+    else expDialog.removeAttribute("open");
+  }
+  document.getElementById("openAddExpBtn").onclick=openExpModal;
+  document.getElementById("closeExpDialogBtn").onclick=closeExpModal;
+  document.getElementById("cancelExpDialogBtn").onclick=closeExpModal;
+
+  expForm.addEventListener("submit",function(e){
     e.preventDefault();
-    var fd=new FormData(e.target);
+    var fd=new FormData(expForm);
     var title=(fd.get("title")||"").trim();
     var amt=parseInt(fd.get("amt"),10);
     var cur=fd.get("cur")==="TWD"?"TWD":"JPY";
@@ -947,15 +1101,15 @@ textarea.fld{resize:vertical;min-height:72px}
     if(!title||!amt||amt<=0)return;
     expenses.unshift({day:fd.get("day")||"出發前",cat:fd.get("cat")||"other",cur:cur,title:title,amt:amt,payer:payer});
     save(EK,expenses);
-    e.target.elements.title.value="";
-    e.target.elements.amt.value="";
-    if(e.target.elements.payer)e.target.elements.payer.value="";
+    closeExpModal();
     expDrawer.open=true;
     renderCost();
     pushCloud();
   });
+
   expList.addEventListener("click",function(e){
     var b=e.target.closest("button[data-edel]");if(!b)return;
+    if(!confirm("確定要刪除這筆花費紀錄嗎？"))return;
     expenses.splice(+b.dataset.edel,1);save(EK,expenses);renderCost();pushCloud();
   });
   document.getElementById("resetCost").onclick=function(){
@@ -987,7 +1141,7 @@ textarea.fld{resize:vertical;min-height:72px}
 
   function applyRemote(data){
     if(!data)return;
-    if(editing)return; // 若使用者正在打字編輯行程，不中斷輸入
+    if(dayDialog.open)return; // 若使用者正在彈窗編輯，不中斷
     if(Array.isArray(data.days)&&data.days.length===DEF.length){
       days=data.days;save(DK,days);
       days.forEach(function(_,i){renderPanel(i)});
@@ -1009,7 +1163,7 @@ textarea.fld{resize:vertical;min-height:72px}
   function pushCloud(immediate){
     var ep=getEndpoint();
     if(!ep)return;
-    setDot("#facc15"); // 黃燈同步中
+    setDot("#facc15");
     clearTimeout(syncTimer);
     syncTimer=setTimeout(function(){
       var payload={
@@ -1024,7 +1178,7 @@ textarea.fld{resize:vertical;min-height:72px}
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(payload)
       }).then(function(r){
-        if(r.ok)setDot("#4ade80"); // 綠燈成功
+        if(r.ok)setDot("#4ade80");
         else setDot("#f87171");
       }).catch(function(){
         setDot("#f87171");
@@ -1036,7 +1190,6 @@ textarea.fld{resize:vertical;min-height:72px}
     var ep=getEndpoint();
     if(!ep)return;
     setDot("#facc15");
-    // 首次抓取最新資料
     fetch(ep)
       .then(function(r){return r.json()})
       .then(function(res){
@@ -1044,7 +1197,6 @@ textarea.fld{resize:vertical;min-height:72px}
           applyRemote(res);
           setDot("#4ade80");
         } else {
-          // 雲端是空的，把本地的資料上傳建立房間
           pushCloud(true);
         }
       })
@@ -1052,7 +1204,6 @@ textarea.fld{resize:vertical;min-height:72px}
         setDot("#f87171");
       });
 
-    // 建立 EventSource (SSE) 實現即時推送監聽
     try{
       if(esSource){esSource.close();esSource=null;}
       esSource=new EventSource(ep);
