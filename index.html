@@ -16,8 +16,8 @@
   --tex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .47 0 0 0 0 .36 0 0 0 .55 -.18'/%3E%3C/filter%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .6' numOctaves='3' seed='9'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .42 0 0 0 0 .32 0 0 0 .7 -.3'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23a)'/%3E%3Crect width='300' height='300' filter='url(%23b)' opacity='.6'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{font-family:"Huninn","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--paper) var(--tex);color:var(--ink);line-height:1.7;font-size:16px;padding-bottom:40px}
+html{scroll-behavior:smooth;scroll-padding-top:68px}
+body{font-family:"Huninn","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--paper) var(--tex);color:var(--ink);line-height:1.7;font-size:14px;padding-bottom:40px}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .wrap{max-width:640px;margin:0 auto;padding:0 16px}
@@ -25,136 +25,169 @@ a{color:inherit}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:10;background:var(--paper) var(--tex);border-bottom:var(--line);padding-top:env(safe-area-inset-top,0px)}
 nav ul{list-style:none;display:flex;gap:8px;max-width:640px;margin:0 auto;padding:10px 16px;overflow-x:auto;scrollbar-width:none}
-nav a{display:block;white-space:nowrap;text-decoration:none;border:var(--line);border-radius:999px;padding:2px 14px;font-size:15px;background:var(--taupe)}
+nav a{display:block;white-space:nowrap;text-decoration:none;border:var(--line);border-radius:999px;padding:2px 14px;font-size:13px;background:var(--taupe)}
 nav a:active{background:var(--paper)}
 
-section{padding-top:36px}
-h2{font-size:24px;margin-bottom:14px;display:inline-block;background:var(--sand);border:var(--line);border-radius:999px;padding:0 18px}
+section{padding-top:34px}
+h2{font-size:22px;margin-bottom:14px;display:inline-block;background:var(--sand);border:var(--line);border-radius:999px;padding:0 18px}
 .card{border:var(--line);border-radius:var(--r);padding:18px}
 
-.hero{padding-top:calc(72px + env(safe-area-inset-top,0px))}
+.hero{padding-top:calc(68px + env(safe-area-inset-top,0px))}
 .scene{border:var(--line);border-radius:20px;overflow:hidden;background:var(--sand)}
 .scene svg{display:none;width:100%;height:auto}
 .scene svg.on{display:block}
 .vers{display:flex;gap:8px;justify-content:center;margin:12px 0 0}
-.vers button{font:inherit;font-size:14px;color:var(--ink);border:var(--line);border-radius:999px;padding:0 16px;background:var(--paper);cursor:pointer}
+.vers button{font:inherit;font-size:12px;color:var(--ink);border:var(--line);border-radius:999px;padding:1px 16px;background:var(--paper);cursor:pointer}
 .vers button[aria-pressed="true"]{background:var(--sky)}
-.hero h1{font-size:34px;line-height:1.25;margin:16px 0 4px;text-align:center}
-.hero p.sub{text-align:center}
+.hero h1{font-size:32px;line-height:1.25;margin:14px 0 4px;text-align:center}
+.hero p.sub{text-align:center;font-size:13px}
 
 .flight{display:grid;gap:14px}
 .fl{border:var(--line);border-radius:var(--r);padding:16px}
-.fl.go{background:var(--sky)} .fl.back{background:var(--sand)}
-.fl .top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px}
-.tag{display:inline-block;border:var(--line);border-radius:999px;padding:0 10px;font-size:13px;line-height:1.6;background:var(--paper);white-space:nowrap}
+.fl.go,.fl.back{background:var(--sky)}
+.fl .top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px}
+.tag{display:inline-block;border:var(--line);border-radius:999px;padding:0 10px;font-size:11px;line-height:1.6;background:var(--paper);white-space:nowrap}
 .route{display:flex;align-items:center;gap:10px;margin:10px 0 4px}
-.route .t{font-size:26px;line-height:1.2}
+.route .t{font-size:24px;line-height:1.2}
 .route .pl{flex:1;position:relative;border-top:1.5px dashed var(--ink);height:0}
 .route .pl svg{position:absolute;left:50%;top:-13px;width:26px;height:26px;margin-left:-13px}
-.fl small{display:block}
+.fl small{display:block;font-size:12px}
 
 .tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:none}
-.tab{flex:0 0 auto;border:var(--line);border-radius:var(--r);background:var(--paper) var(--tex);color:var(--ink);font:inherit;padding:4px 12px;text-align:center;cursor:pointer;min-width:62px;line-height:1.3}
-.tab b{display:block;font-size:20px;font-weight:400}
-.tab span{font-size:12px}
+.tab{flex:0 0 auto;border:var(--line);border-radius:var(--r);background:var(--paper) var(--tex);color:var(--ink);font:inherit;padding:4px 12px;text-align:center;cursor:pointer;min-width:60px;line-height:1.3}
+.tab b{display:block;font-size:18px;font-weight:400}
+.tab span{font-size:10px}
 .tab[aria-selected="true"]{background:var(--blue)}
 .panel{display:none}
 .panel.on{display:block}
 .panel.pop{animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
 @keyframes pop{0%{transform:scale(.92) translateY(14px);opacity:0}100%{transform:none;opacity:1}}
 .dayhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
-.dayhead h3{font-size:20px;font-weight:400}
+.dayhead h3{font-size:18px;font-weight:400}
 .tl{list-style:none;padding:0;position:relative}
 .tl::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;border-left:1.5px dashed var(--ink)}
 .tl li{position:relative;padding-left:36px;margin-bottom:14px}
-.tl li::before{content:"";position:absolute;left:3px;top:8px;width:18px;height:18px;border:var(--line);border-radius:50%;background:var(--paper)}
+.tl li::before{content:"";position:absolute;left:3px;top:7px;width:18px;height:18px;border:var(--line);border-radius:50%;background:var(--paper)}
 .tl li.must::before{background:var(--blue)}
 .tl li.tbd::before{border-style:dashed}
-.tl .time{font-size:14px}
+.tl .time{font-size:12px}
 .tl .box{border:var(--line);border-radius:var(--r);padding:8px 12px;background:var(--paper) var(--tex)}
 .tl li.tbd .box{border-style:dashed;opacity:.85}
 .tl li.must .box{background:var(--sand)}
 .box .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.box p{font-size:15px}
+.box p{font-size:13px}
 .m-plane{background:var(--sand)} .m-train{background:var(--sky)} .m-bus{background:var(--taupe)}
 .must-tag{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
 .todo{list-style:none;padding:0;display:grid;gap:10px}
-.todo label{display:flex;gap:12px;align-items:center;border:var(--line);border-radius:var(--r);padding:10px 14px;cursor:pointer;background:var(--paper) var(--tex)}
-.todo input{appearance:none;-webkit-appearance:none;flex:0 0 26px;width:26px;height:26px;border:var(--line);border-radius:8px;background:var(--paper);display:grid;place-content:center;cursor:pointer}
-.todo input::after{content:"";width:12px;height:7px;border-left:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(-45deg) scale(0);margin-top:-3px;transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.todo label{display:flex;gap:12px;align-items:center;border:var(--line);border-radius:var(--r);padding:9px 14px;cursor:pointer;background:var(--paper) var(--tex);font-size:14px}
+.todo input{appearance:none;-webkit-appearance:none;flex:0 0 24px;width:24px;height:24px;border:var(--line);border-radius:8px;background:var(--paper);display:grid;place-content:center;cursor:pointer}
+.todo input::after{content:"";width:11px;height:6px;border-left:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(-45deg) scale(0);margin-top:-3px;transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
 .todo input:checked{background:var(--sky)}
 .todo input:checked::after{transform:rotate(-45deg) scale(1)}
 .todo input:checked + span{text-decoration:line-through;opacity:.6}
-.prog{margin-top:12px;border:var(--line);border-radius:999px;height:20px;overflow:hidden;background:var(--paper)}
+.prog{margin-top:12px;border:var(--line);border-radius:999px;height:18px;overflow:hidden;background:var(--paper)}
 .prog i{display:block;height:100%;width:0;background:var(--blue);border-right:var(--line);transition:width .4s}
-#progTxt{font-size:14px;margin-top:4px;text-align:right}
+#progTxt{font-size:12px;margin-top:4px;text-align:right}
 
 .stays{display:grid;gap:14px}
 .stay{display:flex;gap:14px;align-items:flex-start}
-.stay .ic{flex:0 0 56px;height:56px;border:var(--line);border-radius:var(--r);display:grid;place-content:center}
+.stay .ic{flex:0 0 54px;height:54px;border:var(--line);border-radius:var(--r);display:grid;place-content:center}
 .stay:nth-child(1) .ic{background:var(--sky)} .stay:nth-child(2) .ic{background:var(--blue)} .stay:nth-child(3) .ic{background:var(--sand)}
-.stay h3{font-size:18px;font-weight:400;line-height:1.4}
-.stay .d{font-size:14px}
-.btn{display:inline-block;margin-top:6px;border:var(--line);border-radius:999px;padding:0 14px;text-decoration:none;background:var(--sand);font-size:14px}
+.stay h3{font-size:16px;font-weight:400;line-height:1.4}
+.stay .d{font-size:12px}
+.btn{display:inline-block;margin-top:6px;border:var(--line);border-radius:999px;padding:0 14px;text-decoration:none;background:var(--sand);font-size:12px}
 .btn:active{background:var(--taupe)}
-footer{text-align:center;margin-top:36px;font-size:14px}
-
+footer{text-align:center;margin-top:36px;font-size:12px}
 
 /* 編輯功能 */
 .m-walk{background:var(--paper)}
-.fld{font:inherit;font-size:16px;color:var(--ink);border:var(--line);border-radius:var(--r);padding:6px 12px;background:var(--paper);width:100%}
+.fld{font:inherit;font-size:14px;color:var(--ink);border:var(--line);border-radius:var(--r);padding:6px 12px;background:var(--paper);width:100%}
 .fld::placeholder{color:#3E3A3980}
-button.btn{font:inherit;font-size:14px;color:var(--ink);cursor:pointer}
-.mini{font:inherit;font-size:13px;color:var(--ink);border:var(--line);border-radius:999px;padding:0 12px;background:var(--paper);cursor:pointer;line-height:1.7}
+button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
+.mini{font:inherit;font-size:11px;color:var(--ink);border:var(--line);border-radius:999px;padding:0 12px;background:var(--paper);cursor:pointer;line-height:1.7}
 .mini:active{background:var(--taupe)}
 .acts{display:flex;gap:6px;margin-top:6px}
 .addf{border:var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;background:var(--sand);margin-top:6px}
 .addf.edit{background:var(--sky)}
-.ftitle{font-size:17px}
+.ftitle{font-size:15px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{position:relative}
 .chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
-.chip span{display:inline-block;border:var(--line);border-radius:999px;padding:0 12px;font-size:14px;background:var(--paper)}
+.chip span{display:inline-block;border:var(--line);border-radius:999px;padding:0 12px;font-size:12px;background:var(--paper)}
 .chip input:checked + span{background:var(--blue)}
 .chip input:focus-visible + span{outline:3px solid var(--blue);outline-offset:2px}
 .fbtns{display:flex;gap:8px;flex-wrap:wrap}
 .fbtns .btn{margin-top:0}
-.empty{border:1.5px dashed var(--ink);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;font-size:15px}
+.empty{border:1.5px dashed var(--ink);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;font-size:13px}
 .tools{margin-top:14px;text-align:right}
 .todo li{display:flex;gap:8px;align-items:stretch}
 .todo label{flex:1}
-.todo .x{flex:0 0 44px;font:inherit;font-size:20px;line-height:1;color:var(--ink);border:var(--line);border-radius:var(--r);background:var(--paper);cursor:pointer}
+.todo .x{flex:0 0 42px;font:inherit;font-size:18px;line-height:1;color:var(--ink);border:var(--line);border-radius:var(--r);background:var(--paper);cursor:pointer}
 .todo .x:active{background:var(--taupe)}
 .addrow{display:flex;gap:8px;margin-top:12px}
 .addrow .btn{margin-top:0;flex:0 0 auto;padding:0 18px;background:var(--sky)}
 
-/* 插圖動畫 */
-.cloud{animation:drift 14s ease-in-out infinite alternate}
-.cloud.b{animation-duration:19s;animation-delay:-6s}
-@keyframes drift{from{transform:translateX(-14px)}to{transform:translateX(18px)}}
-.sun{transform-box:fill-box;transform-origin:center;animation:breathe 5s ease-in-out infinite}
-@keyframes breathe{50%{transform:scale(1.1)}}
-.tower{transform-origin:110px 215px;animation:sway 6s ease-in-out infinite}
-@keyframes sway{50%{transform:rotate(1.2deg)}}
-.train{animation:ride 9s linear infinite}
-@keyframes ride{from{transform:translateX(-170px)}to{transform:translateX(430px)}}
-.bird{transform-box:fill-box;transform-origin:center;animation:flap 3s ease-in-out infinite}
-@keyframes flap{50%{transform:translateY(-6px)}}
-.petal{animation:fall 7s linear infinite}
-.petal.p2{animation-delay:-2.3s}.petal.p3{animation-delay:-4.6s}
-@keyframes fall{from{transform:translate(0,-10px) rotate(0)}to{transform:translate(-22px,170px) rotate(200deg)}}
-.wave{animation:wave 4s ease-in-out infinite alternate}
-.wave.w2{animation-duration:5.5s;animation-delay:-2s}
-@keyframes wave{from{transform:translateX(-10px)}to{transform:translateX(10px)}}
-.boat{transform-box:fill-box;transform-origin:center;animation:bob 3.5s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(3px) rotate(3deg)}}
-.lamp{animation:blink 2.4s steps(1) infinite}
-@keyframes blink{50%{opacity:.35}}
+/* 繪本・文青感插圖動畫 */
+.cloud{animation:drift 16s ease-in-out infinite alternate}
+.cloud.b{animation-duration:22s;animation-delay:-7s}
+@keyframes drift{from{transform:translateX(-12px)}to{transform:translateX(16px)}}
+
+.sun{transform-box:fill-box;transform-origin:center;animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.07)}}
+
+.tower{transform-origin:112px 218px;animation:sway 7s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(0.8deg)}}
+
+.sign{transform-origin:42px 158px;animation:swing 4.2s ease-in-out infinite}
+@keyframes swing{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+
+.cat-tail{transform-origin:58px 148px;animation:tail 3.6s ease-in-out infinite}
+@keyframes tail{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(12deg)}}
+
+.train{animation:ride 12s cubic-bezier(.45,.05,.55,.95) infinite}
+@keyframes ride{
+  0%{transform:translateX(-180px)}
+  40%{transform:translateX(125px)}
+  55%{transform:translateX(125px)}
+  100%{transform:translateX(430px)}
+}
+
+.bird{transform-box:fill-box;transform-origin:center;animation:flap 3.6s ease-in-out infinite}
+@keyframes flap{50%{transform:translateY(-5px)}}
+
+.petal{animation:fall 8.5s ease-in-out infinite}
+.petal.p2{animation-delay:-2.8s}
+.petal.p3{animation-delay:-5.6s}
+@keyframes fall{
+  0%{transform:translate(0,-8px) rotate(0deg);opacity:0}
+  15%{opacity:1}
+  50%{transform:translate(-14px,75px) rotate(110deg)}
+  85%{opacity:1}
+  100%{transform:translate(-26px,160px) rotate(220deg);opacity:0}
+}
+
+.reed{transform-box:fill-box;transform-origin:bottom center;animation:reedSway 4.8s ease-in-out infinite}
+.reed.r2{animation-delay:-2.1s;animation-duration:5.4s}
+@keyframes reedSway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(3.5deg)}}
+
+.fuji-cloud{animation:fujiDrift 11s ease-in-out infinite alternate}
+@keyframes fujiDrift{from{transform:translateX(-8px)}to{transform:translateX(10px)}}
+
+.wave{animation:wave 4.5s ease-in-out infinite alternate}
+.wave.w2{animation-duration:6s;animation-delay:-2.2s}
+@keyframes wave{from{transform:translateX(-9px)}to{transform:translateX(9px)}}
+
+.boat{transform-box:fill-box;transform-origin:center;animation:bob 4.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(3px) rotate(2deg)}}
+
+.lamp{animation:blink 3s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
-@media (min-width:600px){.flight{grid-template-columns:1fr 1fr}.hero h1{font-size:40px}}
+@media (min-width:600px){.flight{grid-template-columns:1fr 1fr}.hero h1{font-size:38px}}
 </style>
 </head>
 <body>
@@ -173,81 +206,181 @@ button.btn{font:inherit;font-size:14px;color:var(--ink);cursor:pointer}
 
 <header class="hero" id="top">
   <div class="scene">
-    <!-- 版本一：東京街景 -->
-    <svg id="v0" class="on" viewBox="0 0 400 260" role="img" aria-label="插畫繪本風插圖：東京鐵塔、晴空塔與行駛的電車" xmlns="http://www.w3.org/2000/svg" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+    <!-- 版本一：文青繪本風・東京街角與電車 -->
+    <svg id="v0" class="on" viewBox="0 0 400 260" role="img" aria-label="繪本風插圖：東京鐵塔、晴空塔、街角咖啡書店與行駛的復古電車" xmlns="http://www.w3.org/2000/svg" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
       <rect width="400" height="260" fill="#F3E3D0" stroke="none"/>
-      <circle class="sun" cx="340" cy="52" r="24" fill="#AACDDC"/>
-      <g class="cloud"><path d="M30 56h72a14 14 0 0 0-6-26 20 20 0 0 0-38-4 16 16 0 0 0-28 30z" fill="#FEFAF3"/></g>
-      <g class="cloud b"><path d="M200 46h58a12 12 0 0 0-5-22 17 17 0 0 0-32-3 13 13 0 0 0-21 25z" fill="#FEFAF3"/></g>
+      <!-- 遠景暖日與軟雲 -->
+      <circle class="sun" cx="338" cy="48" r="21" fill="#AACDDC"/>
+      <g class="cloud"><path d="M26 52h66a13 13 0 0 0-5-24 18 18 0 0 0-35-4 15 15 0 0 0-26 28z" fill="#FEFAF3"/></g>
+      <g class="cloud b"><path d="M196 42h52a11 11 0 0 0-4-20 15 15 0 0 0-29-3 12 12 0 0 0-19 23z" fill="#FEFAF3"/></g>
+
+      <!-- 遠方錯落建築剪影 -->
       <g fill="#D2C4B4">
-        <rect x="150" y="160" width="28" height="62"/><rect x="180" y="140" width="24" height="82"/>
-        <rect x="350" y="150" width="34" height="72"/><rect x="206" y="172" width="30" height="50"/><rect x="0" y="170" width="40" height="52"/>
+        <rect x="152" y="164" width="26" height="58" rx="2"/>
+        <rect x="182" y="144" width="24" height="78" rx="2"/>
+        <rect x="210" y="172" width="28" height="50" rx="2"/>
+        <rect x="348" y="154" width="32" height="68" rx="2"/>
       </g>
-      <g fill="#FEFAF3" stroke="none"><rect x="156" y="170" width="5" height="5"/><rect x="166" y="184" width="5" height="5"/><rect x="186" y="152" width="5" height="5"/><rect x="190" y="170" width="5" height="5"/><rect x="358" y="162" width="5" height="5"/><rect x="368" y="180" width="5" height="5"/></g>
+      <g fill="#FEFAF3" stroke="none">
+        <rect x="158" y="174" width="4" height="4" rx="1"/><rect x="167" y="186" width="4" height="4" rx="1"/>
+        <rect x="188" y="156" width="4" height="4" rx="1"/><rect x="194" y="172" width="4" height="4" rx="1"/>
+        <rect x="356" y="166" width="4" height="4" rx="1"/><rect x="366" y="182" width="4" height="4" rx="1"/>
+      </g>
+
       <!-- 晴空塔 -->
       <g fill="#AACDDC">
-        <path d="M292 222 L298 100 L302 100 L308 222Z"/>
-        <rect x="288" y="118" width="24" height="9" rx="4"/>
-        <rect x="291" y="94" width="18" height="7" rx="3"/>
-        <path d="M298 94 L300 54 L302 94" fill="none"/>
+        <path d="M292 222 L298 102 L302 102 L308 222Z"/>
+        <rect x="288" y="120" width="24" height="8" rx="4"/>
+        <rect x="291" y="96" width="18" height="6" rx="3"/>
+        <path d="M298 96 L300 58 L302 96" fill="none"/>
       </g>
-      <circle class="lamp" cx="300" cy="52" r="3" fill="#FEFAF3"/>
+      <circle class="lamp" cx="300" cy="55" r="2.8" fill="#FEFAF3"/>
+
       <!-- 東京鐵塔 -->
       <g class="tower" fill="#81A6C6">
-        <path d="M104 62 L110 38 L116 62Z"/>
-        <path d="M98 100 L104 62 L116 62 L122 100Z"/>
-        <path d="M90 130 L98 100 L122 100 L130 130Z"/>
-        <rect x="96" y="96" width="28" height="7" rx="3" fill="#FEFAF3"/>
-        <path d="M78 215 L90 130 L130 130 L142 215Z"/>
-        <path d="M90 130 L130 215 M130 130 L90 215" fill="none"/>
-        <rect x="82" y="168" width="56" height="8" rx="3" fill="#FEFAF3"/>
+        <path d="M107 64 L112 42 L117 64Z"/>
+        <path d="M101 100 L107 64 L117 64 L123 100Z"/>
+        <path d="M93 130 L101 100 L123 100 L131 130Z"/>
+        <rect x="99" y="96" width="26" height="7" rx="3.5" fill="#FEFAF3"/>
+        <path d="M82 218 L93 130 L131 130 L142 218Z"/>
+        <path d="M93 130 L131 218 M131 130 L93 218" fill="none"/>
+        <rect x="85" y="168" width="54" height="7" rx="3.5" fill="#FEFAF3"/>
       </g>
+
+      <!-- 街角文青咖啡小書店（左側前景） -->
+      <g>
+        <rect x="12" y="148" width="54" height="74" rx="3" fill="#FEFAF3"/>
+        <path d="M8 148 L39 128 L70 148 Z" fill="#81A6C6"/>
+        <!-- 屋頂小黑貓 -->
+        <path class="cat-tail" d="M58 148 Q64 142 62 136" fill="none"/>
+        <circle cx="54" cy="145" r="3.2" fill="#3E3A39"/>
+        <path d="M51 143 L52 139 L54 142 L56 139 L57 143 Z" fill="#3E3A39"/>
+        <!-- 條紋遮雨棚 -->
+        <path d="M10 174 H68 L64 183 H14 Z" fill="#AACDDC"/>
+        <path d="M22 174 L20 183 M34 174 L33 183 M46 174 L46 183 M58 174 L59 183" fill="none"/>
+        <!-- 櫥窗與木門 -->
+        <rect x="18" y="189" width="22" height="19" rx="2" fill="#F3E3D0"/>
+        <rect x="45" y="189" width="15" height="33" rx="2" fill="#D2C4B4"/>
+        <circle cx="56" cy="206" r="1.2" fill="#3E3A39"/>
+        <!-- 懸掛小招牌 -->
+        <path d="M66 158 H74" fill="none"/>
+        <g class="sign">
+          <rect x="69" y="158" width="10" height="13" rx="2" fill="#F3E3D0"/>
+          <circle cx="74" cy="164.5" r="2" fill="#81A6C6" stroke="none"/>
+        </g>
+      </g>
+
+      <!-- 街燈與行道樹 -->
+      <g>
+        <path d="M254 222 V176 Q254 170 260 170" fill="none"/>
+        <circle class="lamp" cx="262" cy="171" r="3.5" fill="#FEFAF3"/>
+        <path d="M332 222 V196" fill="none"/>
+        <circle cx="332" cy="186" r="13" fill="#AACDDC"/>
+        <circle cx="324" cy="191" r="8" fill="#81A6C6"/>
+      </g>
+
+      <!-- 地面與軌道 -->
       <rect x="0" y="222" width="400" height="38" fill="#FEFAF3"/>
-      <path d="M0 226H400M0 236H400" fill="none"/>
+      <path d="M0 226H400M0 235H400" fill="none"/>
+      <path d="M20 230h12M60 230h12M100 230h12M140 230h12M180 230h12M220 230h12M260 230h12M300 230h12M340 230h12M380 230h12" fill="none" stroke-opacity=".5"/>
+
+      <!-- 復古路面電車（緩行與靠站韻律） -->
       <g class="train">
-        <rect x="0" y="196" width="150" height="26" rx="10" fill="#FEFAF3"/>
-        <path d="M0 212h150" fill="none"/>
-        <rect x="10" y="201" width="16" height="9" rx="3" fill="#AACDDC"/><rect x="34" y="201" width="16" height="9" rx="3" fill="#AACDDC"/><rect x="58" y="201" width="16" height="9" rx="3" fill="#AACDDC"/><rect x="82" y="201" width="16" height="9" rx="3" fill="#AACDDC"/>
-        <path d="M150 222 V206 Q150 198 128 196 H112 V222Z" fill="#81A6C6"/>
-        <circle cx="30" cy="224" r="5" fill="#3E3A39"/><circle cx="120" cy="224" r="5" fill="#3E3A39"/>
+        <path d="M55 196 L65 186 H85 L95 196" fill="none"/>
+        <rect x="0" y="196" width="152" height="26" rx="11" fill="#FEFAF3"/>
+        <path d="M0 212h152" fill="none"/>
+        <rect x="12" y="201" width="16" height="9" rx="3" fill="#F3E3D0"/>
+        <rect x="35" y="201" width="16" height="9" rx="3" fill="#AACDDC"/>
+        <rect x="58" y="201" width="16" height="9" rx="3" fill="#F3E3D0"/>
+        <rect x="81" y="201" width="16" height="9" rx="3" fill="#AACDDC"/>
+        <path d="M152 222 V206 Q152 198 130 196 H112 V222Z" fill="#81A6C6"/>
+        <circle cx="147" cy="215" r="2.2" fill="#FEFAF3"/>
+        <circle cx="28" cy="224" r="4.5" fill="#3E3A39"/><circle cx="122" cy="224" r="4.5" fill="#3E3A39"/>
       </g>
-      <g class="bird" fill="none"><path d="M250 90q6-8 12 0q6-8 12 0"/></g>
-      <g class="petal" fill="#FEFAF3"><path d="M330 100q8-8 12 2q-4 10-12-2z"/></g>
-      <g class="petal p2" fill="#FEFAF3"><path d="M60 20q8-8 12 2q-4 10-12-2z"/></g>
-      <g class="petal p3" fill="#FEFAF3"><path d="M250 10q8-8 12 2q-4 10-12-2z"/></g>
+
+      <!-- 飛鳥與飄落花瓣 -->
+      <g class="bird" fill="none"><path d="M244 86q5-7 10 0q5-7 10 0"/></g>
+      <g class="petal" fill="#FEFAF3"><path d="M326 96q7-7 10 2q-3 9-10-2z"/></g>
+      <g class="petal p2" fill="#FEFAF3"><path d="M78 24q7-7 10 2q-3 9-10-2z"/></g>
+      <g class="petal p3" fill="#FEFAF3"><path d="M236 14q7-7 10 2q-3 9-10-2z"/></g>
     </svg>
-    <!-- 版本二：河口湖與富士山 -->
-    <svg id="v1" viewBox="0 0 400 260" role="img" aria-label="繪本風插圖：富士山、河口湖、小船與五重塔" xmlns="http://www.w3.org/2000/svg" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- 版本二：文青繪本風・河口湖與富士山 -->
+    <svg id="v1" viewBox="0 0 400 260" role="img" aria-label="繪本風插圖：富士山、河口湖、湖畔木棧道、小船與五重塔" xmlns="http://www.w3.org/2000/svg" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
       <rect width="400" height="260" fill="#F3E3D0" stroke="none"/>
-      <circle class="sun" cx="70" cy="56" r="22" fill="#FEFAF3"/>
-      <g class="cloud"><path d="M230 50h70a14 14 0 0 0-6-26 20 20 0 0 0-38-4 16 16 0 0 0-26 30z" fill="#FEFAF3"/></g>
-      <g class="cloud b"><path d="M20 112h54a11 11 0 0 0-5-20 15 15 0 0 0-29-3 12 12 0 0 0-20 23z" fill="#FEFAF3"/></g>
-      <path d="M0 176 Q50 140 100 170 T190 176 V190 H0Z" fill="#D2C4B4"/>
-      <path d="M110 186 L212 68 Q230 52 248 68 L350 186Z" fill="#81A6C6"/>
-      <path d="M196 86 Q230 72 264 86 L254 100 L243 90 L230 106 L217 90 L206 100Z" fill="#FEFAF3"/>
+      <!-- 暖陽與柔和雲朵 -->
+      <circle class="sun" cx="68" cy="54" r="20" fill="#FEFAF3"/>
+      <g class="cloud"><path d="M226 48h66a13 13 0 0 0-5-24 18 18 0 0 0-35-4 15 15 0 0 0-26 28z" fill="#FEFAF3"/></g>
+      <g class="cloud b"><path d="M18 108h50a10 10 0 0 0-4-18 14 14 0 0 0-27-3 11 11 0 0 0-19 21z" fill="#FEFAF3"/></g>
+
+      <!-- 遠山稜線 -->
+      <path d="M0 176 Q48 144 96 170 T186 176 V190 H0Z" fill="#D2C4B4"/>
+
+      <!-- 富士山與積雪 -->
+      <path d="M108 186 L210 68 Q228 52 246 68 L348 186Z" fill="#81A6C6"/>
+      <path d="M194 86 Q228 72 262 86 L252 100 L241 90 L228 106 L215 90 L204 100Z" fill="#FEFAF3"/>
+      <!-- 山腰微風雲帶 -->
+      <g class="fuji-cloud" fill="#FEFAF3">
+        <rect x="158" y="132" width="44" height="8" rx="4"/>
+        <rect x="242" y="120" width="38" height="7" rx="3.5"/>
+      </g>
+
+      <!-- 河口湖水面 -->
       <path d="M0 190 H400 V260 H0Z" fill="#AACDDC"/>
       <path d="M0 190 H400" fill="none"/>
-      <!-- 倒影（平塗波紋） -->
-      <g class="wave" fill="none"><path d="M150 202h36M200 202h56M264 202h26"/></g>
-      <g class="wave w2" fill="none"><path d="M170 214h50M232 214h40"/><path d="M130 226h30M190 226h70"/></g>
-      <!-- 五重塔 -->
+
+      <!-- 湖面波光與倒影 -->
+      <g class="wave" fill="none"><path d="M148 202h34M198 202h54M262 202h24"/></g>
+      <g class="wave w2" fill="none"><path d="M168 214h48M230 214h38"/><path d="M132 226h28M188 226h66"/></g>
+
+      <!-- 右岸忠靈塔（五重塔）與山丘 -->
       <g fill="#FEFAF3">
         <rect x="318" y="118" width="22" height="58"/>
         <path d="M312 130h34l-4-8h-26zM314 148h30l-4-8h-22zM316 166h26l-3-8h-20z" fill="#D2C4B4"/>
         <path d="M329 118 L329 104" fill="none"/>
       </g>
-      <rect x="296" y="176" width="70" height="14" fill="#D2C4B4"/>
-      <!-- 小船 -->
-      <g class="boat">
-        <path d="M70 218 h58 l-8 14 h-42z" fill="#FEFAF3"/>
-        <path d="M99 218 V190 L118 212Z" fill="#F3E3D0"/>
-        <path d="M99 218 V186" fill="none"/>
+      <rect x="294" y="176" width="74" height="14" rx="3" fill="#D2C4B4"/>
+
+      <!-- 左側湖畔木棧道與小石燈籠 -->
+      <g>
+        <path d="M0 232 H48 L56 242 H0 Z" fill="#D2C4B4"/>
+        <path d="M12 242 V254 M38 242 V254" fill="none"/>
+        <!-- 小石燈籠 -->
+        <rect x="14" y="224" width="8" height="8" fill="#FEFAF3"/>
+        <rect x="12" y="216" width="12" height="8" rx="1" fill="#F3E3D0"/>
+        <path d="M9 216 L18 209 L27 216 Z" fill="#D2C4B4"/>
+        <!-- 搖曳蘆葦 -->
+        <g class="reed" fill="none">
+          <path d="M44 236 Q40 220 36 212"/>
+          <ellipse cx="35" cy="210" rx="2" ry="4.5" fill="#D2C4B4"/>
+        </g>
+        <g class="reed r2" fill="none">
+          <path d="M50 238 Q52 224 56 216"/>
+          <ellipse cx="57" cy="214" rx="2" ry="4" fill="#D2C4B4"/>
+        </g>
       </g>
-      <g class="bird" fill="none"><path d="M290 70q6-8 12 0q6-8 12 0"/></g>
-      <g class="bird" style="animation-delay:-1.2s" fill="none"><path d="M320 90q5-7 10 0q5-7 10 0"/></g>
-      <g class="petal" fill="#FEFAF3"><path d="M40 20q8-8 12 2q-4 10-12-2z"/></g>
-      <g class="petal p2" fill="#FEFAF3"><path d="M180 10q8-8 12 2q-4 10-12-2z"/></g>
-      <g class="petal p3" fill="#FEFAF3"><path d="M355 30q8-8 12 2q-4 10-12-2z"/></g>
+
+      <!-- 悠閒搖晃的木造小船 -->
+      <g class="boat">
+        <path d="M84 218 h54 l-7 13 h-40z" fill="#FEFAF3"/>
+        <path d="M111 218 V192 L129 212Z" fill="#F3E3D0"/>
+        <path d="M111 218 V188" fill="none"/>
+      </g>
+
+      <!-- 右上角文青櫻花枝椏 -->
+      <g>
+        <path d="M400 22 Q376 30 356 24" fill="none"/>
+        <circle cx="372" cy="26" r="3.5" fill="#FEFAF3"/>
+        <circle cx="356" cy="24" r="3" fill="#FEFAF3"/>
+        <circle cx="384" cy="22" r="3" fill="#FEFAF3"/>
+      </g>
+
+      <!-- 飛鳥與飄落花瓣 -->
+      <g class="bird" fill="none"><path d="M284 68q5-7 10 0q5-7 10 0"/></g>
+      <g class="bird" style="animation-delay:-1.4s" fill="none"><path d="M314 88q4-6 8 0q4-6 8 0"/></g>
+      <g class="petal" fill="#FEFAF3"><path d="M42 22q7-7 10 2q-3 9-10-2z"/></g>
+      <g class="petal p2" fill="#FEFAF3"><path d="M178 12q7-7 10 2q-3 9-10-2z"/></g>
+      <g class="petal p3" fill="#FEFAF3"><path d="M352 34q7-7 10 2q-3 9-10-2z"/></g>
     </svg>
   </div>
   <div class="vers" role="group" aria-label="切換插圖">
@@ -302,17 +435,17 @@ button.btn{font:inherit;font-size:14px;color:var(--ink);cursor:pointer}
   <h2>住宿</h2>
   <div class="stays">
     <article class="card stay paper">
-      <div class="ic"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><rect x="6" y="6" width="9" height="22" rx="2" fill="#FEFAF3"/><rect x="17" y="12" width="11" height="16" rx="2" fill="#F3E3D0"/><path d="M9 11h3M9 16h3M9 21h3M20 17h5M20 22h5"/></svg></div>
+      <div class="ic"><svg width="32" height="32" viewBox="0 0 34 34" fill="none" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><rect x="6" y="6" width="9" height="22" rx="2" fill="#FEFAF3"/><rect x="17" y="12" width="11" height="16" rx="2" fill="#F3E3D0"/><path d="M9 11h3M9 16h3M9 21h3M20 17h5M20 22h5"/></svg></div>
       <div><h3>新宿 SANEN ASAGAYA</h3><div class="d">1/14 – 1/18・4 晚</div>
       <a class="btn" href="https://maps.app.goo.gl/pFLmUvKcEMJUHxB96" target="_blank" rel="noopener">查看地圖</a></div>
     </article>
     <article class="card stay paper">
-      <div class="ic"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><path d="M3 28L15 9q2-3 4 0l12 19z" fill="#FEFAF3"/><path d="M12 14l3-5q2-2 4 0l3 5-3 2-2-2-2 2z" fill="#AACDDC"/></svg></div>
+      <div class="ic"><svg width="32" height="32" viewBox="0 0 34 34" fill="none" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><path d="M3 28L15 9q2-3 4 0l12 19z" fill="#FEFAF3"/><path d="M12 14l3-5q2-2 4 0l3 5-3 2-2-2-2 2z" fill="#AACDDC"/></svg></div>
       <div><h3>河口湖 富士湖酒店</h3><div class="d">1/18 – 1/19・1 晚</div>
       <a class="btn" href="https://maps.app.goo.gl/FJqj25JPsqcYAQ2o6" target="_blank" rel="noopener">查看地圖</a></div>
     </article>
     <article class="card stay paper">
-      <div class="ic"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><path d="M4 16l13-9 13 9z" fill="#FEFAF3"/><rect x="8" y="16" width="18" height="11" fill="#D2C4B4"/><path d="M15 27v-6h4v6"/></svg></div>
+      <div class="ic"><svg width="32" height="32" viewBox="0 0 34 34" fill="none" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><path d="M4 16l13-9 13 9z" fill="#FEFAF3"/><rect x="8" y="16" width="18" height="11" fill="#D2C4B4"/><path d="M15 27v-6h4v6"/></svg></div>
       <div><h3>上野</h3><div class="d">1/19 – 1/20・1 晚</div>
       <span class="tag" style="border-style:dashed;margin-top:4px">尚未決定飯店</span></div>
     </article>
