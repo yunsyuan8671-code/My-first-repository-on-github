@@ -35,7 +35,6 @@ nav ul{list-style:none;display:flex;gap:6px;max-width:640px;margin:0 auto;paddin
 nav li{flex:1 1 0;min-width:0}
 nav a{display:block;white-space:nowrap;text-decoration:none;border:var(--line);border-radius:999px;padding:2px 0;text-align:center;font-size:13px;background:var(--taupe)}
 nav a:active{background:var(--paper)}
-nav a.sync-nav{background:var(--sky);font-weight:500}
 
 section{padding-top:34px}
 h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;border:2px solid var(--ink);border-radius:14px;padding:2px 16px;line-height:1.4}
@@ -50,23 +49,6 @@ h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;bor
 .vers button[aria-pressed="true"]{background:var(--sky)}
 .hero h1{font-size:32px;line-height:1.25;margin:12px 0 4px;text-align:center}
 .hero p.sub{text-align:center;font-size:13px}
-
-/* 雲端多人同步狀態列 */
-.sync-bar{display:flex;justify-content:space-between;align-items:center;border:var(--line);border-radius:var(--r);padding:10px 14px;background:var(--paper);margin:16px 0 4px;font-size:13px;box-shadow:2px 2px 0 var(--ink)}
-.sync-status{display:flex;align-items:center;gap:8px}
-.sync-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ink);background:#bbb;display:inline-block;flex:0 0 auto}
-.sync-dot.online{background:#4ade80}
-.sync-dot.syncing{background:#facc15;animation:pulse .8s infinite alternate}
-.sync-dot.offline{background:#f87171}
-@keyframes pulse{from{opacity:1}to{opacity:.3}}
-.sync-btn{background:var(--sky);cursor:pointer}
-
-/* 多人同步彈窗 */
-.sync-dialog{border:2px solid var(--ink);border-radius:18px;padding:0;max-width:540px;width:92%;box-shadow:4px 6px 0 var(--ink);background:var(--paper) var(--tex);color:var(--ink);margin:auto}
-.sync-dialog::backdrop{background:rgba(0,0,0,.45)}
-.sync-box{padding:20px}
-.sync-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.sync-header h3{font-size:18px;font-weight:700}
 
 /* 即時天氣小卡 */
 .weather-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -283,8 +265,8 @@ textarea.fld{resize:vertical;min-height:72px}
   <li><a href="#weather">天氣</a></li>
   <li><a href="#days">行程</a></li>
   <li><a href="#todo">待辦</a></li>
+  <li><a href="#stay">住宿</a></li>
   <li><a href="#cost">花費</a></li>
-  <li><a href="#syncModal" id="navSync" class="sync-nav">☁️ 同步</a></li>
 </ul>
 </nav>
 
@@ -477,15 +459,6 @@ textarea.fld{resize:vertical;min-height:72px}
   </div>
   <h1>富士旅行團</h1>
   <p class="sub">2027/1/14（四）－ 2027/1/20（三）</p>
-
-  <!-- 雲端多人同步狀態列 -->
-  <div class="sync-bar" id="syncBar">
-    <div class="sync-status">
-      <span class="sync-dot offline" id="syncDot"></span>
-      <span id="syncStatusTxt">離線模式（點擊開啟多人同步）</span>
-    </div>
-    <button type="button" class="mini sync-btn" id="openSyncBtn">⚙️ 同步設定</button>
-  </div>
 </header>
 
 <section id="flight">
@@ -623,57 +596,21 @@ textarea.fld{resize:vertical;min-height:72px}
   </details>
 </section>
 
-<!-- 多人同步彈窗 -->
-<dialog id="syncDialog" class="sync-dialog paper">
-  <div class="sync-box">
-    <div class="sync-header">
-      <h3>☁️ 多人即時同步設定</h3>
-      <button type="button" class="exp-x" id="closeSyncBtn" aria-label="關閉">×</button>
-    </div>
-    <p class="hint">只要設定一次，同團旅伴打開同一個專屬網址，就能同時在線上即時編輯行程與記帳！</p>
-    
-    <div class="more-group" style="margin-top:10px">
-      <label class="ftitle" for="dbUrlInput" style="font-size:13px">Firebase 資料庫網址 (Database URL)</label>
-      <input class="fld" id="dbUrlInput" placeholder="例如 https://your-trip-default-rtdb.firebaseio.com" aria-label="Firebase Database URL">
-      
-      <label class="ftitle" for="roomIdInput" style="font-size:13px">旅團房間代碼 (Room ID)</label>
-      <input class="fld" id="roomIdInput" value="fuji2027" placeholder="例如 fuji2027" aria-label="房間代碼">
-
-      <div class="fbtns" style="margin-top:4px">
-        <button type="button" class="btn" id="saveSyncBtn" style="background:var(--blue)">儲存並連線</button>
-        <button type="button" class="mini" id="copyShareLinkBtn">📋 複製旅伴邀請連結</button>
-      </div>
-      <p class="hint" id="syncMsg" role="status" style="font-weight:bold;margin-top:4px"></p>
-    </div>
-
-    <details class="exp-drawer" style="margin-top:14px">
-      <summary><span>📖 如何取得免費 Firebase 網址？（只要 1 分鐘）</span><span class="exp-arrow">▾</span></summary>
-      <div class="exp-body" style="font-size:12px;line-height:1.7">
-        <ol style="padding-left:18px">
-          <li>前往 <a href="https://console.firebase.google.com/" target="_blank" rel="noopener" style="text-decoration:underline">Firebase Console</a> 並登入 Google 帳號。</li>
-          <li>點選「建立專案」，取個名字（如 <code>fuji-trip</code>），一路點繼續直到專案建立完成。</li>
-          <li>左側選單點選「Build (建置) → Realtime Database」，點擊「建立資料庫」。</li>
-          <li>伺服器位置選預設，安全性規則選擇<b>「以測試模式啟動 (Test Mode)」</b>。</li>
-          <li>建立完成後，上方會有一行網址（如 <code>https://xxx-default-rtdb.firebaseio.com</code>），複製它貼到上方欄位即可！</li>
-        </ol>
-      </div>
-    </details>
-
-    <div class="more-group" style="margin-top:14px;border-top:1.5px dashed var(--ink);padding-top:12px">
-      <div class="ftitle" style="font-size:13px">手動資料操作</div>
-      <div class="fbtns">
-        <button type="button" class="mini" id="pushToCloudBtn">把本機目前行程覆蓋到雲端</button>
-        <button type="button" class="mini" id="pullFromCloudBtn">從雲端下載最新行程覆蓋本機</button>
-      </div>
-    </div>
-  </div>
-</dialog>
-
 <section id="settings">
   <details class="exp-drawer" id="moreDrawer">
-    <summary><span>⚙ 更多設定（備份・匯入・重設）</span><span class="exp-arrow" aria-hidden="true">▾</span></summary>
+    <summary><span>⚙ 更多設定（旅團同步・備份・重設）</span><span class="exp-arrow" aria-hidden="true">▾</span></summary>
     <div class="exp-body more-body">
       <div class="more-group">
+        <div class="ftitle">旅團雲端即時同步</div>
+        <p class="hint">目前所有開啟此網址的手機皆連線至 <b>fuji2027</b> 旅團房間，享有即時共同編輯。</p>
+        <div class="fbtns">
+          <button type="button" class="mini" id="btnCopyShare">📋 複製分享網址給旅伴</button>
+          <button type="button" class="mini" id="btnForcePush">強制將此手機內容覆蓋至雲端</button>
+        </div>
+        <p class="hint" id="shareMsg" style="font-weight:700"></p>
+      </div>
+
+      <div class="more-group" style="border-top:1.5px dashed var(--ink);padding-top:12px">
         <div class="ftitle">備份與匯出</div>
         <p class="hint">若處於離線狀態，資料只存在這支手機的瀏覽器裡。建議出發前與旅途中定期備份。</p>
         <div class="fbtns"><button type="button" class="mini" id="bkFile">下載備份檔</button><button type="button" class="mini" id="bkCopy">複製備份文字</button></div>
@@ -681,6 +618,7 @@ textarea.fld{resize:vertical;min-height:72px}
         <div class="fbtns"><button type="button" class="mini" id="bkImport">匯入貼上的文字</button><label class="mini" for="bkPick">選擇備份檔…</label><input type="file" id="bkPick" accept="application/json,.json" style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none"></div>
         <p class="hint" id="bkMsg" role="status"></p>
       </div>
+
       <div class="more-group danger">
         <div class="ftitle">重設（無法復原）</div>
         <div class="fbtns"><button type="button" class="mini" id="resetDays">恢復預設行程</button><button type="button" class="mini" id="resetTodo">恢復預設待辦</button><button type="button" class="mini" id="resetCost">清空花費紀錄</button></div>
@@ -689,7 +627,9 @@ textarea.fld{resize:vertical;min-height:72px}
   </details>
 </section>
 
-<footer></footer>
+<footer>
+  <p style="opacity:.65;font-size:11px">🏔️ 2027 富士旅行團・雲端即時同步中 <span id="syncDot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#4ade80;vertical-align:middle;margin-left:2px"></span></p>
+</footer>
 </main>
 
 <script>
@@ -868,7 +808,7 @@ textarea.fld{resize:vertical;min-height:72px}
     else if(act==="cancel"){editing=null;renderPanel(i)}
     else if(act==="del"){
       if(!confirm("刪除這個行程？"))return;
-      days[i].items.splice(k,1);editing=null;save(DK,days);renderPanel(i);triggerCloudSync();
+      days[i].items.splice(k,1);editing=null;save(DK,days);renderPanel(i);pushCloud();
     }
   });
   panels.addEventListener("submit",function(e){
@@ -880,11 +820,11 @@ textarea.fld{resize:vertical;min-height:72px}
     if(mp)item.map=mp;
     if(fd.get("must"))item.must=1;
     if(editing&&editing.day===i)days[i].items[editing.idx]=item;else days[i].items.push(item);
-    editing=null;save(DK,days);renderPanel(i);triggerCloudSync();
+    editing=null;save(DK,days);renderPanel(i);pushCloud();
   });
   document.getElementById("resetDays").onclick=function(){
     if(!confirm("要把每日行程恢復成預設內容嗎？你新增與修改的內容會消失。"))return;
-    days=clone(DEF);editing=null;save(DK,days);days.forEach(function(_,i){renderPanel(i)});triggerCloudSync();
+    days=clone(DEF);editing=null;save(DK,days);days.forEach(function(_,i){renderPanel(i)});pushCloud();
   };
 
   /* ===== 出發前待辦 ===== */
@@ -906,20 +846,20 @@ textarea.fld{resize:vertical;min-height:72px}
   }
   list.addEventListener("change",function(e){
     var c=e.target.closest("input[data-i]");if(!c)return;
-    todos[+c.dataset.i].d=c.checked;save(TK,todos);renderTodo();triggerCloudSync();
+    todos[+c.dataset.i].d=c.checked;save(TK,todos);renderTodo();pushCloud();
   });
   list.addEventListener("click",function(e){
     var b=e.target.closest("button[data-del]");if(!b)return;
-    todos.splice(+b.dataset.del,1);save(TK,todos);renderTodo();triggerCloudSync();
+    todos.splice(+b.dataset.del,1);save(TK,todos);renderTodo();pushCloud();
   });
   document.getElementById("todoAdd").addEventListener("submit",function(e){
     e.preventDefault();
     var inp=document.getElementById("todoNew"),v=inp.value.trim();if(!v)return;
-    todos.push({t:v,d:false});inp.value="";save(TK,todos);renderTodo();triggerCloudSync();
+    todos.push({t:v,d:false});inp.value="";save(TK,todos);renderTodo();pushCloud();
   });
   document.getElementById("resetTodo").onclick=function(){
     if(!confirm("要把待辦清單恢復成預設內容嗎？"))return;
-    todos=TD.map(function(t){return {t:t,d:false}});save(TK,todos);renderTodo();triggerCloudSync();
+    todos=TD.map(function(t){return {t:t,d:false}});save(TK,todos);renderTodo();pushCloud();
   };
   renderTodo();
 
@@ -1012,93 +952,66 @@ textarea.fld{resize:vertical;min-height:72px}
     if(e.target.elements.payer)e.target.elements.payer.value="";
     expDrawer.open=true;
     renderCost();
-    triggerCloudSync();
+    pushCloud();
   });
   expList.addEventListener("click",function(e){
     var b=e.target.closest("button[data-edel]");if(!b)return;
-    expenses.splice(+b.dataset.edel,1);save(EK,expenses);renderCost();triggerCloudSync();
+    expenses.splice(+b.dataset.edel,1);save(EK,expenses);renderCost();pushCloud();
   });
   document.getElementById("resetCost").onclick=function(){
     if(!expenses.length)return;
     if(!confirm("確定要清空所有花費紀錄嗎？"))return;
-    expenses=[];save(EK,expenses);renderCost();triggerCloudSync();
+    expenses=[];save(EK,expenses);renderCost();pushCloud();
   };
   renderCost();
   var rateIn=document.getElementById("rateIn");
   rateIn.value=rate>0?rate:"";
   rateIn.addEventListener("input",function(){
-    var v=parseFloat(rateIn.value);rate=v>0?v:0;save(RK,rate||"");renderCost();triggerCloudSync();
+    var v=parseFloat(rateIn.value);rate=v>0?v:0;save(RK,rate||"");renderCost();pushCloud();
   });
 
-  /* ===== 雲端多人即時同步引擎 (Firebase Realtime Database) ===== */
-  var CK_DB="tokyo2027-db-url";
-  var CK_ROOM="tokyo2027-room-id";
-  
-  // 優先解析網址列參數（例如 ?db=...&room=fuji2027）
+  /* ===== 雲端多人即時同步引擎（背景全自動連線） ===== */
+  var DEFAULT_DB="https://japan-93531-default-rtdb.firebaseio.com";
   var q=new URLSearchParams(location.search);
-  if(q.get("db"))localStorage.setItem(CK_DB,q.get("db").trim());
-  if(q.get("room"))localStorage.setItem(CK_ROOM,q.get("room").trim());
-
-  var dbUrl=localStorage.getItem(CK_DB)||"";
-  var roomId=localStorage.getItem(CK_ROOM)||"fuji2027";
+  var dbUrl=q.get("db")||localStorage.getItem("tokyo2027-db-url")||DEFAULT_DB;
+  var roomId=q.get("room")||localStorage.getItem("tokyo2027-room-id")||"fuji2027";
 
   function cleanUrl(u){return String(u||"").trim().replace(/\/+$/,"")}
-  function getEndpoint(){
-    var b=cleanUrl(dbUrl);
-    if(!b)return "";
-    return b+"/rooms/"+encodeURIComponent(roomId)+".json";
-  }
+  function getEndpoint(){return cleanUrl(dbUrl)+"/rooms/"+encodeURIComponent(roomId)+".json"}
 
   var syncDot=document.getElementById("syncDot");
-  var syncTxt=document.getElementById("syncStatusTxt");
-  var syncDialog=document.getElementById("syncDialog");
-  var dbUrlInput=document.getElementById("dbUrlInput");
-  var roomIdInput=document.getElementById("roomIdInput");
-  var syncMsg=document.getElementById("syncMsg");
   var esSource=null;
   var syncTimer=null;
 
-  function setSyncBadge(cls,t){
-    if(syncDot)syncDot.className="sync-dot "+cls;
-    if(syncTxt)syncTxt.textContent=t;
-  }
+  function setDot(color){if(syncDot)syncDot.style.background=color}
 
   function applyRemote(data){
     if(!data)return;
-    if(editing)return; // 若正在打字編輯行程，先不覆蓋畫面避免跳掉
-    var changed=false;
+    if(editing)return; // 若使用者正在打字編輯行程，不中斷輸入
     if(Array.isArray(data.days)&&data.days.length===DEF.length){
       days=data.days;save(DK,days);
       days.forEach(function(_,i){renderPanel(i)});
-      changed=true;
     }
     if(Array.isArray(data.todos)){
       todos=data.todos;save(TK,todos);renderTodo();
-      changed=true;
     }
     if(Array.isArray(data.expenses)){
       expenses=data.expenses;save(EK,expenses);renderCost();
-      changed=true;
     }
     if(data.rate!==undefined){
       rate=parseFloat(data.rate)||0;save(RK,rate||"");
       if(rateIn)rateIn.value=rate>0?rate:"";
       renderCost();
-      changed=true;
     }
-    if(changed)setSyncBadge("online","🟢 雲端已同步 ("+roomId+")");
+    setDot("#4ade80");
   }
 
-  function triggerCloudSync(immediate){
-    if(!cleanUrl(dbUrl)){
-      setSyncBadge("offline","離線模式（點擊開啟多人同步）");
-      return;
-    }
-    setSyncBadge("syncing","雲端同步中...");
+  function pushCloud(immediate){
+    var ep=getEndpoint();
+    if(!ep)return;
+    setDot("#facc15"); // 黃燈同步中
     clearTimeout(syncTimer);
     syncTimer=setTimeout(function(){
-      var ep=getEndpoint();
-      if(!ep)return;
       var payload={
         days:days,
         todos:todos,
@@ -1111,35 +1024,32 @@ textarea.fld{resize:vertical;min-height:72px}
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(payload)
       }).then(function(r){
-        if(r.ok)setSyncBadge("online","🟢 雲端已同步 ("+roomId+")");
-        else setSyncBadge("offline","同步錯誤（請確認資料庫網址與權限）");
+        if(r.ok)setDot("#4ade80"); // 綠燈成功
+        else setDot("#f87171");
       }).catch(function(){
-        setSyncBadge("offline","連線暫歇，已暫存於手機");
+        setDot("#f87171");
       });
     },immediate?0:400);
   }
 
   function startSyncStream(){
     var ep=getEndpoint();
-    if(!ep){
-      setSyncBadge("offline","離線模式（點擊開啟多人同步）");
-      return;
-    }
-    setSyncBadge("syncing","連線雲端中...");
-    // 首次抓取遠端最新資料
+    if(!ep)return;
+    setDot("#facc15");
+    // 首次抓取最新資料
     fetch(ep)
       .then(function(r){return r.json()})
       .then(function(res){
         if(res&&res.days&&res.todos){
           applyRemote(res);
-          setSyncBadge("online","🟢 雲端已同步 ("+roomId+")");
+          setDot("#4ade80");
         } else {
           // 雲端是空的，把本地的資料上傳建立房間
-          triggerCloudSync(true);
+          pushCloud(true);
         }
       })
       .catch(function(){
-        setSyncBadge("offline","無法連線至雲端");
+        setDot("#f87171");
       });
 
     // 建立 EventSource (SSE) 實現即時推送監聽
@@ -1155,67 +1065,34 @@ textarea.fld{resize:vertical;min-height:72px}
         }catch(err){}
       });
       esSource.onerror=function(){
-        setSyncBadge("offline","同步連線中斷，重試中...");
+        setDot("#f87171");
       };
     }catch(err){}
   }
 
-  // 同步彈窗控制
-  function openSyncModal(){
-    dbUrlInput.value=dbUrl;
-    roomIdInput.value=roomId;
-    syncMsg.textContent="";
-    if(typeof syncDialog.showModal==="function")syncDialog.showModal();
-    else syncDialog.setAttribute("open","");
-  }
-  function closeSyncModal(){
-    if(typeof syncDialog.close==="function")syncDialog.close();
-    else syncDialog.removeAttribute("open");
-  }
-
-  document.getElementById("openSyncBtn").onclick=openSyncModal;
-  document.getElementById("navSync").onclick=function(e){e.preventDefault();openSyncModal()};
-  document.getElementById("closeSyncBtn").onclick=closeSyncModal;
-
-  document.getElementById("saveSyncBtn").onclick=function(){
-    var u=dbUrlInput.value.trim();
-    var r=roomIdInput.value.trim()||"fuji2027";
-    dbUrl=u;roomId=r;
-    localStorage.setItem(CK_DB,dbUrl);
-    localStorage.setItem(CK_ROOM,roomId);
-    syncMsg.textContent="已儲存設定！正在連線雲端...";
-    startSyncStream();
-    setTimeout(closeSyncModal,1200);
-  };
-
-  document.getElementById("copyShareLinkBtn").onclick=function(){
-    var u=dbUrlInput.value.trim()||dbUrl;
-    var r=roomIdInput.value.trim()||roomId;
-    if(!u){syncMsg.textContent="請先填寫 Firebase 資料庫網址才能生成邀請連結！";return;}
-    var base=location.origin+location.pathname;
-    var link=base+"?db="+encodeURIComponent(u)+"&room="+encodeURIComponent(r);
-    navigator.clipboard.writeText(link).then(function(){
-      syncMsg.textContent="✅ 邀請連結已複製！朋友點開此連結會自動加入同一個房間並同步！";
-    }).catch(function(){
-      prompt("請複製此連結傳給旅伴：",link);
-    });
-  };
-
-  document.getElementById("pushToCloudBtn").onclick=function(){
-    if(!confirm("確定要將這支手機目前的行程、待辦、記帳全面覆蓋到雲端嗎？"))return;
-    triggerCloudSync(true);
-    syncMsg.textContent="已強制推送至雲端！";
-  };
-  document.getElementById("pullFromCloudBtn").onclick=function(){
-    if(!confirm("確定要從雲端下載最新行程覆蓋這支手機的資料嗎？"))return;
-    var ep=getEndpoint();
-    if(!ep){alert("請先填寫資料庫網址");return;}
-    fetch(ep).then(function(r){return r.json()}).then(function(d){
-      if(d){applyRemote(d);syncMsg.textContent="已成功從雲端同步最新資料！";}
-    });
-  };
-
   startSyncStream();
+
+  /* 更多設定內的按鈕 */
+  var btnCopy=document.getElementById("btnCopyShare");
+  var btnPush=document.getElementById("btnForcePush");
+  var shareMsg=document.getElementById("shareMsg");
+  if(btnCopy){
+    btnCopy.onclick=function(){
+      var url=location.origin+location.pathname;
+      navigator.clipboard.writeText(url).then(function(){
+        if(shareMsg)shareMsg.textContent="✅ 網址已複製！直接傳給旅伴打開即可共同編輯！";
+      }).catch(function(){
+        prompt("請複製此網址：",url);
+      });
+    };
+  }
+  if(btnPush){
+    btnPush.onclick=function(){
+      if(!confirm("確定要將這支手機目前的行程、待辦、記帳全面覆蓋到雲端嗎？"))return;
+      pushCloud(true);
+      if(shareMsg)shareMsg.textContent="已強制覆蓋至雲端！";
+    };
+  }
 
   /* ===== 即時天氣預報 (Open-Meteo API) ===== */
   function loadWeather(){
@@ -1279,7 +1156,7 @@ textarea.fld{resize:vertical;min-height:72px}
     if(o.days.length!==DEF.length||!o.days.every(function(d){return d&&Array.isArray(d.items)})){msg("行程資料與目前不符，無法匯入。");return}
     if(!confirm("匯入會覆蓋目前的行程、待辦與花費，確定嗎？"))return;
     save(DK,o.days);save(TK,o.todos);save(EK,o.expenses);save(RK,o.rate||"");
-    triggerCloudSync(true);
+    pushCloud(true);
     location.reload();
   }
   document.getElementById("bkImport").onclick=function(){
