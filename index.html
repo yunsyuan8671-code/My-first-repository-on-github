@@ -35,6 +35,7 @@ nav ul{list-style:none;display:flex;gap:6px;max-width:640px;margin:0 auto;paddin
 nav li{flex:1 1 0;min-width:0}
 nav a{display:block;white-space:nowrap;text-decoration:none;border:var(--line);border-radius:999px;padding:2px 0;text-align:center;font-size:13px;background:var(--taupe)}
 nav a:active{background:var(--paper)}
+nav a.sync-nav{background:var(--sky);font-weight:500}
 
 section{padding-top:34px}
 h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;border:2px solid var(--ink);border-radius:14px;padding:2px 16px;line-height:1.4}
@@ -49,6 +50,30 @@ h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;bor
 .vers button[aria-pressed="true"]{background:var(--sky)}
 .hero h1{font-size:32px;line-height:1.25;margin:12px 0 4px;text-align:center}
 .hero p.sub{text-align:center;font-size:13px}
+
+/* 雲端多人同步狀態列 */
+.sync-bar{display:flex;justify-content:space-between;align-items:center;border:var(--line);border-radius:var(--r);padding:10px 14px;background:var(--paper);margin:16px 0 4px;font-size:13px;box-shadow:2px 2px 0 var(--ink)}
+.sync-status{display:flex;align-items:center;gap:8px}
+.sync-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ink);background:#bbb;display:inline-block;flex:0 0 auto}
+.sync-dot.online{background:#4ade80}
+.sync-dot.syncing{background:#facc15;animation:pulse .8s infinite alternate}
+.sync-dot.offline{background:#f87171}
+@keyframes pulse{from{opacity:1}to{opacity:.3}}
+.sync-btn{background:var(--sky);cursor:pointer}
+
+/* 多人同步彈窗 */
+.sync-dialog{border:2px solid var(--ink);border-radius:18px;padding:0;max-width:540px;width:92%;box-shadow:4px 6px 0 var(--ink);background:var(--paper) var(--tex);color:var(--ink);margin:auto}
+.sync-dialog::backdrop{background:rgba(0,0,0,.45)}
+.sync-box{padding:20px}
+.sync-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.sync-header h3{font-size:18px;font-weight:700}
+
+/* 即時天氣小卡 */
+.weather-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.weather-card{padding:12px 14px}
+.w-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.w-temp{font-size:18px;font-weight:700}
+.w-desc{font-size:12px;opacity:.9;line-height:1.4}
 
 .flight{display:grid;gap:14px}
 .fl{border:var(--line);border-radius:var(--r);padding:16px}
@@ -108,7 +133,7 @@ h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;bor
 .btn:active{background:var(--taupe)}
 footer{text-align:center;margin-top:36px;font-size:12px}
 
-/* 總花費紀錄（日幣 / 台幣雙幣別 + 可收納明細） */
+/* 總花費紀錄（日幣 / 台幣雙幣別 + 可收納明細 + 代墊統計） */
 .cost-sum{background:var(--sand);margin-bottom:14px;padding:14px}
 .cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .cstat{border:var(--line);border-radius:var(--r);background:var(--paper);padding:10px 12px;text-align:center}
@@ -116,6 +141,8 @@ footer{text-align:center;margin-top:36px;font-size:12px}
 .cstat b{display:block;font-size:18px;font-weight:400;margin-top:2px}
 .cstat.jpy{background:var(--sky)}
 .cstat.twd{background:var(--paper)}
+.payer-summary{margin-top:10px;padding-top:10px;border-top:1.5px dashed var(--ink);font-size:12px}
+.payer-pill{display:inline-block;padding:2px 10px;border:var(--line);border-radius:999px;font-size:11px;background:var(--paper);margin:3px 4px 3px 0}
 .exp-form{border:var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;background:var(--paper) var(--tex);margin-bottom:14px}
 .exp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .exp-amt-wrap{display:flex;gap:6px}
@@ -141,6 +168,7 @@ footer{text-align:center;margin-top:36px;font-size:12px}
 .exp-x:active{background:var(--taupe)}
 .cur-jpy{background:var(--sky)} .cur-twd{background:var(--sand)} .day-tag{background:var(--blue)}
 .c-food{background:var(--sand)} .c-trans{background:var(--sky)} .c-stay{background:var(--blue)} .c-shop{background:var(--taupe)} .c-other{background:var(--paper)}
+.payer-tag{background:var(--taupe)}
 
 /* 編輯功能 */
 .m-walk{background:var(--paper)}
@@ -163,7 +191,6 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 .fbtns{display:flex;gap:8px;flex-wrap:wrap}
 .fbtns .btn{margin-top:0}
 .empty{border:1.5px dashed var(--ink);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;font-size:13px}
-.tools{margin-top:14px;text-align:right}
 .todo li{display:flex;gap:8px;align-items:stretch}
 .todo label{flex:1}
 .todo .x{flex:0 0 42px;font:inherit;font-size:18px;line-height:1;color:var(--ink);border:var(--line);border-radius:var(--r);background:var(--paper);cursor:pointer}
@@ -194,7 +221,6 @@ textarea.fld{resize:vertical;min-height:72px}
 
 .sun{transform-box:fill-box;transform-origin:center;animation:breathe 6s ease-in-out infinite}
 @keyframes breathe{50%{transform:scale(1.07)}}
-
 
 .sign{transform-origin:74px 158px;animation:swing 4.2s ease-in-out infinite}
 @keyframes swing{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
@@ -254,10 +280,11 @@ textarea.fld{resize:vertical;min-height:72px}
 <ul>
   <li><a href="#top" id="navTop">首頁</a></li>
   <li><a href="#flight">航班</a></li>
+  <li><a href="#weather">天氣</a></li>
   <li><a href="#days">行程</a></li>
   <li><a href="#todo">待辦</a></li>
-  <li><a href="#stay">住宿</a></li>
   <li><a href="#cost">花費</a></li>
+  <li><a href="#syncModal" id="navSync" class="sync-nav">☁️ 同步</a></li>
 </ul>
 </nav>
 
@@ -268,12 +295,10 @@ textarea.fld{resize:vertical;min-height:72px}
     <!-- 版本一：文青繪本風・東京街角與電車 -->
     <svg id="v0" class="on" viewBox="0 0 400 260" role="img" aria-label="繪本風插圖：東京鐵塔、晴空塔、街角咖啡書店與行駛的復古電車" xmlns="http://www.w3.org/2000/svg" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
       <rect width="400" height="260" fill="#F3E3D0" stroke="none"/>
-      <!-- 遠景暖日與軟雲 -->
       <circle class="sun" cx="338" cy="48" r="21" fill="#AACDDC"/>
       <g class="cloud"><path d="M26 52h66a13 13 0 0 0-5-24 18 18 0 0 0-35-4 15 15 0 0 0-26 28z" fill="#FEFAF3"/></g>
       <g class="cloud b"><path d="M196 42h52a11 11 0 0 0-4-20 15 15 0 0 0-29-3 12 12 0 0 0-19 23z" fill="#FEFAF3"/></g>
 
-      <!-- 遠方錯落建築剪影 -->
       <g fill="#D2C4B4">
         <rect x="152" y="164" width="26" height="58" rx="2"/>
         <rect x="182" y="144" width="24" height="78" rx="2"/>
@@ -295,7 +320,7 @@ textarea.fld{resize:vertical;min-height:72px}
       </g>
       <circle class="lamp" cx="300" cy="55" r="2.8" fill="#FEFAF3"/>
 
-      <!-- 東京鐵塔（靜態，雙腳踩在地面上） -->
+      <!-- 東京鐵塔 -->
       <g fill="#81A6C6">
         <path d="M112 66V40" fill="none"/>
         <path d="M107 98L109 66H115L117 98Z"/>
@@ -307,23 +332,19 @@ textarea.fld{resize:vertical;min-height:72px}
         <path d="M105 130L119 112M119 130L105 112M90 204L103 176M134 204L121 176M97 190L127 190" fill="none"/>
       </g>
 
-      <!-- 街角文青咖啡小書店（左側前景） -->
+      <!-- 街角小店 -->
       <g>
         <rect x="12" y="148" width="54" height="74" rx="3" fill="#FEFAF3"/>
         <path d="M8 148 L39 128 L70 148 Z" fill="#81A6C6"/>
-        <!-- 屋頂小黑貓（坐在屋頂斜面上） -->
         <path class="cat-tail" d="M46 132 Q39 130 40 123" fill="none" stroke-width="2"/>
         <ellipse cx="52" cy="131" rx="6" ry="5" fill="#3E3A39"/>
         <circle cx="56" cy="124.500" r="3.600" fill="#3E3A39"/>
         <path d="M53.500 125 L54 120.500 L56.500 123.500 L58.500 120.500 L59 125.500 Z" fill="#3E3A39"/>
-        <!-- 條紋遮雨棚 -->
         <path d="M14 174 H64 L68 183 H10 Z" fill="#AACDDC"/>
         <path d="M22 174 L20 183 M34 174 L33 183 M46 174 L47 183 M58 174 L60 183" fill="none"/>
-        <!-- 櫥窗與木門 -->
         <rect x="18" y="189" width="22" height="19" rx="2" fill="#F3E3D0"/>
         <rect x="45" y="189" width="15" height="33" rx="2" fill="#D2C4B4"/>
         <circle cx="56" cy="206" r="1.2" fill="#3E3A39"/>
-        <!-- 懸掛小招牌 -->
         <path d="M66 158 H74" fill="none"/>
         <g class="sign">
           <rect x="69" y="158" width="10" height="13" rx="2" fill="#F3E3D0"/>
@@ -331,7 +352,7 @@ textarea.fld{resize:vertical;min-height:72px}
         </g>
       </g>
 
-      <!-- 街燈與行道樹 -->
+      <!-- 街燈 -->
       <g>
         <path d="M254 222 V176 Q254 170 260 170" fill="none"/>
         <circle class="lamp" cx="262" cy="171" r="3.5" fill="#FEFAF3"/>
@@ -345,7 +366,7 @@ textarea.fld{resize:vertical;min-height:72px}
       <path d="M0 226H400M0 235H400" fill="none"/>
       <path d="M20 230h12M60 230h12M100 230h12M140 230h12M180 230h12M220 230h12M260 230h12M300 230h12M340 230h12M380 230h12" fill="none" stroke-opacity=".5"/>
 
-      <!-- 復古路面電車（緩行與靠站韻律） -->
+      <!-- 電車 -->
       <g class="train">
         <path d="M55 196 L65 186 H85 L95 196" fill="none"/>
         <rect x="0" y="196" width="152" height="26" rx="11" fill="#FEFAF3"/>
@@ -359,7 +380,6 @@ textarea.fld{resize:vertical;min-height:72px}
         <circle cx="28" cy="224" r="4.5" fill="#3E3A39"/><circle cx="122" cy="224" r="4.5" fill="#3E3A39"/>
       </g>
 
-      <!-- 飛鳥與飄落花瓣 -->
       <g class="bird" fill="none"><path d="M244 86q5-7 10 0q5-7 10 0"/></g>
       <g class="petal" fill="#FEFAF3"><path d="M326 96q7-7 10 2q-3 9-10-2z"/></g>
       <g class="petal p2" fill="#FEFAF3"><path d="M78 24q7-7 10 2q-3 9-10-2z"/></g>
@@ -369,35 +389,28 @@ textarea.fld{resize:vertical;min-height:72px}
     <!-- 版本二：文青繪本風・河口湖與富士山 -->
     <svg id="v1" viewBox="0 0 400 260" role="img" aria-label="繪本風插圖：富士山、河口湖、湖畔木棧道、小船與五重塔" xmlns="http://www.w3.org/2000/svg" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
       <rect width="400" height="260" fill="#F3E3D0" stroke="none"/>
-      <!-- 暖陽與柔和雲朵 -->
       <circle class="sun" cx="100" cy="54" r="20" fill="#FEFAF3"/>
       <g class="cloud"><path d="M226 48h66a13 13 0 0 0-5-24 18 18 0 0 0-35-4 15 15 0 0 0-26 28z" fill="#FEFAF3"/></g>
       <g class="cloud b"><path d="M18 108h50a10 10 0 0 0-4-18 14 14 0 0 0-27-3 11 11 0 0 0-19 21z" fill="#FEFAF3"/></g>
 
-      <!-- 遠山稜線 -->
       <path d="M0 176 Q48 144 96 170 T186 176 V190 H0Z" fill="#D2C4B4"/>
 
-      <!-- 可愛繪本風富士山（圓潤布丁廓形 + 波浪厚雪帽，無五官） -->
+      <!-- 富士山 -->
       <path d="M92 190 C128 164 166 108 188 76 Q224 62 260 76 C282 108 320 164 356 190 Z" fill="#81A6C6"/>
       <path d="M174 96 Q224 82 274 96 Q280 105 270 112 Q261 117 253 108 Q245 100 238 111 Q231 120 224 111 Q217 100 210 111 Q203 120 195 108 Q187 100 178 112 Q168 105 174 96 Z" fill="#FEFAF3"/>
-      <!-- 山腰軟綿綿小雲朵 -->
       <g class="fuji-cloud" fill="#FEFAF3">
         <path d="M138 148h34a7 7 0 0 0-2-13 10 10 0 0 0-19-2 8 8 0 0 0-13 15z"/>
         <path d="M268 138h30a6 6 0 0 0-2-11 9 9 0 0 0-17-2 7 7 0 0 0-11 13z"/>
       </g>
 
-      <!-- 山腳丘陵（讓富士山穩穩坐在湖岸） -->
       <path d="M86 190Q140 178 190 184T290 182T370 190Z" fill="#D2C4B4"/>
-
-      <!-- 河口湖水面 -->
       <path d="M0 190 H400 V260 H0Z" fill="#AACDDC"/>
       <path d="M0 190 H400" fill="none"/>
 
-      <!-- 湖面波光與倒影 -->
       <g class="wave" fill="none"><path d="M148 202h34M198 202h54M262 202h24"/></g>
       <g class="wave w2" fill="none"><path d="M168 214h48M230 214h38"/><path d="M132 226h28M188 226h66"/></g>
 
-      <!-- 右岸忠靈塔（五重塔）與山丘 -->
+      <!-- 五重塔 -->
       <g fill="#FEFAF3">
         <rect x="318" y="118" width="22" height="58"/>
         <path d="M312 130h34l-4-8h-26zM314 148h30l-4-8h-22zM316 166h26l-3-8h-20z" fill="#D2C4B4"/>
@@ -405,15 +418,13 @@ textarea.fld{resize:vertical;min-height:72px}
       </g>
       <rect x="294" y="176" width="74" height="14" rx="3" fill="#D2C4B4"/>
 
-      <!-- 左側湖畔木棧道與小石燈籠 -->
+      <!-- 湖畔木棧道 -->
       <g>
         <path d="M0 232 H48 L56 242 H0 Z" fill="#D2C4B4"/>
         <path d="M12 242 V254 M38 242 V254" fill="none"/>
-        <!-- 小石燈籠 -->
         <rect x="14" y="224" width="8" height="8" fill="#FEFAF3"/>
         <rect x="12" y="216" width="12" height="8" rx="1" fill="#F3E3D0"/>
         <path d="M9 216 L18 209 L27 216 Z" fill="#D2C4B4"/>
-        <!-- 搖曳蘆葦 -->
         <g class="reed" fill="none">
           <path d="M44 236 Q40 220 36 212"/>
           <ellipse cx="35" cy="210" rx="2" ry="4.5" fill="#D2C4B4"/>
@@ -424,11 +435,10 @@ textarea.fld{resize:vertical;min-height:72px}
         </g>
       </g>
 
-      <!-- 悠閒搖晃的木造小船 -->
+      <!-- 木造小船 -->
       <g class="boat">
         <path d="M132 218V194L143 213Z" fill="#F3E3D0"/>
         <path d="M132 218V190" fill="none"/>
-        <!-- 三位女孩：長髮洋裝、草帽馬尾、雙馬尾小女孩 -->
         <path d="M92.4 218.5Q92.8 211.4 96 211.2Q99.2 211.4 99.6 218.5Z" fill="#81A6C6"/>
         <path d="M92 207.5Q91.8 202.6 96 202.8Q100.2 202.6 100 207.5V212.5H92Z" fill="#3E3A39" stroke="none"/>
         <circle cx="96" cy="207.2" r="3.3" fill="#F3E3D0"/>
@@ -447,7 +457,6 @@ textarea.fld{resize:vertical;min-height:72px}
         <path d="M84 218h54l-7 13h-40z" fill="#FEFAF3"/>
       </g>
 
-      <!-- 右上角文青櫻花枝椏 -->
       <g>
         <path d="M400 22 Q376 30 356 24" fill="none"/>
         <circle cx="372" cy="26" r="3.5" fill="#FEFAF3"/>
@@ -455,7 +464,6 @@ textarea.fld{resize:vertical;min-height:72px}
         <circle cx="384" cy="22" r="3" fill="#FEFAF3"/>
       </g>
 
-      <!-- 飛鳥與飄落花瓣 -->
       <g class="bird" fill="none"><path d="M284 68q5-7 10 0q5-7 10 0"/></g>
       <g class="bird" style="animation-delay:-1.4s" fill="none"><path d="M314 88q4-6 8 0q4-6 8 0"/></g>
       <g class="petal" fill="#FEFAF3"><path d="M42 22q7-7 10 2q-3 9-10-2z"/></g>
@@ -469,6 +477,15 @@ textarea.fld{resize:vertical;min-height:72px}
   </div>
   <h1>富士旅行團</h1>
   <p class="sub">2027/1/14（四）－ 2027/1/20（三）</p>
+
+  <!-- 雲端多人同步狀態列 -->
+  <div class="sync-bar" id="syncBar">
+    <div class="sync-status">
+      <span class="sync-dot offline" id="syncDot"></span>
+      <span id="syncStatusTxt">離線模式（點擊開啟多人同步）</span>
+    </div>
+    <button type="button" class="mini sync-btn" id="openSyncBtn">⚙️ 同步設定</button>
+  </div>
 </header>
 
 <section id="flight">
@@ -495,11 +512,33 @@ textarea.fld{resize:vertical;min-height:72px}
   </div>
 </section>
 
+<!-- 即時天氣小卡 -->
+<section id="weather">
+  <h2>即時天氣預報</h2>
+  <div class="weather-grid">
+    <div class="card weather-card paper">
+      <div class="w-head">
+        <span class="tag m-train">📍 東京市區</span>
+        <span class="w-temp" id="wTokyoTemp">載入中...</span>
+      </div>
+      <p class="w-desc" id="wTokyoDesc">連線氣象衛星查詢中...</p>
+    </div>
+    <div class="card weather-card paper">
+      <div class="w-head">
+        <span class="tag m-bus">🏔️ 河口湖</span>
+        <span class="w-temp" id="wFujiTemp">載入中...</span>
+      </div>
+      <p class="w-desc" id="wFujiDesc">連線氣象衛星查詢中...</p>
+    </div>
+  </div>
+  <p class="hint" style="margin-top:8px">※ 數據由 Open-Meteo 即時氣象衛星提供，冬日出發前請留意降雪與低溫保暖。</p>
+</section>
+
 <section id="days">
   <h2>每日行程</h2>
   <div class="tabs" role="tablist" aria-label="選擇日期" id="tabs"></div>
   <div id="panels"></div>
-  </section>
+</section>
 
 <section id="todo">
   <h2>待辦事項</h2>
@@ -542,6 +581,7 @@ textarea.fld{resize:vertical;min-height:72px}
     </div>
     <div class="rate-row"><label for="rateIn">匯率　1 日圓 ＝</label><input class="fld" id="rateIn" type="number" inputmode="decimal" step="0.0001" min="0" placeholder="例如 0.21" aria-label="日圓兌台幣匯率"><span>台幣</span></div>
     <div class="cstat total"><span>合計約 (TWD)</span><b id="sumAll">請先輸入匯率</b></div>
+    <div class="payer-summary" id="payerSummary"></div>
   </div>
 
   <form class="exp-form" id="expForm">
@@ -566,6 +606,9 @@ textarea.fld{resize:vertical;min-height:72px}
         <input type="number" class="fld" name="amt" min="1" step="1" required placeholder="金額" aria-label="花費金額">
       </div>
     </div>
+    <div class="exp-row">
+      <input class="fld" name="payer" maxlength="20" placeholder="代墊人（選填，例如：阿圓、小明、公費）" aria-label="代墊人">
+    </div>
     <div class="fbtns"><button class="btn" type="submit" style="background:var(--sky)">加入花費</button></div>
   </form>
 
@@ -580,13 +623,59 @@ textarea.fld{resize:vertical;min-height:72px}
   </details>
 </section>
 
+<!-- 多人同步彈窗 -->
+<dialog id="syncDialog" class="sync-dialog paper">
+  <div class="sync-box">
+    <div class="sync-header">
+      <h3>☁️ 多人即時同步設定</h3>
+      <button type="button" class="exp-x" id="closeSyncBtn" aria-label="關閉">×</button>
+    </div>
+    <p class="hint">只要設定一次，同團旅伴打開同一個專屬網址，就能同時在線上即時編輯行程與記帳！</p>
+    
+    <div class="more-group" style="margin-top:10px">
+      <label class="ftitle" for="dbUrlInput" style="font-size:13px">Firebase 資料庫網址 (Database URL)</label>
+      <input class="fld" id="dbUrlInput" placeholder="例如 https://your-trip-default-rtdb.firebaseio.com" aria-label="Firebase Database URL">
+      
+      <label class="ftitle" for="roomIdInput" style="font-size:13px">旅團房間代碼 (Room ID)</label>
+      <input class="fld" id="roomIdInput" value="fuji2027" placeholder="例如 fuji2027" aria-label="房間代碼">
+
+      <div class="fbtns" style="margin-top:4px">
+        <button type="button" class="btn" id="saveSyncBtn" style="background:var(--blue)">儲存並連線</button>
+        <button type="button" class="mini" id="copyShareLinkBtn">📋 複製旅伴邀請連結</button>
+      </div>
+      <p class="hint" id="syncMsg" role="status" style="font-weight:bold;margin-top:4px"></p>
+    </div>
+
+    <details class="exp-drawer" style="margin-top:14px">
+      <summary><span>📖 如何取得免費 Firebase 網址？（只要 1 分鐘）</span><span class="exp-arrow">▾</span></summary>
+      <div class="exp-body" style="font-size:12px;line-height:1.7">
+        <ol style="padding-left:18px">
+          <li>前往 <a href="https://console.firebase.google.com/" target="_blank" rel="noopener" style="text-decoration:underline">Firebase Console</a> 並登入 Google 帳號。</li>
+          <li>點選「建立專案」，取個名字（如 <code>fuji-trip</code>），一路點繼續直到專案建立完成。</li>
+          <li>左側選單點選「Build (建置) → Realtime Database」，點擊「建立資料庫」。</li>
+          <li>伺服器位置選預設，安全性規則選擇<b>「以測試模式啟動 (Test Mode)」</b>。</li>
+          <li>建立完成後，上方會有一行網址（如 <code>https://xxx-default-rtdb.firebaseio.com</code>），複製它貼到上方欄位即可！</li>
+        </ol>
+      </div>
+    </details>
+
+    <div class="more-group" style="margin-top:14px;border-top:1.5px dashed var(--ink);padding-top:12px">
+      <div class="ftitle" style="font-size:13px">手動資料操作</div>
+      <div class="fbtns">
+        <button type="button" class="mini" id="pushToCloudBtn">把本機目前行程覆蓋到雲端</button>
+        <button type="button" class="mini" id="pullFromCloudBtn">從雲端下載最新行程覆蓋本機</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <section id="settings">
   <details class="exp-drawer" id="moreDrawer">
     <summary><span>⚙ 更多設定（備份・匯入・重設）</span><span class="exp-arrow" aria-hidden="true">▾</span></summary>
     <div class="exp-body more-body">
       <div class="more-group">
         <div class="ftitle">備份與匯出</div>
-        <p class="hint">資料只存在這支手機的瀏覽器裡，換手機、清除瀏覽器資料或太久沒開，都可能消失。建議出發前與旅途中定期備份。</p>
+        <p class="hint">若處於離線狀態，資料只存在這支手機的瀏覽器裡。建議出發前與旅途中定期備份。</p>
         <div class="fbtns"><button type="button" class="mini" id="bkFile">下載備份檔</button><button type="button" class="mini" id="bkCopy">複製備份文字</button></div>
         <textarea class="fld" id="bkText" rows="4" placeholder="匯入：把備份文字貼在這裡" aria-label="備份文字"></textarea>
         <div class="fbtns"><button type="button" class="mini" id="bkImport">匯入貼上的文字</button><label class="mini" for="bkPick">選擇備份檔…</label><input type="file" id="bkPick" accept="application/json,.json" style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none"></div>
@@ -632,7 +721,7 @@ textarea.fld{resize:vertical;min-height:72px}
     window.scrollTo({top:0,behavior:"smooth"});
   });
 
-  function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+  function esc(t){return String(t||"").replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
   function load(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
   function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
   function clone(o){return JSON.parse(JSON.stringify(o))}
@@ -650,7 +739,7 @@ textarea.fld{resize:vertical;min-height:72px}
     [0,1].forEach(function(i){document.getElementById("v"+i).classList.toggle("on",String(i)===b.dataset.v)});
   }});
 
-  /* ===== 每日行程（可新增、編輯、刪除） ===== */
+  /* ===== 每日行程 ===== */
   var DEF=[
     {d:"1/14",w:"四",t:"出發日・抵達東京",s:"新宿",items:[
       {time:"15:00",tx:"JX804 從桃園起飛",tags:[["飛機","plane"]]},
@@ -686,7 +775,6 @@ textarea.fld{resize:vertical;min-height:72px}
   var editing=null;
   var tabs=document.getElementById("tabs"),panels=document.getElementById("panels");
 
-  /* 自動判斷今天（裝置日期）與「下一個行程」 */
   function tripToday(){
     var n=new Date();if(n.getFullYear()!==2027)return -1;
     var key=(n.getMonth()+1)+"/"+n.getDate();
@@ -709,6 +797,7 @@ textarea.fld{resize:vertical;min-height:72px}
 
   function renderPanel(i){
     var day=days[i],p=document.getElementById("p"+i);
+    if(!p)return;
     var nx=nextIdx(i);
     var ed=(editing&&editing.day===i)?day.items[editing.idx]:null;
     var h='<div class="dayhead"><h3>'+day.d+'（週'+day.w+'）'+day.t+'</h3>'+(day.s?'<span class="tag m-train">住 '+day.s+'</span>':'')+'</div>';
@@ -753,18 +842,19 @@ textarea.fld{resize:vertical;min-height:72px}
     cur=i;
     days.forEach(function(_,j){
       var t=document.getElementById("tab"+j),p=document.getElementById("p"+j),on=j===i;
+      if(!t||!p)return;
       t.setAttribute("aria-selected",on);t.tabIndex=on?0:-1;
       p.classList.remove("pop");p.classList.toggle("on",on);
       if(on&&animate){void p.offsetWidth;p.classList.add("pop")}
     });
-    if(animate)document.getElementById("tab"+i).scrollIntoView({inline:"center",block:"nearest"});
+    if(animate&&document.getElementById("tab"+i))document.getElementById("tab"+i).scrollIntoView({inline:"center",block:"nearest"});
   }
   tabs.addEventListener("keydown",function(e){
     if(e.key==="ArrowRight"&&cur<days.length-1){editing=null;renderPanel(cur);select(cur+1,true);document.getElementById("tab"+cur).focus()}
     if(e.key==="ArrowLeft"&&cur>0){editing=null;renderPanel(cur);select(cur-1,true);document.getElementById("tab"+cur).focus()}
   });
   select(todayIdx>-1?todayIdx:0,false);
-  if(todayIdx>-1){var tt=document.getElementById("tab"+todayIdx);tabs.scrollLeft=tt.offsetLeft-tabs.clientWidth/2+tt.offsetWidth/2}
+  if(todayIdx>-1){var tt=document.getElementById("tab"+todayIdx);if(tt)tabs.scrollLeft=tt.offsetLeft-tabs.clientWidth/2+tt.offsetWidth/2}
   document.addEventListener("visibilitychange",function(){
     if(document.hidden||todayIdx<0||editing)return;
     var f=document.querySelector("#p"+todayIdx+' [name="tx"]');
@@ -774,11 +864,11 @@ textarea.fld{resize:vertical;min-height:72px}
   panels.addEventListener("click",function(e){
     var b=e.target.closest("button[data-act]");if(!b)return;
     var i=cur,act=b.dataset.act,k=+b.dataset.k;
-    if(act==="edit"){editing={day:i,idx:k};renderPanel(i);var f=document.querySelector("#p"+i+" .addf");f.scrollIntoView({block:"center"});f.querySelector('[name="tx"]').focus()}
+    if(act==="edit"){editing={day:i,idx:k};renderPanel(i);var f=document.querySelector("#p"+i+" .addf");if(f){f.scrollIntoView({block:"center"});f.querySelector('[name="tx"]').focus()}}
     else if(act==="cancel"){editing=null;renderPanel(i)}
     else if(act==="del"){
       if(!confirm("刪除這個行程？"))return;
-      days[i].items.splice(k,1);editing=null;save(DK,days);renderPanel(i);
+      days[i].items.splice(k,1);editing=null;save(DK,days);renderPanel(i);triggerCloudSync();
     }
   });
   panels.addEventListener("submit",function(e){
@@ -790,15 +880,15 @@ textarea.fld{resize:vertical;min-height:72px}
     if(mp)item.map=mp;
     if(fd.get("must"))item.must=1;
     if(editing&&editing.day===i)days[i].items[editing.idx]=item;else days[i].items.push(item);
-    editing=null;save(DK,days);renderPanel(i);
+    editing=null;save(DK,days);renderPanel(i);triggerCloudSync();
   });
   document.getElementById("resetDays").onclick=function(){
     if(!confirm("要把每日行程恢復成預設內容嗎？你新增與修改的內容會消失。"))return;
-    days=clone(DEF);editing=null;save(DK,days);days.forEach(function(_,i){renderPanel(i)});
+    days=clone(DEF);editing=null;save(DK,days);days.forEach(function(_,i){renderPanel(i)});triggerCloudSync();
   };
 
-  /* ===== 出發前待辦（可新增、刪除） ===== */
-  var TD=["換日幣","購買富士回遊券","購買 Skyliner 車票","購買京成特快（京城特快）車票","準備行李","確認護照效期與行程文件","租借或申請網路（eSIM／WiFi）","確認上野飯店並完成訂房"];
+  /* ===== 出發前待辦 ===== */
+  var TD=["換日幣","購買富士回遊券","購買 Skyliner 車票","購買京成特快車票","準備行李","確認護照效期與行程文件","租借或申請網路（eSIM／WiFi）","確認上野飯店並完成訂房"];
   var TK="tokyo2027-todo2";
   var todos=load(TK,null);
   if(!todos){var old=load("tokyo2027-todo",{});todos=TD.map(function(t,i){return {t:t,d:!!old[i]}});save(TK,todos)}
@@ -816,24 +906,24 @@ textarea.fld{resize:vertical;min-height:72px}
   }
   list.addEventListener("change",function(e){
     var c=e.target.closest("input[data-i]");if(!c)return;
-    todos[+c.dataset.i].d=c.checked;save(TK,todos);renderTodo();
+    todos[+c.dataset.i].d=c.checked;save(TK,todos);renderTodo();triggerCloudSync();
   });
   list.addEventListener("click",function(e){
     var b=e.target.closest("button[data-del]");if(!b)return;
-    todos.splice(+b.dataset.del,1);save(TK,todos);renderTodo();
+    todos.splice(+b.dataset.del,1);save(TK,todos);renderTodo();triggerCloudSync();
   });
   document.getElementById("todoAdd").addEventListener("submit",function(e){
     e.preventDefault();
     var inp=document.getElementById("todoNew"),v=inp.value.trim();if(!v)return;
-    todos.push({t:v,d:false});inp.value="";save(TK,todos);renderTodo();
+    todos.push({t:v,d:false});inp.value="";save(TK,todos);renderTodo();triggerCloudSync();
   });
   document.getElementById("resetTodo").onclick=function(){
     if(!confirm("要把待辦清單恢復成預設內容嗎？"))return;
-    todos=TD.map(function(t){return {t:t,d:false}});save(TK,todos);renderTodo();
+    todos=TD.map(function(t){return {t:t,d:false}});save(TK,todos);renderTodo();triggerCloudSync();
   };
   renderTodo();
 
-  /* ===== 總花費紀錄（日幣 / 台幣分開計算 + 可收納明細） ===== */
+  /* ===== 總花費紀錄 ===== */
   var EK="tokyo2027-expenses";
   var expenses=load(EK,[]);
   var RK="tokyo2027-rate";
@@ -856,11 +946,33 @@ textarea.fld{resize:vertical;min-height:72px}
   var expList=document.getElementById("expList");
   var expDrawer=document.getElementById("expDrawer");
   var expSummary=document.getElementById("expSummary");
+  var payerSummary=document.getElementById("payerSummary");
+
   function updateSummary(){
     var open=expDrawer.open;
     expSummary.textContent="花費明細（共 "+expenses.length+" 筆・"+(open?"點擊收合":"點擊展開")+"）";
   }
   expDrawer.addEventListener("toggle",updateSummary);
+
+  function renderPayerSummary(){
+    if(!payerSummary)return;
+    if(!expenses.length){payerSummary.innerHTML="";return;}
+    var map={};
+    expenses.forEach(function(x){
+      var p=(x.payer||"").trim()||"未指定代墊人";
+      if(!map[p])map[p]={jpy:0,twd:0};
+      if(x.cur==="TWD")map[p].twd+=x.amt;else map[p].jpy+=x.amt;
+    });
+    var h='<div style="font-weight:700;margin-bottom:4px">💳 代墊分帳統計：</div><div style="display:flex;flex-wrap:wrap;gap:4px">';
+    for(var k in map){
+      var parts=[];
+      if(map[k].jpy>0)parts.push("¥"+map[k].jpy.toLocaleString());
+      if(map[k].twd>0)parts.push("NT$"+map[k].twd.toLocaleString());
+      h+='<span class="payer-pill"><b>'+esc(k)+'</b>: '+parts.join(" + ")+'</span>';
+    }
+    h+='</div>';
+    payerSummary.innerHTML=h;
+  }
 
   function renderCost(){
     var jpy=0, twd=0;
@@ -872,6 +984,7 @@ textarea.fld{resize:vertical;min-height:72px}
     document.getElementById("sumTwd").textContent=fmtCur("TWD",twd);
     document.getElementById("sumAll").textContent=(rate>0||jpy===0)?"約 "+fmtCur("TWD",Math.round(twd+jpy*rate)):"請先輸入匯率";
     updateSummary();
+    renderPayerSummary();
     if(!expenses.length){
       expList.innerHTML='<li class="empty" style="margin-bottom:0">目前還沒有花費紀錄，從上方新增第一筆吧。</li>';
       return;
@@ -880,7 +993,8 @@ textarea.fld{resize:vertical;min-height:72px}
       var cat=CATS[it.cat]||CATS.other;
       var cur=it.cur==="TWD"?"TWD":"JPY";
       var curTag=cur==="TWD"?'<span class="tag cur-twd">台幣</span>':'<span class="tag cur-jpy">日幣</span>';
-      return '<li class="exp-item"><div class="exp-info"><div class="exp-meta"><span class="tag day-tag">'+esc(dayLabel(it.day))+'</span><span class="tag '+cat.c+'">'+cat.n+'</span>'+curTag+'</div><div class="exp-title">'+esc(it.title)+'</div></div><div class="exp-right"><b class="exp-amt">'+fmtCur(cur,it.amt)+'</b><button type="button" class="exp-x" data-edel="'+i+'" aria-label="刪除花費：'+esc(it.title)+'">×</button></div></li>';
+      var pTag=it.payer?'<span class="tag payer-tag">墊: '+esc(it.payer)+'</span>':'';
+      return '<li class="exp-item"><div class="exp-info"><div class="exp-meta"><span class="tag day-tag">'+esc(dayLabel(it.day))+'</span><span class="tag '+cat.c+'">'+cat.n+'</span>'+curTag+pTag+'</div><div class="exp-title">'+esc(it.title)+'</div></div><div class="exp-right"><b class="exp-amt">'+fmtCur(cur,it.amt)+'</b><button type="button" class="exp-x" data-edel="'+i+'" aria-label="刪除花費：'+esc(it.title)+'">×</button></div></li>';
     }).join("");
   }
   document.getElementById("expForm").addEventListener("submit",function(e){
@@ -889,36 +1003,259 @@ textarea.fld{resize:vertical;min-height:72px}
     var title=(fd.get("title")||"").trim();
     var amt=parseInt(fd.get("amt"),10);
     var cur=fd.get("cur")==="TWD"?"TWD":"JPY";
+    var payer=(fd.get("payer")||"").trim();
     if(!title||!amt||amt<=0)return;
-    expenses.unshift({day:fd.get("day")||"出發前",cat:fd.get("cat")||"other",cur:cur,title:title,amt:amt});
+    expenses.unshift({day:fd.get("day")||"出發前",cat:fd.get("cat")||"other",cur:cur,title:title,amt:amt,payer:payer});
     save(EK,expenses);
     e.target.elements.title.value="";
     e.target.elements.amt.value="";
+    if(e.target.elements.payer)e.target.elements.payer.value="";
     expDrawer.open=true;
     renderCost();
+    triggerCloudSync();
   });
   expList.addEventListener("click",function(e){
     var b=e.target.closest("button[data-edel]");if(!b)return;
-    expenses.splice(+b.dataset.edel,1);save(EK,expenses);renderCost();
+    expenses.splice(+b.dataset.edel,1);save(EK,expenses);renderCost();triggerCloudSync();
   });
   document.getElementById("resetCost").onclick=function(){
     if(!expenses.length)return;
     if(!confirm("確定要清空所有花費紀錄嗎？"))return;
-    expenses=[];save(EK,expenses);renderCost();
+    expenses=[];save(EK,expenses);renderCost();triggerCloudSync();
   };
   renderCost();
   var rateIn=document.getElementById("rateIn");
   rateIn.value=rate>0?rate:"";
   rateIn.addEventListener("input",function(){
-    var v=parseFloat(rateIn.value);rate=v>0?v:0;save(RK,rate||"");renderCost();
+    var v=parseFloat(rateIn.value);rate=v>0?v:0;save(RK,rate||"");renderCost();triggerCloudSync();
   });
+
+  /* ===== 雲端多人即時同步引擎 (Firebase Realtime Database) ===== */
+  var CK_DB="tokyo2027-db-url";
+  var CK_ROOM="tokyo2027-room-id";
+  
+  // 優先解析網址列參數（例如 ?db=...&room=fuji2027）
+  var q=new URLSearchParams(location.search);
+  if(q.get("db"))localStorage.setItem(CK_DB,q.get("db").trim());
+  if(q.get("room"))localStorage.setItem(CK_ROOM,q.get("room").trim());
+
+  var dbUrl=localStorage.getItem(CK_DB)||"";
+  var roomId=localStorage.getItem(CK_ROOM)||"fuji2027";
+
+  function cleanUrl(u){return String(u||"").trim().replace(/\/+$/,"")}
+  function getEndpoint(){
+    var b=cleanUrl(dbUrl);
+    if(!b)return "";
+    return b+"/rooms/"+encodeURIComponent(roomId)+".json";
+  }
+
+  var syncDot=document.getElementById("syncDot");
+  var syncTxt=document.getElementById("syncStatusTxt");
+  var syncDialog=document.getElementById("syncDialog");
+  var dbUrlInput=document.getElementById("dbUrlInput");
+  var roomIdInput=document.getElementById("roomIdInput");
+  var syncMsg=document.getElementById("syncMsg");
+  var esSource=null;
+  var syncTimer=null;
+
+  function setSyncBadge(cls,t){
+    if(syncDot)syncDot.className="sync-dot "+cls;
+    if(syncTxt)syncTxt.textContent=t;
+  }
+
+  function applyRemote(data){
+    if(!data)return;
+    if(editing)return; // 若正在打字編輯行程，先不覆蓋畫面避免跳掉
+    var changed=false;
+    if(Array.isArray(data.days)&&data.days.length===DEF.length){
+      days=data.days;save(DK,days);
+      days.forEach(function(_,i){renderPanel(i)});
+      changed=true;
+    }
+    if(Array.isArray(data.todos)){
+      todos=data.todos;save(TK,todos);renderTodo();
+      changed=true;
+    }
+    if(Array.isArray(data.expenses)){
+      expenses=data.expenses;save(EK,expenses);renderCost();
+      changed=true;
+    }
+    if(data.rate!==undefined){
+      rate=parseFloat(data.rate)||0;save(RK,rate||"");
+      if(rateIn)rateIn.value=rate>0?rate:"";
+      renderCost();
+      changed=true;
+    }
+    if(changed)setSyncBadge("online","🟢 雲端已同步 ("+roomId+")");
+  }
+
+  function triggerCloudSync(immediate){
+    if(!cleanUrl(dbUrl)){
+      setSyncBadge("offline","離線模式（點擊開啟多人同步）");
+      return;
+    }
+    setSyncBadge("syncing","雲端同步中...");
+    clearTimeout(syncTimer);
+    syncTimer=setTimeout(function(){
+      var ep=getEndpoint();
+      if(!ep)return;
+      var payload={
+        days:days,
+        todos:todos,
+        expenses:expenses,
+        rate:rate||"",
+        updatedAt:new Date().toISOString()
+      };
+      fetch(ep,{
+        method:"PUT",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(payload)
+      }).then(function(r){
+        if(r.ok)setSyncBadge("online","🟢 雲端已同步 ("+roomId+")");
+        else setSyncBadge("offline","同步錯誤（請確認資料庫網址與權限）");
+      }).catch(function(){
+        setSyncBadge("offline","連線暫歇，已暫存於手機");
+      });
+    },immediate?0:400);
+  }
+
+  function startSyncStream(){
+    var ep=getEndpoint();
+    if(!ep){
+      setSyncBadge("offline","離線模式（點擊開啟多人同步）");
+      return;
+    }
+    setSyncBadge("syncing","連線雲端中...");
+    // 首次抓取遠端最新資料
+    fetch(ep)
+      .then(function(r){return r.json()})
+      .then(function(res){
+        if(res&&res.days&&res.todos){
+          applyRemote(res);
+          setSyncBadge("online","🟢 雲端已同步 ("+roomId+")");
+        } else {
+          // 雲端是空的，把本地的資料上傳建立房間
+          triggerCloudSync(true);
+        }
+      })
+      .catch(function(){
+        setSyncBadge("offline","無法連線至雲端");
+      });
+
+    // 建立 EventSource (SSE) 實現即時推送監聽
+    try{
+      if(esSource){esSource.close();esSource=null;}
+      esSource=new EventSource(ep);
+      esSource.addEventListener("put",function(e){
+        try{
+          var obj=JSON.parse(e.data);
+          if(obj&&obj.path==="/"&&obj.data){
+            applyRemote(obj.data);
+          }
+        }catch(err){}
+      });
+      esSource.onerror=function(){
+        setSyncBadge("offline","同步連線中斷，重試中...");
+      };
+    }catch(err){}
+  }
+
+  // 同步彈窗控制
+  function openSyncModal(){
+    dbUrlInput.value=dbUrl;
+    roomIdInput.value=roomId;
+    syncMsg.textContent="";
+    if(typeof syncDialog.showModal==="function")syncDialog.showModal();
+    else syncDialog.setAttribute("open","");
+  }
+  function closeSyncModal(){
+    if(typeof syncDialog.close==="function")syncDialog.close();
+    else syncDialog.removeAttribute("open");
+  }
+
+  document.getElementById("openSyncBtn").onclick=openSyncModal;
+  document.getElementById("navSync").onclick=function(e){e.preventDefault();openSyncModal()};
+  document.getElementById("closeSyncBtn").onclick=closeSyncModal;
+
+  document.getElementById("saveSyncBtn").onclick=function(){
+    var u=dbUrlInput.value.trim();
+    var r=roomIdInput.value.trim()||"fuji2027";
+    dbUrl=u;roomId=r;
+    localStorage.setItem(CK_DB,dbUrl);
+    localStorage.setItem(CK_ROOM,roomId);
+    syncMsg.textContent="已儲存設定！正在連線雲端...";
+    startSyncStream();
+    setTimeout(closeSyncModal,1200);
+  };
+
+  document.getElementById("copyShareLinkBtn").onclick=function(){
+    var u=dbUrlInput.value.trim()||dbUrl;
+    var r=roomIdInput.value.trim()||roomId;
+    if(!u){syncMsg.textContent="請先填寫 Firebase 資料庫網址才能生成邀請連結！";return;}
+    var base=location.origin+location.pathname;
+    var link=base+"?db="+encodeURIComponent(u)+"&room="+encodeURIComponent(r);
+    navigator.clipboard.writeText(link).then(function(){
+      syncMsg.textContent="✅ 邀請連結已複製！朋友點開此連結會自動加入同一個房間並同步！";
+    }).catch(function(){
+      prompt("請複製此連結傳給旅伴：",link);
+    });
+  };
+
+  document.getElementById("pushToCloudBtn").onclick=function(){
+    if(!confirm("確定要將這支手機目前的行程、待辦、記帳全面覆蓋到雲端嗎？"))return;
+    triggerCloudSync(true);
+    syncMsg.textContent="已強制推送至雲端！";
+  };
+  document.getElementById("pullFromCloudBtn").onclick=function(){
+    if(!confirm("確定要從雲端下載最新行程覆蓋這支手機的資料嗎？"))return;
+    var ep=getEndpoint();
+    if(!ep){alert("請先填寫資料庫網址");return;}
+    fetch(ep).then(function(r){return r.json()}).then(function(d){
+      if(d){applyRemote(d);syncMsg.textContent="已成功從雲端同步最新資料！";}
+    });
+  };
+
+  startSyncStream();
+
+  /* ===== 即時天氣預報 (Open-Meteo API) ===== */
+  function loadWeather(){
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=35.6895,35.4988&longitude=139.6917,138.7686&current=temperature_2m,weather_code")
+      .then(function(r){return r.json()})
+      .then(function(res){
+        if(!Array.isArray(res)||res.length<2)return;
+        function wTxt(code){
+          if(code===0)return "晴朗 ☀️";
+          if(code<=3)return "多雲時晴 ⛅";
+          if(code<=48)return "起霧 🌫️";
+          if(code<=67)return "短暫降雨 🌧️";
+          if(code<=77)return "低溫降雪 ❄️";
+          if(code<=82)return "陣雨 🌦️";
+          if(code<=86)return "飄雪 🌨️";
+          return "雷陣雨 ⛈️";
+        }
+        var tokyo=res[0].current, fuji=res[1].current;
+        var tTemp=document.getElementById("wTokyoTemp"), tDesc=document.getElementById("wTokyoDesc");
+        var fTemp=document.getElementById("wFujiTemp"), fDesc=document.getElementById("wFujiDesc");
+        if(tokyo&&tTemp){
+          tTemp.textContent=Math.round(tokyo.temperature_2m)+"°C";
+          tDesc.textContent=wTxt(tokyo.weather_code)+"・早晚偏涼，建議穿著風衣或洋蔥式穿搭。";
+        }
+        if(fuji&&fTemp){
+          fTemp.textContent=Math.round(fuji.temperature_2m)+"°C";
+          var tip=fuji.temperature_2m<=5?"・接近冰點！務必穿著厚羽絨、發熱衣與毛帽防風。":"・湖畔風大體感寒冷，請備妥保暖圍巾與手套。";
+          fDesc.textContent=wTxt(fuji.weather_code)+tip;
+        }
+      })
+      .catch(function(){});
+  }
+  loadWeather();
 
   /* ===== 備份與匯出 ===== */
   var bkText=document.getElementById("bkText"),bkMsg=document.getElementById("bkMsg");
   function msg(t){bkMsg.textContent=t}
   function pad(n){return (n<10?"0":"")+n}
   function snapshot(){
-    return JSON.stringify({app:"fuji-trip",v:1,at:new Date().toISOString(),days:days,todos:todos,expenses:expenses,rate:rate||""},null,1);
+    return JSON.stringify({app:"fuji-trip",v:2,at:new Date().toISOString(),days:days,todos:todos,expenses:expenses,rate:rate||""},null,1);
   }
   document.getElementById("bkFile").onclick=function(){
     var blob=new Blob([snapshot()],{type:"application/json"});
@@ -942,6 +1279,7 @@ textarea.fld{resize:vertical;min-height:72px}
     if(o.days.length!==DEF.length||!o.days.every(function(d){return d&&Array.isArray(d.items)})){msg("行程資料與目前不符，無法匯入。");return}
     if(!confirm("匯入會覆蓋目前的行程、待辦與花費，確定嗎？"))return;
     save(DK,o.days);save(TK,o.todos);save(EK,o.expenses);save(RK,o.rate||"");
+    triggerCloudSync(true);
     location.reload();
   }
   document.getElementById("bkImport").onclick=function(){
