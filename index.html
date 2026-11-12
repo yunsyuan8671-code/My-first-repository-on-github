@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>🏔️富士旅行團</title>
+<script>
+if("scrollRestoration" in history)history.scrollRestoration="manual";
+if(location.hash==="#todos"||location.hash==="#top"){
+  history.replaceState(null,"",location.pathname+location.search);
+}
+window.scrollTo(0,0);
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
@@ -32,14 +39,14 @@ section{padding-top:34px}
 h2{font-size:22px;margin-bottom:14px;display:inline-block;background:var(--sand);border:var(--line);border-radius:999px;padding:0 18px}
 .card{border:var(--line);border-radius:var(--r);padding:18px}
 
-.hero{padding-top:calc(62px + env(safe-area-inset-top,0px))}
+.hero{padding-top:calc(58px + env(safe-area-inset-top,0px))}
 .scene{border:var(--line);border-radius:20px;overflow:hidden;background:var(--sand)}
 .scene svg{display:none;width:100%;height:auto}
 .scene svg.on{display:block}
-.vers{display:flex;gap:8px;justify-content:center;margin:12px 0 0}
+.vers{display:flex;gap:8px;justify-content:center;margin:10px 0 0}
 .vers button{font:inherit;font-size:12px;color:var(--ink);border:var(--line);border-radius:999px;padding:1px 16px;background:var(--paper);cursor:pointer}
 .vers button[aria-pressed="true"]{background:var(--sky)}
-.hero h1{font-size:32px;line-height:1.25;margin:14px 0 4px;text-align:center}
+.hero h1{font-size:32px;line-height:1.25;margin:12px 0 4px;text-align:center}
 .hero p.sub{text-align:center;font-size:13px}
 
 .flight{display:grid;gap:14px}
@@ -541,15 +548,27 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 
 <script>
 (function(){
-  /* 進入頁面強制置頂，確保完整顯示上方動畫 */
-  if("scrollRestoration" in history)history.scrollRestoration="manual";
-  if(location.hash==="#todos"||location.hash==="#top"){
-    history.replaceState(null,"",location.pathname+location.search);
+  /* 多階段強制置頂，阻斷手機 / LINE 內建瀏覽器的延遲錨點捲動 */
+  function forceTop(){
+    if(location.hash==="#todos"||location.hash==="#top"){
+      history.replaceState(null,"",location.pathname+location.search);
+    }
+    if(!location.hash){
+      window.scrollTo({top:0,left:0,behavior:"instant"});
+    }
   }
-  window.scrollTo(0,0);
+  forceTop();
+  document.addEventListener("DOMContentLoaded",forceTop);
   window.addEventListener("load",function(){
-    if(!location.hash)window.scrollTo(0,0);
+    forceTop();
+    setTimeout(forceTop,60);
+    setTimeout(forceTop,250);
   });
+  window.addEventListener("pageshow",forceTop);
+  window.addEventListener("hashchange",function(){
+    if(location.hash==="#todos"||location.hash==="#top")forceTop();
+  });
+
   document.getElementById("navTop").addEventListener("click",function(e){
     e.preventDefault();
     history.replaceState(null,"",location.pathname+location.search);
