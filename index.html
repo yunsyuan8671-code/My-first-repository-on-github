@@ -32,7 +32,7 @@ section{padding-top:34px}
 h2{font-size:22px;margin-bottom:14px;display:inline-block;background:var(--sand);border:var(--line);border-radius:999px;padding:0 18px}
 .card{border:var(--line);border-radius:var(--r);padding:18px}
 
-.hero{padding-top:calc(68px + env(safe-area-inset-top,0px))}
+.hero{padding-top:calc(62px + env(safe-area-inset-top,0px))}
 .scene{border:var(--line);border-radius:20px;overflow:hidden;background:var(--sand)}
 .scene svg{display:none;width:100%;height:auto}
 .scene svg.on{display:block}
@@ -100,30 +100,38 @@ h2{font-size:22px;margin-bottom:14px;display:inline-block;background:var(--sand)
 .btn:active{background:var(--taupe)}
 footer{text-align:center;margin-top:36px;font-size:12px}
 
-/* 花費與預算紀錄 */
-.budget-box{background:var(--sand);margin-bottom:14px}
-.budget-top{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin-bottom:10px}
-.budget-set{display:flex;align-items:center;gap:6px;font-size:13px}
-.budget-set input{width:110px;text-align:right;padding:3px 10px}
-.budget-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
-.bstat{border:var(--line);border-radius:var(--r);background:var(--paper);padding:8px 6px}
-.bstat span{display:block;font-size:11px;opacity:.85}
-.bstat b{display:block;font-size:15px;font-weight:400;margin-top:2px}
-.bstat.over{background:var(--taupe)}
-#bProg{background:var(--blue)}
-#bProg.over{background:var(--ink)}
-#bProgTxt{font-size:12px;margin-top:6px;text-align:right}
+/* 總花費紀錄（日幣 / 台幣雙幣別 + 可收納明細） */
+.cost-sum{background:var(--sand);margin-bottom:14px;padding:14px}
+.cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cstat{border:var(--line);border-radius:var(--r);background:var(--paper);padding:10px 12px;text-align:center}
+.cstat span{display:block;font-size:11px;opacity:.85}
+.cstat b{display:block;font-size:18px;font-weight:400;margin-top:2px}
+.cstat.jpy{background:var(--sky)}
+.cstat.twd{background:var(--paper)}
 .exp-form{border:var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;background:var(--paper) var(--tex);margin-bottom:14px}
 .exp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.exp-list{list-style:none;padding:0;display:grid;gap:10px}
-.exp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;border:var(--line);border-radius:var(--r);padding:10px 14px;background:var(--paper) var(--tex)}
+.exp-amt-wrap{display:flex;gap:6px}
+.exp-amt-wrap select{flex:0 0 88px;padding:6px 8px}
+.exp-amt-wrap input{flex:1;min-width:0}
+
+/* 可收納明細抽屜 */
+.exp-drawer{border:var(--line);border-radius:var(--r);background:var(--paper) var(--tex);overflow:hidden}
+.exp-drawer summary{list-style:none;cursor:pointer;padding:11px 14px;background:var(--taupe);display:flex;justify-content:space-between;align-items:center;font-size:13px;user-select:none}
+.exp-drawer summary::-webkit-details-marker{display:none}
+.exp-drawer[open] summary{border-bottom:var(--line)}
+.exp-arrow{display:inline-block;transition:transform .25s}
+.exp-drawer[open] .exp-arrow{transform:rotate(180deg)}
+.exp-body{padding:12px;max-height:340px;overflow-y:auto}
+.exp-list{list-style:none;padding:0;display:grid;gap:8px}
+.exp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;border:var(--line);border-radius:var(--r);padding:8px 12px;background:var(--paper)}
 .exp-info{flex:1;min-width:0}
-.exp-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:2px}
-.exp-title{font-size:14px;word-break:break-word}
+.exp-meta{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:2px}
+.exp-title{font-size:13px;word-break:break-word}
 .exp-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
-.exp-amt{font-size:15px;white-space:nowrap}
-.exp-x{width:32px;height:32px;font:inherit;font-size:16px;line-height:1;color:var(--ink);border:var(--line);border-radius:10px;background:var(--paper);cursor:pointer}
+.exp-amt{font-size:14px;white-space:nowrap}
+.exp-x{width:30px;height:30px;font:inherit;font-size:16px;line-height:1;color:var(--ink);border:var(--line);border-radius:9px;background:var(--paper);cursor:pointer}
 .exp-x:active{background:var(--taupe)}
+.cur-jpy{background:var(--sky)} .cur-twd{background:var(--sand)}
 .c-food{background:var(--sand)} .c-trans{background:var(--sky)} .c-stay{background:var(--blue)} .c-shop{background:var(--taupe)} .c-other{background:var(--paper)}
 
 /* 編輯功能 */
@@ -220,7 +228,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 
 <nav aria-label="主選單">
 <ul>
-  <li><a href="#top">首頁</a></li>
+  <li><a href="#top" id="navTop">首頁</a></li>
   <li><a href="#flight">航班</a></li>
   <li><a href="#days">行程</a></li>
   <li><a href="#todo">待辦</a></li>
@@ -484,18 +492,11 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 
 <section id="cost">
   <h2>花費</h2>
-  <div class="card budget-box">
-    <div class="budget-top">
-      <span class="tag">預算控制（日圓 JPY）</span>
-      <label class="budget-set">總預算 ¥ <input type="number" class="fld" id="budgetInput" min="0" step="1000" aria-label="設定旅遊總預算"></label>
+  <div class="card cost-sum">
+    <div class="cost-grid">
+      <div class="cstat jpy"><span>日幣總花費 (JPY)</span><b id="sumJpy">¥0</b></div>
+      <div class="cstat twd"><span>台幣總花費 (TWD)</span><b id="sumTwd">NT$0</b></div>
     </div>
-    <div class="budget-stats">
-      <div class="bstat"><span>總預算</span><b id="bTotal">¥0</b></div>
-      <div class="bstat"><span>已花費</span><b id="bSpent">¥0</b></div>
-      <div class="bstat" id="bRemBox"><span>剩餘預算</span><b id="bRem">¥0</b></div>
-    </div>
-    <div class="prog" aria-hidden="true"><i id="bProg"></i></div>
-    <p id="bProgTxt"></p>
   </div>
 
   <form class="exp-form" id="expForm">
@@ -512,12 +513,26 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     </div>
     <div class="exp-row">
       <input class="fld" name="title" maxlength="40" required placeholder="項目名稱（例如 富士回遊車票）" aria-label="花費項目名稱">
-      <input type="number" class="fld" name="amt" min="1" step="1" required placeholder="金額（日圓 ¥）" aria-label="花費金額">
+      <div class="exp-amt-wrap">
+        <select class="fld" name="cur" aria-label="幣別">
+          <option value="JPY">日幣 ¥</option>
+          <option value="TWD">台幣 $</option>
+        </select>
+        <input type="number" class="fld" name="amt" min="1" step="1" required placeholder="金額" aria-label="花費金額">
+      </div>
     </div>
     <div class="fbtns"><button class="btn" type="submit" style="background:var(--sky)">加入花費</button></div>
   </form>
 
-  <ul class="exp-list" id="expList"></ul>
+  <details class="exp-drawer" id="expDrawer">
+    <summary>
+      <span id="expSummary">花費明細（共 0 筆・點擊展開）</span>
+      <span class="exp-arrow" aria-hidden="true">▾</span>
+    </summary>
+    <div class="exp-body">
+      <ul class="exp-list" id="expList"></ul>
+    </div>
+  </details>
   <div class="tools"><button type="button" class="mini" id="resetCost">清空花費紀錄</button></div>
 </section>
 
@@ -526,6 +541,21 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 
 <script>
 (function(){
+  /* 進入頁面強制置頂，確保完整顯示上方動畫 */
+  if("scrollRestoration" in history)history.scrollRestoration="manual";
+  if(location.hash==="#todos"||location.hash==="#top"){
+    history.replaceState(null,"",location.pathname+location.search);
+  }
+  window.scrollTo(0,0);
+  window.addEventListener("load",function(){
+    if(!location.hash)window.scrollTo(0,0);
+  });
+  document.getElementById("navTop").addEventListener("click",function(e){
+    e.preventDefault();
+    history.replaceState(null,"",location.pathname+location.search);
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+
   function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
   function load(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
   function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
@@ -689,9 +719,8 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
   };
   renderTodo();
 
-  /* ===== 花費與預算控制（可設定預算、新增/刪除紀錄） ===== */
-  var BK="tokyo2027-budget", EK="tokyo2027-expenses";
-  var budget=load(BK,100000);
+  /* ===== 總花費紀錄（日幣 / 台幣分開計算 + 可收納明細） ===== */
+  var EK="tokyo2027-expenses";
   var expenses=load(EK,[]);
   var CATS={
     food:{n:"餐飲美食",c:"c-food"},
@@ -702,36 +731,37 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
   };
   var expDay=document.getElementById("expDay");
   expDay.innerHTML='<option value="出發前">出發前預訂</option>'+days.map(function(d){return '<option value="'+d.d+'">'+d.d+'（週'+d.w+'）</option>'}).join("");
-  var budgetInput=document.getElementById("budgetInput");
-  budgetInput.value=budget;
-  budgetInput.addEventListener("input",function(){
-    var v=Math.max(0,parseInt(budgetInput.value,10)||0);
-    budget=v;save(BK,budget);renderCost();
-  });
-  function fmt(n){return "¥"+Number(n).toLocaleString("en-US")}
+  function fmtCur(cur,n){
+    var num=Number(n).toLocaleString("en-US");
+    return cur==="TWD"?"NT$"+num:"¥"+num;
+  }
   var expList=document.getElementById("expList");
+  var expDrawer=document.getElementById("expDrawer");
+  var expSummary=document.getElementById("expSummary");
+  function updateSummary(){
+    var open=expDrawer.open;
+    expSummary.textContent="花費明細（共 "+expenses.length+" 筆・"+(open?"點擊收合":"點擊展開")+"）";
+  }
+  expDrawer.addEventListener("toggle",updateSummary);
+
   function renderCost(){
-    var spent=expenses.reduce(function(s,x){return s+x.amt},0);
-    var rem=budget-spent;
-    var over=rem<0;
-    document.getElementById("bTotal").textContent=fmt(budget);
-    document.getElementById("bSpent").textContent=fmt(spent);
-    document.getElementById("bRem").textContent=(over?"-":"")+fmt(Math.abs(rem));
-    document.getElementById("bRemBox").classList.toggle("over",over);
-    var pct=budget>0?Math.min(100,spent/budget*100):(spent>0?100:0);
-    var bar=document.getElementById("bProg");
-    bar.style.width=pct+"%";
-    bar.classList.toggle("over",over);
-    document.getElementById("bProgTxt").textContent=budget>0
-      ?(over?"已超出預算 "+fmt(Math.abs(rem)):"已使用 "+Math.round(spent/budget*100)+"% 預算")
-      :"請於上方設定總預算";
+    var jpy=0, twd=0;
+    expenses.forEach(function(x){
+      if(x.cur==="TWD")twd+=x.amt;
+      else jpy+=x.amt;
+    });
+    document.getElementById("sumJpy").textContent=fmtCur("JPY",jpy);
+    document.getElementById("sumTwd").textContent=fmtCur("TWD",twd);
+    updateSummary();
     if(!expenses.length){
       expList.innerHTML='<li class="empty" style="margin-bottom:0">目前還沒有花費紀錄，從上方新增第一筆吧。</li>';
       return;
     }
     expList.innerHTML=expenses.map(function(it,i){
       var cat=CATS[it.cat]||CATS.other;
-      return '<li class="exp-item"><div class="exp-info"><div class="exp-meta"><span class="tag">'+esc(it.day)+'</span><span class="tag '+cat.c+'">'+cat.n+'</span></div><div class="exp-title">'+esc(it.title)+'</div></div><div class="exp-right"><b class="exp-amt">'+fmt(it.amt)+'</b><button type="button" class="exp-x" data-edel="'+i+'" aria-label="刪除花費：'+esc(it.title)+'">×</button></div></li>';
+      var cur=it.cur==="TWD"?"TWD":"JPY";
+      var curTag=cur==="TWD"?'<span class="tag cur-twd">台幣</span>':'<span class="tag cur-jpy">日幣</span>';
+      return '<li class="exp-item"><div class="exp-info"><div class="exp-meta"><span class="tag">'+esc(it.day)+'</span><span class="tag '+cat.c+'">'+cat.n+'</span>'+curTag+'</div><div class="exp-title">'+esc(it.title)+'</div></div><div class="exp-right"><b class="exp-amt">'+fmtCur(cur,it.amt)+'</b><button type="button" class="exp-x" data-edel="'+i+'" aria-label="刪除花費：'+esc(it.title)+'">×</button></div></li>';
     }).join("");
   }
   document.getElementById("expForm").addEventListener("submit",function(e){
@@ -739,11 +769,13 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     var fd=new FormData(e.target);
     var title=(fd.get("title")||"").trim();
     var amt=parseInt(fd.get("amt"),10);
+    var cur=fd.get("cur")==="TWD"?"TWD":"JPY";
     if(!title||!amt||amt<=0)return;
-    expenses.unshift({day:fd.get("day")||"出發前",cat:fd.get("cat")||"other",title:title,amt:amt});
+    expenses.unshift({day:fd.get("day")||"出發前",cat:fd.get("cat")||"other",cur:cur,title:title,amt:amt});
     save(EK,expenses);
     e.target.elements.title.value="";
     e.target.elements.amt.value="";
+    expDrawer.open=true;
     renderCost();
   });
   expList.addEventListener("click",function(e){
