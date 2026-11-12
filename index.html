@@ -100,6 +100,32 @@ h2{font-size:22px;margin-bottom:14px;display:inline-block;background:var(--sand)
 .btn:active{background:var(--taupe)}
 footer{text-align:center;margin-top:36px;font-size:12px}
 
+/* 花費與預算紀錄 */
+.budget-box{background:var(--sand);margin-bottom:14px}
+.budget-top{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin-bottom:10px}
+.budget-set{display:flex;align-items:center;gap:6px;font-size:13px}
+.budget-set input{width:110px;text-align:right;padding:3px 10px}
+.budget-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.bstat{border:var(--line);border-radius:var(--r);background:var(--paper);padding:8px 6px}
+.bstat span{display:block;font-size:11px;opacity:.85}
+.bstat b{display:block;font-size:15px;font-weight:400;margin-top:2px}
+.bstat.over{background:var(--taupe)}
+#bProg{background:var(--blue)}
+#bProg.over{background:var(--ink)}
+#bProgTxt{font-size:12px;margin-top:6px;text-align:right}
+.exp-form{border:var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;background:var(--paper) var(--tex);margin-bottom:14px}
+.exp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.exp-list{list-style:none;padding:0;display:grid;gap:10px}
+.exp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;border:var(--line);border-radius:var(--r);padding:10px 14px;background:var(--paper) var(--tex)}
+.exp-info{flex:1;min-width:0}
+.exp-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:2px}
+.exp-title{font-size:14px;word-break:break-word}
+.exp-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.exp-amt{font-size:15px;white-space:nowrap}
+.exp-x{width:32px;height:32px;font:inherit;font-size:16px;line-height:1;color:var(--ink);border:var(--line);border-radius:10px;background:var(--paper);cursor:pointer}
+.exp-x:active{background:var(--taupe)}
+.c-food{background:var(--sand)} .c-trans{background:var(--sky)} .c-stay{background:var(--blue)} .c-shop{background:var(--taupe)} .c-other{background:var(--paper)}
+
 /* 編輯功能 */
 .m-walk{background:var(--paper)}
 .fld{font:inherit;font-size:14px;color:var(--ink);border:var(--line);border-radius:var(--r);padding:6px 12px;background:var(--paper);width:100%}
@@ -199,6 +225,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
   <li><a href="#days">行程</a></li>
   <li><a href="#todo">待辦</a></li>
   <li><a href="#stay">住宿</a></li>
+  <li><a href="#cost">花費</a></li>
 </ul>
 </nav>
 
@@ -437,13 +464,13 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     <article class="card stay paper">
       <div class="ic"><svg width="32" height="32" viewBox="0 0 34 34" fill="none" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><rect x="6" y="6" width="9" height="22" rx="2" fill="#FEFAF3"/><rect x="17" y="12" width="11" height="16" rx="2" fill="#F3E3D0"/><path d="M9 11h3M9 16h3M9 21h3M20 17h5M20 22h5"/></svg></div>
       <div><h3>新宿 SANEN ASAGAYA</h3>
-      <div class="d">・1/14 – 1/18・4 晚<br>・check in 16:00 / check out 11:00</div>
+      <div class="d">・1/14 – 1/18・4 晚<br>・check in 16:00/check out 11:00</div>
       <a class="btn" href="https://maps.app.goo.gl/pFLmUvKcEMJUHxB96" target="_blank" rel="noopener">查看地圖</a></div>
     </article>
     <article class="card stay paper">
       <div class="ic"><svg width="32" height="32" viewBox="0 0 34 34" fill="none" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><path d="M3 28L15 9q2-3 4 0l12 19z" fill="#FEFAF3"/><path d="M12 14l3-5q2-2 4 0l3 5-3 2-2-2-2 2z" fill="#AACDDC"/></svg></div>
       <div><h3>河口湖 富士湖酒店</h3>
-      <div class="d">・1/18 – 1/19・1 晚<br>・check in 15:00 / check out 11:00</div>
+      <div class="d">・1/18 – 1/19・1 晚<br>・check in 15:00/check out 11:00</div>
       <a class="btn" href="https://maps.app.goo.gl/FJqj25JPsqcYAQ2o6" target="_blank" rel="noopener">查看地圖</a></div>
     </article>
     <article class="card stay paper">
@@ -453,6 +480,45 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
       <span class="tag" style="border-style:dashed;margin-top:4px">尚未決定飯店</span></div>
     </article>
   </div>
+</section>
+
+<section id="cost">
+  <h2>花費</h2>
+  <div class="card budget-box">
+    <div class="budget-top">
+      <span class="tag">預算控制（日圓 JPY）</span>
+      <label class="budget-set">總預算 ¥ <input type="number" class="fld" id="budgetInput" min="0" step="1000" aria-label="設定旅遊總預算"></label>
+    </div>
+    <div class="budget-stats">
+      <div class="bstat"><span>總預算</span><b id="bTotal">¥0</b></div>
+      <div class="bstat"><span>已花費</span><b id="bSpent">¥0</b></div>
+      <div class="bstat" id="bRemBox"><span>剩餘預算</span><b id="bRem">¥0</b></div>
+    </div>
+    <div class="prog" aria-hidden="true"><i id="bProg"></i></div>
+    <p id="bProgTxt"></p>
+  </div>
+
+  <form class="exp-form" id="expForm">
+    <div class="ftitle">新增花費紀錄</div>
+    <div class="exp-row">
+      <select class="fld" name="day" id="expDay" aria-label="消費日期"></select>
+      <select class="fld" name="cat" aria-label="花費類別">
+        <option value="food">餐飲美食</option>
+        <option value="trans">交通票券</option>
+        <option value="stay">住宿飯店</option>
+        <option value="shop">購物伴手禮</option>
+        <option value="other">門票與其他</option>
+      </select>
+    </div>
+    <div class="exp-row">
+      <input class="fld" name="title" maxlength="40" required placeholder="項目名稱（例如 富士回遊車票）" aria-label="花費項目名稱">
+      <input type="number" class="fld" name="amt" min="1" step="1" required placeholder="金額（日圓 ¥）" aria-label="花費金額">
+    </div>
+    <div class="fbtns"><button class="btn" type="submit" style="background:var(--sky)">加入花費</button></div>
+  </form>
+
+  <ul class="exp-list" id="expList"></ul>
+  <div class="tools"><button type="button" class="mini" id="resetCost">清空花費紀錄</button></div>
 </section>
 
 <footer></footer>
@@ -622,6 +688,74 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     todos=TD.map(function(t){return {t:t,d:false}});save(TK,todos);renderTodo();
   };
   renderTodo();
+
+  /* ===== 花費與預算控制（可設定預算、新增/刪除紀錄） ===== */
+  var BK="tokyo2027-budget", EK="tokyo2027-expenses";
+  var budget=load(BK,100000);
+  var expenses=load(EK,[]);
+  var CATS={
+    food:{n:"餐飲美食",c:"c-food"},
+    trans:{n:"交通票券",c:"c-trans"},
+    stay:{n:"住宿飯店",c:"c-stay"},
+    shop:{n:"購物伴手禮",c:"c-shop"},
+    other:{n:"門票與其他",c:"c-other"}
+  };
+  var expDay=document.getElementById("expDay");
+  expDay.innerHTML='<option value="出發前">出發前預訂</option>'+days.map(function(d){return '<option value="'+d.d+'">'+d.d+'（週'+d.w+'）</option>'}).join("");
+  var budgetInput=document.getElementById("budgetInput");
+  budgetInput.value=budget;
+  budgetInput.addEventListener("input",function(){
+    var v=Math.max(0,parseInt(budgetInput.value,10)||0);
+    budget=v;save(BK,budget);renderCost();
+  });
+  function fmt(n){return "¥"+Number(n).toLocaleString("en-US")}
+  var expList=document.getElementById("expList");
+  function renderCost(){
+    var spent=expenses.reduce(function(s,x){return s+x.amt},0);
+    var rem=budget-spent;
+    var over=rem<0;
+    document.getElementById("bTotal").textContent=fmt(budget);
+    document.getElementById("bSpent").textContent=fmt(spent);
+    document.getElementById("bRem").textContent=(over?"-":"")+fmt(Math.abs(rem));
+    document.getElementById("bRemBox").classList.toggle("over",over);
+    var pct=budget>0?Math.min(100,spent/budget*100):(spent>0?100:0);
+    var bar=document.getElementById("bProg");
+    bar.style.width=pct+"%";
+    bar.classList.toggle("over",over);
+    document.getElementById("bProgTxt").textContent=budget>0
+      ?(over?"已超出預算 "+fmt(Math.abs(rem)):"已使用 "+Math.round(spent/budget*100)+"% 預算")
+      :"請於上方設定總預算";
+    if(!expenses.length){
+      expList.innerHTML='<li class="empty" style="margin-bottom:0">目前還沒有花費紀錄，從上方新增第一筆吧。</li>';
+      return;
+    }
+    expList.innerHTML=expenses.map(function(it,i){
+      var cat=CATS[it.cat]||CATS.other;
+      return '<li class="exp-item"><div class="exp-info"><div class="exp-meta"><span class="tag">'+esc(it.day)+'</span><span class="tag '+cat.c+'">'+cat.n+'</span></div><div class="exp-title">'+esc(it.title)+'</div></div><div class="exp-right"><b class="exp-amt">'+fmt(it.amt)+'</b><button type="button" class="exp-x" data-edel="'+i+'" aria-label="刪除花費：'+esc(it.title)+'">×</button></div></li>';
+    }).join("");
+  }
+  document.getElementById("expForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var fd=new FormData(e.target);
+    var title=(fd.get("title")||"").trim();
+    var amt=parseInt(fd.get("amt"),10);
+    if(!title||!amt||amt<=0)return;
+    expenses.unshift({day:fd.get("day")||"出發前",cat:fd.get("cat")||"other",title:title,amt:amt});
+    save(EK,expenses);
+    e.target.elements.title.value="";
+    e.target.elements.amt.value="";
+    renderCost();
+  });
+  expList.addEventListener("click",function(e){
+    var b=e.target.closest("button[data-edel]");if(!b)return;
+    expenses.splice(+b.dataset.edel,1);save(EK,expenses);renderCost();
+  });
+  document.getElementById("resetCost").onclick=function(){
+    if(!expenses.length)return;
+    if(!confirm("確定要清空所有花費紀錄嗎？"))return;
+    expenses=[];save(EK,expenses);renderCost();
+  };
+  renderCost();
 })();
 </script>
 </body>
