@@ -41,9 +41,9 @@ h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;bor
 .card{border:var(--line);border-radius:var(--r);padding:18px}
 
 .hero{padding-top:calc(58px + env(safe-area-inset-top,0px))}
-.scene{border:var(--line);border-radius:20px;overflow:hidden;background:var(--sand)}
-.scene svg{display:none;width:100%;height:auto}
-.scene svg.on{display:block}
+.scene{border:var(--line);border-radius:20px;overflow:hidden;background:var(--sand);position:relative}
+.scene svg{width:100%;height:auto;display:block;position:absolute;top:0;left:0;opacity:0;transition:opacity 1.4s ease}
+.scene svg.on{opacity:1;position:relative}
 .vers{display:flex;gap:8px;justify-content:center;margin:10px 0 0}
 .vers button{font:inherit;font-size:12px;color:var(--ink);border:var(--line);border-radius:999px;padding:1px 16px;background:var(--paper);cursor:pointer}
 .vers button[aria-pressed="true"]{background:var(--sky)}
@@ -224,7 +224,7 @@ footer{text-align:center;margin-top:40px;font-size:12px}
 .cat-tail{transform-origin:46px 132px;animation:tail 3.6s ease-in-out infinite}
 @keyframes tail{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(12deg)}}
 
-.train{animation:ride 12s cubic-bezier(.45,.05,.55,.95) infinite}
+.train{animation:ride 12s cubic-bezier(.45,.05,.55,.95) 1 forwards}
 @keyframes ride{
   0%{transform:translateX(-180px)}
   40%{transform:translateX(125px)}
@@ -715,12 +715,52 @@ footer{text-align:center;margin-top:40px;font-size:12px}
     return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(v);
   }
 
-  /* 插圖切換 */
+  /* 插圖自動輪播：電車駛離後切換到河口湖，再切回東京 */
+  var svgV0=document.getElementById("v0");
+  var svgV1=document.getElementById("v1");
+  var trainEl=svgV0.querySelector(".train");
+  var currentScene=0;
+
+  function switchScene(to){
+    var from=to===0?svgV1:svgV0;
+    var target=to===0?svgV0:svgV1;
+    from.classList.remove("on");
+    target.classList.add("on");
+    currentScene=to;
+    // 更新手動切換按鈕狀態
+    btns.forEach(function(x){x.setAttribute("aria-pressed",x.dataset.v===String(to));});
+  }
+
+  /* 電車駛離後（animationend）→ 等 0.6s 淡入河口湖 */
+  trainEl.addEventListener("animationend",function(){
+    setTimeout(function(){
+      switchScene(1);
+      /* 河口湖停留 7 秒後，切回東京並重啟電車動畫 */
+      setTimeout(function(){
+        switchScene(0);
+        /* 重啟電車動畫：移除再加回 class */
+        trainEl.style.animation="none";
+        requestAnimationFrame(function(){
+          requestAnimationFrame(function(){
+            trainEl.style.animation="";
+          });
+        });
+      }, 7000);
+    }, 600);
+  });
+
+  /* 手動切換按鈕（保留） */
   var btns=document.querySelectorAll(".vers button");
   btns.forEach(function(b){b.onclick=function(){
-    btns.forEach(function(x){x.setAttribute("aria-pressed",x===b)});
-    [0,1].forEach(function(i){document.getElementById("v"+i).classList.toggle("on",String(i)===b.dataset.v)});
-  }});
+    var to=parseInt(b.dataset.v,10);
+    if(to===currentScene)return;
+    switchScene(to);
+    /* 切回東京時重啟電車動畫 */
+    if(to===0){
+      trainEl.style.animation="none";
+      requestAnimationFrame(function(){requestAnimationFrame(function(){trainEl.style.animation="";});});
+    }
+  };});
 
   /* ===== 每日行程 ===== */
   var DEF=[
