@@ -13,7 +13,7 @@ window.scrollTo(0,0);
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --paper:#FEFAF3; --ink:#3E3A39;
@@ -23,8 +23,8 @@ window.scrollTo(0,0);
   --tex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .47 0 0 0 0 .36 0 0 0 .55 -.18'/%3E%3C/filter%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .6' numOctaves='3' seed='9'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .42 0 0 0 0 .32 0 0 0 .7 -.3'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23a)'/%3E%3Crect width='300' height='300' filter='url(%23b)' opacity='.6'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:68px}
-body{font-family:"Huninn","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--paper) var(--tex);color:var(--ink);line-height:1.7;font-size:14px;padding-bottom:40px}
+html{scroll-behavior:smooth;scroll-padding-top:calc(68px + env(safe-area-inset-top,0px))}
+body{font-family:"Zen Maru Gothic","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--paper) var(--tex);color:var(--ink);line-height:1.7;font-size:14px;padding-bottom:40px}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .wrap{max-width:640px;margin:0 auto;padding:0 16px}
@@ -138,7 +138,7 @@ footer{text-align:center;margin-top:36px;font-size:12px}
 .exp-amt{font-size:14px;white-space:nowrap}
 .exp-x{width:30px;height:30px;font:inherit;font-size:16px;line-height:1;color:var(--ink);border:var(--line);border-radius:9px;background:var(--paper);cursor:pointer}
 .exp-x:active{background:var(--taupe)}
-.cur-jpy{background:var(--sky)} .cur-twd{background:var(--sand)}
+.cur-jpy{background:var(--sky)} .cur-twd{background:var(--sand)} .day-tag{background:var(--blue)}
 .c-food{background:var(--sand)} .c-trans{background:var(--sky)} .c-stay{background:var(--blue)} .c-shop{background:var(--taupe)} .c-other{background:var(--paper)}
 
 /* 編輯功能 */
@@ -146,7 +146,7 @@ footer{text-align:center;margin-top:36px;font-size:12px}
 .fld{font:inherit;font-size:14px;color:var(--ink);border:var(--line);border-radius:var(--r);padding:6px 12px;background:var(--paper);width:100%}
 .fld::placeholder{color:#3E3A3980}
 button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
-.mini{font:inherit;font-size:11px;color:var(--ink);border:var(--line);border-radius:999px;padding:0 12px;background:var(--paper);cursor:pointer;line-height:1.7;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.mini{font:inherit;font-size:11px;color:var(--ink);border:var(--line);border-radius:999px;padding:3px 12px;background:var(--paper);cursor:pointer;line-height:1.7;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
 .mini:active{background:var(--taupe)}
 .mini.map-btn{background:var(--sky)}
 .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
@@ -156,7 +156,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{position:relative}
 .chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
-.chip span{display:inline-block;border:var(--line);border-radius:999px;padding:0 12px;font-size:12px;background:var(--paper)}
+.chip span{display:inline-block;border:var(--line);border-radius:999px;padding:3px 12px;font-size:12px;background:var(--paper)}
 .chip input:checked + span{background:var(--blue)}
 .chip input:focus-visible + span{outline:3px solid var(--blue);outline-offset:2px}
 .fbtns{display:flex;gap:8px;flex-wrap:wrap}
@@ -178,13 +178,11 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 .sun{transform-box:fill-box;transform-origin:center;animation:breathe 6s ease-in-out infinite}
 @keyframes breathe{50%{transform:scale(1.07)}}
 
-.tower{transform-origin:112px 218px;animation:sway 7s ease-in-out infinite}
-@keyframes sway{50%{transform:rotate(0.8deg)}}
 
-.sign{transform-origin:42px 158px;animation:swing 4.2s ease-in-out infinite}
+.sign{transform-origin:74px 158px;animation:swing 4.2s ease-in-out infinite}
 @keyframes swing{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 
-.cat-tail{transform-origin:58px 148px;animation:tail 3.6s ease-in-out infinite}
+.cat-tail{transform-origin:46px 132px;animation:tail 3.6s ease-in-out infinite}
 @keyframes tail{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(12deg)}}
 
 .train{animation:ride 12s cubic-bezier(.45,.05,.55,.95) infinite}
@@ -228,6 +226,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .train{transform:translateX(160px)!important}
 }
 @media (min-width:600px){.flight{grid-template-columns:1fr 1fr}.hero h1{font-size:38px}}
 </style>
@@ -279,28 +278,30 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
       </g>
       <circle class="lamp" cx="300" cy="55" r="2.8" fill="#FEFAF3"/>
 
-      <!-- 東京鐵塔 -->
-      <g class="tower" fill="#81A6C6">
-        <path d="M107 64 L112 42 L117 64Z"/>
-        <path d="M101 100 L107 64 L117 64 L123 100Z"/>
-        <path d="M93 130 L101 100 L123 100 L131 130Z"/>
-        <rect x="99" y="96" width="26" height="7" rx="3.5" fill="#FEFAF3"/>
-        <path d="M82 218 L93 130 L131 130 L142 218Z"/>
-        <path d="M93 130 L131 218 M131 130 L93 218" fill="none"/>
-        <rect x="85" y="168" width="54" height="7" rx="3.5" fill="#FEFAF3"/>
+      <!-- 東京鐵塔（靜態，雙腳踩在地面上） -->
+      <g fill="#81A6C6">
+        <path d="M112 66V40" fill="none"/>
+        <path d="M107 98L109 66H115L117 98Z"/>
+        <path d="M98 146Q104 122 105 105H119Q120 122 126 146Z"/>
+        <path d="M80 222Q95 180 97 154H127Q129 180 144 222Z"/>
+        <rect x="101" y="97" width="22" height="8" rx="2" fill="#FEFAF3"/>
+        <rect x="91" y="146" width="42" height="8" rx="2" fill="#FEFAF3"/>
+        <path d="M98 222Q112 196 126 222Z" fill="#FEFAF3"/>
+        <path d="M105 130L119 112M119 130L105 112M90 204L103 176M134 204L121 176M97 190L127 190" fill="none"/>
       </g>
 
       <!-- 街角文青咖啡小書店（左側前景） -->
       <g>
         <rect x="12" y="148" width="54" height="74" rx="3" fill="#FEFAF3"/>
         <path d="M8 148 L39 128 L70 148 Z" fill="#81A6C6"/>
-        <!-- 屋頂小黑貓 -->
-        <path class="cat-tail" d="M58 148 Q64 142 62 136" fill="none"/>
-        <circle cx="54" cy="145" r="3.2" fill="#3E3A39"/>
-        <path d="M51 143 L52 139 L54 142 L56 139 L57 143 Z" fill="#3E3A39"/>
+        <!-- 屋頂小黑貓（坐在屋頂斜面上） -->
+        <path class="cat-tail" d="M46 132 Q39 130 40 123" fill="none" stroke-width="2"/>
+        <ellipse cx="52" cy="131" rx="6" ry="5" fill="#3E3A39"/>
+        <circle cx="56" cy="124.500" r="3.600" fill="#3E3A39"/>
+        <path d="M53.500 125 L54 120.500 L56.500 123.500 L58.500 120.500 L59 125.500 Z" fill="#3E3A39"/>
         <!-- 條紋遮雨棚 -->
-        <path d="M10 174 H68 L64 183 H14 Z" fill="#AACDDC"/>
-        <path d="M22 174 L20 183 M34 174 L33 183 M46 174 L46 183 M58 174 L59 183" fill="none"/>
+        <path d="M14 174 H64 L68 183 H10 Z" fill="#AACDDC"/>
+        <path d="M22 174 L20 183 M34 174 L33 183 M46 174 L47 183 M58 174 L60 183" fill="none"/>
         <!-- 櫥窗與木門 -->
         <rect x="18" y="189" width="22" height="19" rx="2" fill="#F3E3D0"/>
         <rect x="45" y="189" width="15" height="33" rx="2" fill="#D2C4B4"/>
@@ -352,7 +353,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     <svg id="v1" viewBox="0 0 400 260" role="img" aria-label="繪本風插圖：富士山、河口湖、湖畔木棧道、小船與五重塔" xmlns="http://www.w3.org/2000/svg" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
       <rect width="400" height="260" fill="#F3E3D0" stroke="none"/>
       <!-- 暖陽與柔和雲朵 -->
-      <circle class="sun" cx="68" cy="54" r="20" fill="#FEFAF3"/>
+      <circle class="sun" cx="100" cy="54" r="20" fill="#FEFAF3"/>
       <g class="cloud"><path d="M226 48h66a13 13 0 0 0-5-24 18 18 0 0 0-35-4 15 15 0 0 0-26 28z" fill="#FEFAF3"/></g>
       <g class="cloud b"><path d="M18 108h50a10 10 0 0 0-4-18 14 14 0 0 0-27-3 11 11 0 0 0-19 21z" fill="#FEFAF3"/></g>
 
@@ -360,13 +361,16 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
       <path d="M0 176 Q48 144 96 170 T186 176 V190 H0Z" fill="#D2C4B4"/>
 
       <!-- 富士山與積雪 -->
-      <path d="M108 186 L210 68 Q228 52 246 68 L348 186Z" fill="#81A6C6"/>
+      <path d="M104 190 L210 68 Q228 52 246 68 L352 190Z" fill="#81A6C6"/>
       <path d="M194 86 Q228 72 262 86 L252 100 L241 90 L228 106 L215 90 L204 100Z" fill="#FEFAF3"/>
       <!-- 山腰微風雲帶 -->
       <g class="fuji-cloud" fill="#FEFAF3">
         <rect x="158" y="132" width="44" height="8" rx="4"/>
         <rect x="242" y="120" width="38" height="7" rx="3.5"/>
       </g>
+
+      <!-- 山腳丘陵（讓富士山穩穩坐在湖岸） -->
+      <path d="M90 190Q140 178 190 184T290 182T360 190Z" fill="#D2C4B4"/>
 
       <!-- 河口湖水面 -->
       <path d="M0 190 H400 V260 H0Z" fill="#AACDDC"/>
@@ -431,7 +435,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     <button type="button" aria-pressed="false" data-v="1">河口湖</button>
   </div>
   <h1>富士旅行團</h1>
-  <p class="sub">2027/1/14(四）－ 2027/1/20(三）</p>
+  <p class="sub">2027/1/14（四）－ 2027/1/20（三）</p>
 </header>
 
 <section id="flight">
@@ -594,7 +598,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     [0,1].forEach(function(i){document.getElementById("v"+i).classList.toggle("on",String(i)===b.dataset.v)});
   }});
 
-  /* ===== 每日行程（可新增、編輯、刪除 + Google Map 地點） ===== */
+  /* ===== 每日行程（可新增、編輯、刪除） ===== */
   var DEF=[
     {d:"1/14",w:"四",t:"出發日・抵達東京",s:"新宿",items:[
       {time:"15:00",tx:"JX804 從桃園起飛",tags:[["飛機","plane"]]},
@@ -643,9 +647,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
         if(it.must)h+='<span class="tag must-tag">必去</span>';
         (it.tags||[]).forEach(function(t){h+='<span class="tag '+(cls[t[1]]||"m-bus")+'">'+esc(t[0])+'</span>'});
         if(it.tbd)h+='<span class="tag">待安排</span>';
-        h+='</div><p>'+esc(it.tx)+'</p><div class="acts">';
-        if(url)h+='<a class="mini map-btn" href="'+esc(url)+'" target="_blank" rel="noopener" aria-label="在 Google Map 查看：'+esc(it.tx)+'">📍 查看地圖</a>';
-        h+='<button type="button" class="mini" data-act="edit" data-k="'+k+'" aria-label="編輯：'+esc(it.tx)+'">編輯</button><button type="button" class="mini" data-act="del" data-k="'+k+'" aria-label="刪除：'+esc(it.tx)+'">刪除</button></div></div></li>';
+        h+='</div><p>'+esc(it.tx)+'</p><div class="acts">'+(url?'<a class="mini map-btn" href="'+esc(url)+'" target="_blank" rel="noopener" aria-label="在 Google Map 查看：'+esc(it.tx)+'">📍 查看地圖</a>':'')+'<button type="button" class="mini" data-act="edit" data-k="'+k+'" aria-label="編輯：'+esc(it.tx)+'">編輯</button><button type="button" class="mini" data-act="del" data-k="'+k+'" aria-label="刪除：'+esc(it.tx)+'">刪除</button></div></div></li>';
       });
       h+='</ul>';
     }
@@ -681,7 +683,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
       p.classList.remove("pop");p.classList.toggle("on",on);
       if(on&&animate){void p.offsetWidth;p.classList.add("pop")}
     });
-    document.getElementById("tab"+i).scrollIntoView({inline:"center",block:"nearest"});
+    if(animate)document.getElementById("tab"+i).scrollIntoView({inline:"center",block:"nearest"});
   }
   tabs.addEventListener("keydown",function(e){
     if(e.key==="ArrowRight"&&cur<days.length-1){editing=null;renderPanel(cur);select(cur+1,true);document.getElementById("tab"+cur).focus()}
@@ -762,7 +764,8 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     other:{n:"門票與其他",c:"c-other"}
   };
   var expDay=document.getElementById("expDay");
-  expDay.innerHTML='<option value="出發前">出發前預訂</option>'+days.map(function(d){return '<option value="'+d.d+'">'+d.d+'（週'+d.w+'）</option>'}).join("");
+  function dayLabel(v){var k=days.findIndex(function(d){return d.d===v});return k>-1?"Day"+(k+1)+"・"+v:v}
+  expDay.innerHTML='<option value="出發前">出發前預訂</option>'+days.map(function(d,k){return '<option value="'+d.d+'">Day'+(k+1)+'・'+d.d+'（週'+d.w+'）</option>'}).join("");
   function fmtCur(cur,n){
     var num=Number(n).toLocaleString("en-US");
     return cur==="TWD"?"NT$"+num:"¥"+num;
@@ -793,7 +796,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
       var cat=CATS[it.cat]||CATS.other;
       var cur=it.cur==="TWD"?"TWD":"JPY";
       var curTag=cur==="TWD"?'<span class="tag cur-twd">台幣</span>':'<span class="tag cur-jpy">日幣</span>';
-      return '<li class="exp-item"><div class="exp-info"><div class="exp-meta"><span class="tag">'+esc(it.day)+'</span><span class="tag '+cat.c+'">'+cat.n+'</span>'+curTag+'</div><div class="exp-title">'+esc(it.title)+'</div></div><div class="exp-right"><b class="exp-amt">'+fmtCur(cur,it.amt)+'</b><button type="button" class="exp-x" data-edel="'+i+'" aria-label="刪除花費：'+esc(it.title)+'">×</button></div></li>';
+      return '<li class="exp-item"><div class="exp-info"><div class="exp-meta"><span class="tag day-tag">'+esc(dayLabel(it.day))+'</span><span class="tag '+cat.c+'">'+cat.n+'</span>'+curTag+'</div><div class="exp-title">'+esc(it.title)+'</div></div><div class="exp-right"><b class="exp-amt">'+fmtCur(cur,it.amt)+'</b><button type="button" class="exp-x" data-edel="'+i+'" aria-label="刪除花費：'+esc(it.title)+'">×</button></div></li>';
     }).join("");
   }
   document.getElementById("expForm").addEventListener("submit",function(e){
