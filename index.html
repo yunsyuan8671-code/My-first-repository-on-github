@@ -108,7 +108,7 @@ h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;bor
 .btn:active{background:var(--taupe)}
 footer{text-align:center;margin-top:36px;font-size:12px}
 
-/* 總花費紀錄（日幣 / 台幣雙幣別 + 匯率換算 + 可收納明細） */
+/* 總花費紀錄（日幣 / 台幣雙幣別 + 可收納明細） */
 .cost-sum{background:var(--sand);margin-bottom:14px;padding:14px}
 .cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .cstat{border:var(--line);border-radius:var(--r);background:var(--paper);padding:10px 12px;text-align:center}
@@ -163,6 +163,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 .fbtns{display:flex;gap:8px;flex-wrap:wrap}
 .fbtns .btn{margin-top:0}
 .empty{border:1.5px dashed var(--ink);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;font-size:13px}
+.tools{margin-top:14px;text-align:right}
 .todo li{display:flex;gap:8px;align-items:stretch}
 .todo label{flex:1}
 .todo .x{flex:0 0 42px;font:inherit;font-size:18px;line-height:1;color:var(--ink);border:var(--line);border-radius:var(--r);background:var(--paper);cursor:pointer}
@@ -193,6 +194,7 @@ textarea.fld{resize:vertical;min-height:72px}
 
 .sun{transform-box:fill-box;transform-origin:center;animation:breathe 6s ease-in-out infinite}
 @keyframes breathe{50%{transform:scale(1.07)}}
+
 
 .sign{transform-origin:74px 158px;animation:swing 4.2s ease-in-out infinite}
 @keyframes swing{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
@@ -293,7 +295,7 @@ textarea.fld{resize:vertical;min-height:72px}
       </g>
       <circle class="lamp" cx="300" cy="55" r="2.8" fill="#FEFAF3"/>
 
-      <!-- 東京鐵塔 -->
+      <!-- 東京鐵塔（靜態，雙腳踩在地面上） -->
       <g fill="#81A6C6">
         <path d="M112 66V40" fill="none"/>
         <path d="M107 98L109 66H115L117 98Z"/>
@@ -305,19 +307,23 @@ textarea.fld{resize:vertical;min-height:72px}
         <path d="M105 130L119 112M119 130L105 112M90 204L103 176M134 204L121 176M97 190L127 190" fill="none"/>
       </g>
 
-      <!-- 街角文青咖啡小書店 -->
+      <!-- 街角文青咖啡小書店（左側前景） -->
       <g>
         <rect x="12" y="148" width="54" height="74" rx="3" fill="#FEFAF3"/>
         <path d="M8 148 L39 128 L70 148 Z" fill="#81A6C6"/>
+        <!-- 屋頂小黑貓（坐在屋頂斜面上） -->
         <path class="cat-tail" d="M46 132 Q39 130 40 123" fill="none" stroke-width="2"/>
         <ellipse cx="52" cy="131" rx="6" ry="5" fill="#3E3A39"/>
-        <circle cx="56" cy="124.5" r="3.6" fill="#3E3A39"/>
-        <path d="M53.5 125 L54 120.5 L56.5 123.5 L58.5 120.5 L59 125.5 Z" fill="#3E3A39"/>
+        <circle cx="56" cy="124.500" r="3.600" fill="#3E3A39"/>
+        <path d="M53.500 125 L54 120.500 L56.500 123.500 L58.500 120.500 L59 125.500 Z" fill="#3E3A39"/>
+        <!-- 條紋遮雨棚 -->
         <path d="M14 174 H64 L68 183 H10 Z" fill="#AACDDC"/>
         <path d="M22 174 L20 183 M34 174 L33 183 M46 174 L47 183 M58 174 L60 183" fill="none"/>
+        <!-- 櫥窗與木門 -->
         <rect x="18" y="189" width="22" height="19" rx="2" fill="#F3E3D0"/>
         <rect x="45" y="189" width="15" height="33" rx="2" fill="#D2C4B4"/>
         <circle cx="56" cy="206" r="1.2" fill="#3E3A39"/>
+        <!-- 懸掛小招牌 -->
         <path d="M66 158 H74" fill="none"/>
         <g class="sign">
           <rect x="69" y="158" width="10" height="13" rx="2" fill="#F3E3D0"/>
@@ -339,7 +345,7 @@ textarea.fld{resize:vertical;min-height:72px}
       <path d="M0 226H400M0 235H400" fill="none"/>
       <path d="M20 230h12M60 230h12M100 230h12M140 230h12M180 230h12M220 230h12M260 230h12M300 230h12M340 230h12M380 230h12" fill="none" stroke-opacity=".5"/>
 
-      <!-- 復古路面電車 -->
+      <!-- 復古路面電車（緩行與靠站韻律） -->
       <g class="train">
         <path d="M55 196 L65 186 H85 L95 196" fill="none"/>
         <rect x="0" y="196" width="152" height="26" rx="11" fill="#FEFAF3"/>
@@ -360,8 +366,8 @@ textarea.fld{resize:vertical;min-height:72px}
       <g class="petal p3" fill="#FEFAF3"><path d="M236 14q7-7 10 2q-3 9-10-2z"/></g>
     </svg>
 
-    <!-- 版本二：文青繪本風・可愛富士山與三位女孩的湖畔小船 -->
-    <svg id="v1" viewBox="0 0 400 260" role="img" aria-label="繪本風插圖：可愛微笑富士山、河口湖、湖畔木棧道、三位女孩的小船與五重塔" xmlns="http://www.w3.org/2000/svg" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+    <!-- 版本二：文青繪本風・河口湖與富士山 -->
+    <svg id="v1" viewBox="0 0 400 260" role="img" aria-label="繪本風插圖：富士山、河口湖、湖畔木棧道、小船與五重塔" xmlns="http://www.w3.org/2000/svg" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
       <rect width="400" height="260" fill="#F3E3D0" stroke="none"/>
       <!-- 暖陽與柔和雲朵 -->
       <circle class="sun" cx="100" cy="54" r="20" fill="#FEFAF3"/>
@@ -371,18 +377,9 @@ textarea.fld{resize:vertical;min-height:72px}
       <!-- 遠山稜線 -->
       <path d="M0 176 Q48 144 96 170 T186 176 V190 H0Z" fill="#D2C4B4"/>
 
-      <!-- 可愛繪本風富士山（圓潤蓬鬆布丁廓形 + 波浪厚雪帽 + 微笑臉） -->
-      <g>
-        <path d="M92 190 C128 164 166 108 188 76 Q224 62 260 76 C282 108 320 164 356 190 Z" fill="#81A6C6"/>
-        <path d="M174 96 Q224 82 274 96 Q280 105 270 112 Q261 117 253 108 Q245 100 238 111 Q231 120 224 111 Q217 100 210 111 Q203 120 195 108 Q187 100 178 112 Q168 105 174 96 Z" fill="#FEFAF3"/>
-        <!-- 可愛臉蛋與紅暈 -->
-        <circle cx="212" cy="134" r="2.2" fill="#3E3A39" stroke="none"/>
-        <circle cx="236" cy="134" r="2.2" fill="#3E3A39" stroke="none"/>
-        <path d="M220 137 Q224 142 228 137" fill="none" stroke-width="1.6"/>
-        <ellipse cx="204" cy="139" rx="4.5" ry="2.6" fill="#F3E3D0" stroke="none"/>
-        <ellipse cx="244" cy="139" rx="4.5" ry="2.6" fill="#F3E3D0" stroke="none"/>
-      </g>
-
+      <!-- 可愛繪本風富士山（圓潤布丁廓形 + 波浪厚雪帽，無五官） -->
+      <path d="M92 190 C128 164 166 108 188 76 Q224 62 260 76 C282 108 320 164 356 190 Z" fill="#81A6C6"/>
+      <path d="M174 96 Q224 82 274 96 Q280 105 270 112 Q261 117 253 108 Q245 100 238 111 Q231 120 224 111 Q217 100 210 111 Q203 120 195 108 Q187 100 178 112 Q168 105 174 96 Z" fill="#FEFAF3"/>
       <!-- 山腰軟綿綿小雲朵 -->
       <g class="fuji-cloud" fill="#FEFAF3">
         <path d="M138 148h34a7 7 0 0 0-2-13 10 10 0 0 0-19-2 8 8 0 0 0-13 15z"/>
@@ -412,9 +409,11 @@ textarea.fld{resize:vertical;min-height:72px}
       <g>
         <path d="M0 232 H48 L56 242 H0 Z" fill="#D2C4B4"/>
         <path d="M12 242 V254 M38 242 V254" fill="none"/>
+        <!-- 小石燈籠 -->
         <rect x="14" y="224" width="8" height="8" fill="#FEFAF3"/>
         <rect x="12" y="216" width="12" height="8" rx="1" fill="#F3E3D0"/>
         <path d="M9 216 L18 209 L27 216 Z" fill="#D2C4B4"/>
+        <!-- 搖曳蘆葦 -->
         <g class="reed" fill="none">
           <path d="M44 236 Q40 220 36 212"/>
           <ellipse cx="35" cy="210" rx="2" ry="4.5" fill="#D2C4B4"/>
@@ -425,29 +424,26 @@ textarea.fld{resize:vertical;min-height:72px}
         </g>
       </g>
 
-      <!-- 悠閒搖晃的木造小船（船上三位都是可愛女生） -->
+      <!-- 悠閒搖晃的木造小船 -->
       <g class="boat">
         <path d="M132 218V194L143 213Z" fill="#F3E3D0"/>
         <path d="M132 218V190" fill="none"/>
-        <!-- 女生 1（左）：長髮洋裝女孩 -->
+        <!-- 三位女孩：長髮洋裝、草帽馬尾、雙馬尾小女孩 -->
         <path d="M92.4 218.5Q92.8 211.4 96 211.2Q99.2 211.4 99.6 218.5Z" fill="#81A6C6"/>
         <path d="M92 207.5Q91.8 202.6 96 202.8Q100.2 202.6 100 207.5V212.5H92Z" fill="#3E3A39" stroke="none"/>
         <circle cx="96" cy="207.2" r="3.3" fill="#F3E3D0"/>
         <path d="M92.8 206.4A3.3 3.3 0 0 1 99.2 206.4Q96 204.9 92.8 206.4Z" fill="#3E3A39" stroke="none"/>
-        <!-- 女生 2（中）：草帽馬尾女孩 -->
         <path d="M104.4 218.5Q104.8 210.4 108 210.2Q111.2 210.4 111.6 218.5Z" fill="#D2C4B4"/>
         <path d="M111.2 206.5Q115.2 207.5 113.6 213" fill="none" stroke-width="2.2"/>
         <circle cx="108" cy="206.2" r="3.3" fill="#F3E3D0"/>
         <path d="M104 206Q108 199.8 112 206Z" fill="#D2C4B4"/>
         <path d="M102.6 206H113.4" fill="none"/>
-        <!-- 女生 3（右）：雙馬尾蝴蝶結女孩 -->
         <path d="M117 218.5Q117.3 212.2 120 212Q122.7 212.2 123 218.5Z" fill="#FEFAF3"/>
         <circle cx="116.2" cy="209.4" r="1.5" fill="#3E3A39" stroke="none"/>
         <circle cx="123.8" cy="209.4" r="1.5" fill="#3E3A39" stroke="none"/>
         <circle cx="120" cy="208.6" r="3" fill="#F3E3D0"/>
         <path d="M117 208.3A3 3 0 0 1 123 208.3Q120 206.8 117 208.3Z" fill="#3E3A39" stroke="none"/>
         <path d="M118.2 205.6L120 206.4L118.2 207.2ZM121.8 205.6L120 206.4L121.8 207.2Z" fill="#81A6C6" stroke-width="1"/>
-        <!-- 船身 -->
         <path d="M84 218h54l-7 13h-40z" fill="#FEFAF3"/>
       </g>
 
@@ -482,7 +478,7 @@ textarea.fld{resize:vertical;min-height:72px}
       <div class="top"><span class="tag">去程</span><span>星宇航空 JX804</span></div>
       <div class="route">
         <div class="t">15:00</div>
-        <div class="pl"><svg viewBox="0 0 44 28" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 13L3 3.5H9L15 10Z" fill="#81A6C6"/><path d="M4 15C4 11 10 9 18 9H34C39 9 42 12 42 14.5C42 17 39 19 34 19H12C7 19 4 18 4 15Z" fill="#FEFAF3"/><path d="M36 11.5H39.5Q41 12.5 41 13.5H36Z" fill="#AACDDC" stroke-width="1"/><g fill="#AACDDC" stroke="none"><circle cx="14" cy="13.5" r="1.2"/><circle cx="19" cy="13.5" r="1.2"/><circle cx="24" cy="13.5" r="1.2"/><circle cx="29" cy="13.5" r="1.2"/></g><rect x="22" y="18.5" width="8" height="4" rx="2" fill="#D2C4B4"/><path d="M19 15L12 25H19L29 16Z" fill="#81A6C6"/></svg></div>
+        <div class="pl"><svg viewBox="0 0 44 28" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M7 14L4 7H8L14 12H22L18 4H23L30 12H37C39.5 12 41 13 41 14C41 15 39.5 16 37 16H30L23 24H18L22 16H14L8 21H4L7 14Z" fill="#FEFAF3"/></svg></div>
         <div class="t">19:00</div>
       </div>
       <small>1月14日 週四・桃園T1 → 成田T2</small>
@@ -491,7 +487,7 @@ textarea.fld{resize:vertical;min-height:72px}
       <div class="top"><span class="tag">回程</span><span>星宇航空 JX805</span></div>
       <div class="route">
         <div class="t">20:10</div>
-        <div class="pl"><svg viewBox="0 0 44 28" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 13L3 3.5H9L15 10Z" fill="#81A6C6"/><path d="M4 15C4 11 10 9 18 9H34C39 9 42 12 42 14.5C42 17 39 19 34 19H12C7 19 4 18 4 15Z" fill="#FEFAF3"/><path d="M36 11.5H39.5Q41 12.5 41 13.5H36Z" fill="#AACDDC" stroke-width="1"/><g fill="#AACDDC" stroke="none"><circle cx="14" cy="13.5" r="1.2"/><circle cx="19" cy="13.5" r="1.2"/><circle cx="24" cy="13.5" r="1.2"/><circle cx="29" cy="13.5" r="1.2"/></g><rect x="22" y="18.5" width="8" height="4" rx="2" fill="#D2C4B4"/><path d="M19 15L12 25H19L29 16Z" fill="#81A6C6"/></svg></div>
+        <div class="pl"><svg viewBox="0 0 44 28" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M7 14L4 7H8L14 12H22L18 4H23L30 12H37C39.5 12 41 13 41 14C41 15 39.5 16 37 16H30L23 24H18L22 16H14L8 21H4L7 14Z" fill="#FEFAF3"/></svg></div>
         <div class="t">23:20</div>
       </div>
       <small>1月20日 週三・成田T2 → 桃園T1</small>
@@ -503,7 +499,7 @@ textarea.fld{resize:vertical;min-height:72px}
   <h2>每日行程</h2>
   <div class="tabs" role="tablist" aria-label="選擇日期" id="tabs"></div>
   <div id="panels"></div>
-</section>
+  </section>
 
 <section id="todo">
   <h2>待辦事項</h2>
@@ -544,7 +540,7 @@ textarea.fld{resize:vertical;min-height:72px}
       <div class="cstat jpy"><span>日幣總花費 (JPY)</span><b id="sumJpy">¥0</b></div>
       <div class="cstat twd"><span>台幣總花費 (TWD)</span><b id="sumTwd">NT$0</b></div>
     </div>
-    <div class="rate-row"><label for="rateIn">匯率 1 日圓 ＝</label><input class="fld" id="rateIn" type="number" inputmode="decimal" step="0.0001" min="0" placeholder="例如 0.21" aria-label="日圓兌台幣匯率"><span>台幣</span></div>
+    <div class="rate-row"><label for="rateIn">匯率　1 日圓 ＝</label><input class="fld" id="rateIn" type="number" inputmode="decimal" step="0.0001" min="0" placeholder="例如 0.21" aria-label="日圓兌台幣匯率"><span>台幣</span></div>
     <div class="cstat total"><span>合計約 (TWD)</span><b id="sumAll">請先輸入匯率</b></div>
   </div>
 
@@ -684,7 +680,7 @@ textarea.fld{resize:vertical;min-height:72px}
   ];
   var DK="tokyo2027-days";
   var days=load(DK,null);
-  if(!days||days.length!==DEF.length)days=clone(DEF);
+  if(!days||days.length!==DEF.length)days=clone(DEF);else if(days[6]&&days[6].d==="1/20"&&days[6].s){days[6].s="";save(DK,days);}
   var cls={plane:"m-plane",train:"m-train",bus:"m-bus",walk:"m-walk"};
   var TAGS=[["飛機","plane"],["電車","train"],["巴士","bus"],["步行","walk"]];
   var editing=null;
@@ -837,7 +833,7 @@ textarea.fld{resize:vertical;min-height:72px}
   };
   renderTodo();
 
-  /* ===== 總花費紀錄（日幣 / 台幣分開計算 + 匯率換算 + 可收納明細） ===== */
+  /* ===== 總花費紀錄（日幣 / 台幣分開計算 + 可收納明細） ===== */
   var EK="tokyo2027-expenses";
   var expenses=load(EK,[]);
   var RK="tokyo2027-rate";
