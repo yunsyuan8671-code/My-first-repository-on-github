@@ -1,3 +1,15 @@
+已為您完成這兩項更新，並整合進完整 HTML 原始碼中：
+
+1. **五大標題樣式調整**：將「航班資訊、每日行程、待辦事項、住宿資訊、花費」的 `h2` 標籤改為底色 `#D2C4B4`（`var(--taupe)`）、邊框 `3px solid var(--ink)`（3pt 粗度）與 `8px` 小圓角設計。
+2. **每日行程新增「Google Map 地點」欄位與按鈕**：
+* 在「新增行程 / 編輯行程」表單中加入了 **Google Map 連結或地點名稱（選填）** 輸入框。
+* 貼上 Google Maps 分享網址（或直接輸入景點／地址名稱），儲存後該行程卡片就會自動出現 **「查看地圖」** 按鈕，點擊即可直接開啟 Google Maps 導航與查看位置。
+
+
+
+以下為更新後的完整 HTML 原始碼：
+
+```html
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -36,7 +48,7 @@ nav a{display:block;white-space:nowrap;text-decoration:none;border:var(--line);b
 nav a:active{background:var(--paper)}
 
 section{padding-top:34px}
-h2{font-size:22px;margin-bottom:14px;display:inline-block;background:var(--sand);border:var(--line);border-radius:999px;padding:0 18px}
+h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;border:3px solid var(--ink);border-radius:8px;padding:2px 16px;line-height:1.4}
 .card{border:var(--line);border-radius:var(--r);padding:18px}
 
 .hero{padding-top:calc(58px + env(safe-area-inset-top,0px))}
@@ -146,9 +158,10 @@ footer{text-align:center;margin-top:36px;font-size:12px}
 .fld{font:inherit;font-size:14px;color:var(--ink);border:var(--line);border-radius:var(--r);padding:6px 12px;background:var(--paper);width:100%}
 .fld::placeholder{color:#3E3A3980}
 button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
-.mini{font:inherit;font-size:11px;color:var(--ink);border:var(--line);border-radius:999px;padding:0 12px;background:var(--paper);cursor:pointer;line-height:1.7}
+.mini{font:inherit;font-size:11px;color:var(--ink);border:var(--line);border-radius:999px;padding:0 12px;background:var(--paper);cursor:pointer;line-height:1.7;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
 .mini:active{background:var(--taupe)}
-.acts{display:flex;gap:6px;margin-top:6px}
+.mini.map-btn{background:var(--sky)}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .addf{border:var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;background:var(--sand);margin-top:6px}
 .addf.edit{background:var(--sky)}
 .ftitle{font-size:15px}
@@ -579,6 +592,12 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
   function load(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
   function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
   function clone(o){return JSON.parse(JSON.stringify(o))}
+  function mapHref(m){
+    var v=String(m||"").trim();
+    if(!v)return "";
+    if(/^https?:\/\//i.test(v))return v;
+    return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(v);
+  }
 
   /* 插圖切換 */
   var btns=document.querySelectorAll(".vers button");
@@ -587,7 +606,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     [0,1].forEach(function(i){document.getElementById("v"+i).classList.toggle("on",String(i)===b.dataset.v)});
   }});
 
-  /* ===== 每日行程（可新增、編輯、刪除） ===== */
+  /* ===== 每日行程（可新增、編輯、刪除 + Google Map 地點） ===== */
   var DEF=[
     {d:"1/14",w:"四",t:"出發日・抵達東京",s:"新宿",items:[
       {time:"15:00",tx:"JX804 從桃園起飛",tags:[["飛機","plane"]]},
@@ -600,7 +619,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     {d:"1/17",w:"日",t:"東京市區",s:"新宿",items:[{time:"全天",tx:"行程待安排",tbd:1}]},
     {d:"1/18",w:"一",t:"前往河口湖",s:"河口湖",items:[
       {time:"上午",tx:"退房，從新宿前往河口湖",tags:[["電車","train"],["巴士","bus"]]},
-      {time:"下午",tx:"河口湖周邊，欣賞富士山",must:1,tags:[["富士回遊","bus"]]},
+      {time:"下午",tx:"河口湖周邊，欣賞富士山",must:1,tags:[["富士回遊","bus"]],map:"河口湖"},
       {time:"晚上",tx:"入住河口湖飯店",tbd:1}
     ]},
     {d:"1/19",w:"二",t:"河口湖 → 上野",s:"上野",items:[
@@ -631,11 +650,14 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     else{
       h+='<ul class="tl">';
       day.items.forEach(function(it,k){
+        var url=mapHref(it.map);
         h+='<li class="'+(it.must?"must":"")+(it.tbd?" tbd":"")+'"><div class="time">'+esc(it.time)+'</div><div class="box"><div class="row">';
         if(it.must)h+='<span class="tag must-tag">必去</span>';
         (it.tags||[]).forEach(function(t){h+='<span class="tag '+(cls[t[1]]||"m-bus")+'">'+esc(t[0])+'</span>'});
         if(it.tbd)h+='<span class="tag">待安排</span>';
-        h+='</div><p>'+esc(it.tx)+'</p><div class="acts"><button type="button" class="mini" data-act="edit" data-k="'+k+'" aria-label="編輯：'+esc(it.tx)+'">編輯</button><button type="button" class="mini" data-act="del" data-k="'+k+'" aria-label="刪除：'+esc(it.tx)+'">刪除</button></div></div></li>';
+        h+='</div><p>'+esc(it.tx)+'</p><div class="acts">';
+        if(url)h+='<a class="mini map-btn" href="'+esc(url)+'" target="_blank" rel="noopener" aria-label="在 Google Map 查看：'+esc(it.tx)+'">📍 查看地圖</a>';
+        h+='<button type="button" class="mini" data-act="edit" data-k="'+k+'" aria-label="編輯：'+esc(it.tx)+'">編輯</button><button type="button" class="mini" data-act="del" data-k="'+k+'" aria-label="刪除：'+esc(it.tx)+'">刪除</button></div></div></li>';
       });
       h+='</ul>';
     }
@@ -643,6 +665,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     h+='<form class="addf'+(ed?' edit':'')+'" data-day="'+i+'"><div class="ftitle">'+(ed?'編輯行程':'新增行程')+'</div>'
       +'<input class="fld" name="time" maxlength="20" placeholder="時間（例如 10:00、上午）" aria-label="時間" value="'+(ed?esc(ed.time):'')+'">'
       +'<input class="fld" name="tx" maxlength="80" required placeholder="行程內容（例如 淺草寺）" aria-label="行程內容" value="'+(ed?esc(ed.tx):'')+'">'
+      +'<input class="fld" name="map" maxlength="300" placeholder="Google Map 連結或地點名稱（選填，例如 淺草寺）" aria-label="Google Map 連結或地點名稱" value="'+(ed&&ed.map?esc(ed.map):'')+'">'
       +'<div class="chips" role="group" aria-label="交通方式與標記">';
     TAGS.forEach(function(t,k){h+='<label class="chip"><input type="checkbox" name="tg" value="'+k+'"'+(tg.indexOf(t[0])>-1?' checked':'')+'><span>'+t[0]+'</span></label>'});
     h+='<label class="chip"><input type="checkbox" name="must"'+((ed&&ed.must)?' checked':'')+'><span>必去</span></label></div>'
@@ -692,7 +715,9 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
     e.preventDefault();
     var f=e.target,i=+f.dataset.day,fd=new FormData(f);
     var tx=(fd.get("tx")||"").trim();if(!tx)return;
+    var mp=(fd.get("map")||"").trim();
     var item={time:(fd.get("time")||"").trim()||"未定",tx:tx,tags:fd.getAll("tg").map(function(k){return TAGS[+k]})};
+    if(mp)item.map=mp;
     if(fd.get("must"))item.must=1;
     if(editing&&editing.day===i)days[i].items[editing.idx]=item;else days[i].items.push(item);
     editing=null;save(DK,days);renderPanel(i);
@@ -811,3 +836,5 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 </script>
 </body>
 </html>
+
+```
