@@ -401,7 +401,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
         <div class="pl"><svg viewBox="0 0 24 24" fill="#FEFAF3" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><path d="M2 14l9-2 3-9 3 1-1 8 6 2v3l-7-1-2 4h-2l0-4-9-1z"/></svg></div>
         <div class="t">19:00</div>
       </div>
-      <small>1月14日 週四・桃園T1 → 東京T2</small>
+      <small>1月14日 週四・桃園T1 → 成田T2</small>
     </article>
     <article class="fl back">
       <div class="top"><span class="tag">回程</span><span>星宇航空 JX805</span></div>
@@ -410,7 +410,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
         <div class="pl"><svg viewBox="0 0 24 24" fill="#FEFAF3" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><path d="M2 14l9-2 3-9 3 1-1 8 6 2v3l-7-1-2 4h-2l0-4-9-1z"/></svg></div>
         <div class="t">23:20</div>
       </div>
-      <small>1月20日 週三・東京T2 → 桃園T1</small>
+      <small>1月20日 週三・成田T2 → 桃園T1</small>
     </article>
   </div>
 </section>
@@ -432,7 +432,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
 </section>
 
 <section id="stay">
-  <h2>住宿</h2>
+  <h2>住宿資訊</h2>
   <div class="stays">
     <article class="card stay paper">
       <div class="ic"><svg width="32" height="32" viewBox="0 0 34 34" fill="none" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><rect x="6" y="6" width="9" height="22" rx="2" fill="#FEFAF3"/><rect x="17" y="12" width="11" height="16" rx="2" fill="#F3E3D0"/><path d="M9 11h3M9 16h3M9 21h3M20 17h5M20 22h5"/></svg></div>
@@ -490,7 +490,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
       {time:"下午",tx:"返回東京，前往上野",tags:[["巴士","bus"],["電車","train"]]},
       {time:"晚上",tx:"入住上野飯店（尚未決定）",tbd:1}
     ]},
-    {d:"1/20",w:"三",t:"返程日",items:[
+    {d:"1/20",w:"三",t:"返程日",s:"",items:[
       {time:"白天",tx:"退房、購買伴手禮，行程待安排",tbd:1},
       {time:"傍晚",tx:"前往機場（可搭 Skyliner）",tags:[["電車","train"]]},
       {time:"20:10",tx:"JX805 從東京起飛",tags:[["飛機","plane"]]},
@@ -508,7 +508,7 @@ button.btn{font:inherit;font-size:12px;color:var(--ink);cursor:pointer}
   function renderPanel(i){
     var day=days[i],p=document.getElementById("p"+i);
     var ed=(editing&&editing.day===i)?day.items[editing.idx]:null;
-    var h='<div class="dayhead"><h3>'+day.d+'（週'+day.w+'）'+day.t+'</h3><span class="tag m-train">住 '+day.s+'</span></div>';
+    var h='<div class="dayhead"><h3>'+day.d+'（週'+day.w+'）'+day.t+'</h3>'+(day.s?'<span class="tag m-train">住 '+day.s+'</span>':'')+'</div>';
     if(!day.items.length)h+='<p class="empty">這天還沒有行程，從下方新增第一個吧。</p>';
     else{
       h+='<ul class="tl">';
