@@ -115,7 +115,7 @@ h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;bor
 .btn:active{background:var(--taupe)}
 footer{text-align:center;margin-top:40px;font-size:12px}
 
-/* 總花費紀錄（日幣 / 台幣雙幣別 + 可收納明細 + 代墊統計） */
+/* 總花費紀錄（日幣 / 台幣雙幣別 + 可收納明細） */
 .cost-sum{background:var(--sand);margin-bottom:14px;padding:14px}
 .cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .cstat{border:var(--line);border-radius:var(--r);background:var(--paper);padding:10px 12px;text-align:center}
@@ -123,8 +123,6 @@ footer{text-align:center;margin-top:40px;font-size:12px}
 .cstat b{display:block;font-size:18px;font-weight:400;margin-top:2px}
 .cstat.jpy{background:var(--sky)}
 .cstat.twd{background:var(--paper)}
-.payer-summary{margin-top:10px;padding-top:10px;border-top:1.5px dashed var(--ink);font-size:12px}
-.payer-pill{display:inline-block;padding:2px 10px;border:var(--line);border-radius:999px;font-size:11px;background:var(--paper);margin:3px 4px 3px 0}
 
 /* 可收納明細抽屜 */
 .exp-drawer{border:var(--line);border-radius:var(--r);background:var(--paper) var(--tex);overflow:hidden}
@@ -145,7 +143,6 @@ footer{text-align:center;margin-top:40px;font-size:12px}
 .exp-x:active{background:var(--taupe)}
 .cur-jpy{background:var(--sky)} .cur-twd{background:var(--sand)} .day-tag{background:var(--blue)}
 .c-food{background:var(--sand)} .c-trans{background:var(--sky)} .c-stay{background:var(--blue)} .c-shop{background:var(--taupe)} .c-other{background:var(--paper)}
-.payer-tag{background:var(--taupe)}
 
 /* 編輯按鈕與小標籤 */
 .m-walk{background:var(--paper)}
@@ -186,7 +183,7 @@ footer{text-align:center;margin-top:40px;font-size:12px}
 .fbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 
 /* 「＋ 新增行程」與「＋ 記一筆花費」與原介面保持一致的顏色與風格 */
-.add-action-wrap{text-align:center;margin:14px 0 6px}
+.add-action-wrap{text-align:center;margin:14px 0 14px}
 .add-trigger-btn{
   display:inline-block;
   border:var(--line);
@@ -571,7 +568,6 @@ footer{text-align:center;margin-top:40px;font-size:12px}
     </div>
     <div class="rate-row"><label for="rateIn">匯率　1 日圓 ＝</label><input class="fld" id="rateIn" type="number" inputmode="decimal" step="0.0001" min="0" placeholder="例如 0.21" aria-label="日圓兌台幣匯率"><span>台幣</span></div>
     <div class="cstat total"><span>合計約 (TWD)</span><b id="sumAll">請先輸入匯率</b></div>
-    <div class="payer-summary" id="payerSummary"></div>
   </div>
 
   <!-- 與原介面按鈕相同顏色與膠囊設計的「＋ 記一筆花費」按鈕 -->
@@ -665,10 +661,6 @@ footer{text-align:center;margin-top:40px;font-size:12px}
           </select>
           <input type="number" class="fld" name="amt" min="1" step="1" required placeholder="金額" aria-label="花費金額">
         </div>
-      </div>
-      <div>
-        <label class="hint" style="display:block;margin-bottom:3px">代墊人（選填，方便結算）</label>
-        <input class="fld" name="payer" maxlength="20" placeholder="例如 阿圓、小明、公費" aria-label="代墊人">
       </div>
       <div class="fbtns" style="margin-top:6px">
         <button class="btn" type="submit" style="background:var(--sky);flex:1">加入花費</button>
@@ -984,33 +976,12 @@ footer{text-align:center;margin-top:40px;font-size:12px}
   var expList=document.getElementById("expList");
   var expDrawer=document.getElementById("expDrawer");
   var expSummary=document.getElementById("expSummary");
-  var payerSummary=document.getElementById("payerSummary");
 
   function updateSummary(){
     var open=expDrawer.open;
     expSummary.textContent="花費明細（共 "+expenses.length+" 筆・"+(open?"點擊收合":"點擊展開")+"）";
   }
   expDrawer.addEventListener("toggle",updateSummary);
-
-  function renderPayerSummary(){
-    if(!payerSummary)return;
-    if(!expenses.length){payerSummary.innerHTML="";return;}
-    var map={};
-    expenses.forEach(function(x){
-      var p=(x.payer||"").trim()||"未指定代墊人";
-      if(!map[p])map[p]={jpy:0,twd:0};
-      if(x.cur==="TWD")map[p].twd+=x.amt;else map[p].jpy+=x.amt;
-    });
-    var h='<div style="font-weight:700;margin-bottom:4px">💳 代墊分帳統計：</div><div style="display:flex;flex-wrap:wrap;gap:4px">';
-    for(var k in map){
-      var parts=[];
-      if(map[k].jpy>0)parts.push("¥"+map[k].jpy.toLocaleString());
-      if(map[k].twd>0)parts.push("NT$"+map[k].twd.toLocaleString());
-      h+='<span class="payer-pill"><b>'+esc(k)+'</b>: '+parts.join(" + ")+'</span>';
-    }
-    h+='</div>';
-    payerSummary.innerHTML=h;
-  }
 
   function renderCost(){
     var jpy=0, twd=0;
@@ -1022,7 +993,6 @@ footer{text-align:center;margin-top:40px;font-size:12px}
     document.getElementById("sumTwd").textContent=fmtCur("TWD",twd);
     document.getElementById("sumAll").textContent=(rate>0||jpy===0)?"約 "+fmtCur("TWD",Math.round(twd+jpy*rate)):"請先輸入匯率";
     updateSummary();
-    renderPayerSummary();
     if(!expenses.length){
       expList.innerHTML='<li class="empty" style="margin-bottom:0">目前還沒有花費紀錄，點擊上方按鈕記一筆吧！</li>';
       return;
@@ -1031,8 +1001,7 @@ footer{text-align:center;margin-top:40px;font-size:12px}
       var cat=CATS[it.cat]||CATS.other;
       var cur=it.cur==="TWD"?"TWD":"JPY";
       var curTag=cur==="TWD"?'<span class="tag cur-twd">台幣</span>':'<span class="tag cur-jpy">日幣</span>';
-      var pTag=it.payer?'<span class="tag payer-tag">墊: '+esc(it.payer)+'</span>':'';
-      return '<li class="exp-item"><div class="exp-info"><div class="exp-meta"><span class="tag day-tag">'+esc(dayLabel(it.day))+'</span><span class="tag '+cat.c+'">'+cat.n+'</span>'+curTag+pTag+'</div><div class="exp-title">'+esc(it.title)+'</div></div><div class="exp-right"><b class="exp-amt">'+fmtCur(cur,it.amt)+'</b><button type="button" class="exp-x" data-edel="'+i+'" aria-label="刪除花費：'+esc(it.title)+'">×</button></div></li>';
+      return '<li class="exp-item"><div class="exp-info"><div class="exp-meta"><span class="tag day-tag">'+esc(dayLabel(it.day))+'</span><span class="tag '+cat.c+'">'+cat.n+'</span>'+curTag+'</div><div class="exp-title">'+esc(it.title)+'</div></div><div class="exp-right"><b class="exp-amt">'+fmtCur(cur,it.amt)+'</b><button type="button" class="exp-x" data-edel="'+i+'" aria-label="刪除花費：'+esc(it.title)+'">×</button></div></li>';
     }).join("");
   }
 
@@ -1060,9 +1029,8 @@ footer{text-align:center;margin-top:40px;font-size:12px}
     var title=(fd.get("title")||"").trim();
     var amt=parseInt(fd.get("amt"),10);
     var cur=fd.get("cur")==="TWD"?"TWD":"JPY";
-    var payer=(fd.get("payer")||"").trim();
     if(!title||!amt||amt<=0)return;
-    expenses.unshift({day:fd.get("day")||"出發前",cat:fd.get("cat")||"other",cur:cur,title:title,amt:amt,payer:payer});
+    expenses.unshift({day:fd.get("day")||"出發前",cat:fd.get("cat")||"other",cur:cur,title:title,amt:amt});
     save(EK,expenses);
     closeExpModal();
     expDrawer.open=true;
