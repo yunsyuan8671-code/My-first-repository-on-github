@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FFFCF6">
+<title>旅途慢慢來｜2027 小旅行</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<style>
+:root{
+ --paper:#FFFCF6;--ink:#3E3A39;--pink:#F2A497;--yellow:#F6D27A;--blue:#A8D3E6;--green:#B9DAA5;
+ --muted:#817a72;--line:3px solid var(--ink);--round:26px;--shadow:5px 5px 0 var(--ink);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Huninn","Noto Sans TC",sans-serif;letter-spacing:.03em}
+button,input,textarea{font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1080px,calc(100% - 32px));margin:auto}
+header{position:fixed;inset:0 0 auto;z-index:20;background:rgba(255,252,246,.94);backdrop-filter:blur(8px);border-bottom:3px solid var(--ink)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:20px;font-weight:bold;white-space:nowrap}
+.brand span{display:inline-grid;place-items:center;width:34px;height:34px;background:var(--yellow);border:2px solid var(--ink);border-radius:50%;margin-right:6px}
+nav{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+nav a{font-size:14px;padding:8px 12px;border:2px solid transparent;border-radius:30px;white-space:nowrap}
+nav a:hover{border-color:var(--ink);background:#fff}
+main{padding-top:68px}
+section{padding:48px 0}
+.hero{padding:48px 0 34px}
+.hero-card{position:relative;overflow:hidden;border:var(--line);border-radius:36px;background:#F9EEDB;box-shadow:var(--shadow);padding:34px 28px 28px;min-height:390px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:12px}
+.eyebrow{display:inline-block;background:#fff;border:2px solid var(--ink);border-radius:30px;padding:7px 13px;font-size:13px}
+h1{font-size:clamp(38px,7vw,68px);line-height:1.12;margin:18px 0 10px}
+h1 em{font-style:normal;color:#C96F62}
+.lead{font-size:18px;line-height:1.7;margin:0 0 20px}
+.date-pill{display:inline-block;background:var(--yellow);border:2px solid var(--ink);border-radius:14px;padding:9px 14px;font-size:17px}
+.hero-art{width:100%;max-width:440px;justify-self:center;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+.countdown{display:flex;align-items:center;gap:12px;margin-top:20px}
+.count-number{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:9px 14px;min-width:82px;text-align:center;box-shadow:3px 3px 0 var(--ink)}
+.count-number strong{display:block;font-size:27px;line-height:1.1}
+.count-number small{font-size:12px;color:var(--muted)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:20px}
+.kicker{font-size:13px;color:#9A7767;margin-bottom:4px}
+h2{font-size:30px;margin:0}
+.sub{color:var(--muted);font-size:14px;margin:5px 0 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{border:var(--line);border-radius:var(--round);background:#fff;padding:20px;box-shadow:4px 4px 0 var(--ink)}
+.card h3{font-size:20px;margin:0 0 14px;display:flex;align-items:center;gap:8px}
+.iconbox{width:38px;height:38px;border:2px solid var(--ink);border-radius:13px;display:grid;place-items:center;font-size:20px}
+.flight-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:14px 0;border-top:2px dashed #D8D0C4}
+.flight-row:first-of-type{border-top:0}
+.flight-city strong{display:block;font-size:22px}
+.flight-city small,.muted{font-size:13px;color:var(--muted)}
+.plane{font-size:25px;text-align:center}
+.placeholder{display:inline-block;background:#FFF3D5;border:1.5px dashed #B78D42;border-radius:9px;padding:5px 9px;font-size:13px;color:#80652F}
+.info-line{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed #ddd5ca}
+.info-line:last-child{border:0}
+.info-line span:first-child{color:var(--muted)}
+.date-tabs{display:flex;gap:9px;overflow-x:auto;padding:5px 3px 12px;scrollbar-width:thin}
+.day-tab{flex:0 0 auto;min-width:88px;border:2px solid var(--ink);border-radius:17px;background:#fff;padding:10px 12px;text-align:center;cursor:pointer;box-shadow:2px 2px 0 var(--ink);transition:transform .22s,background .22s}
+.day-tab b{display:block;font-size:20px}.day-tab small{font-size:12px;color:var(--muted)}
+.day-tab.active{background:var(--yellow);transform:translateY(-4px) rotate(-1deg);box-shadow:4px 5px 0 var(--ink)}
+.day-panel{border:var(--line);border-radius:var(--round);background:#fff;padding:22px;box-shadow:var(--shadow);animation:pop .32s cubic-bezier(.2,1.5,.5,1)}
+@keyframes pop{from{opacity:.3;transform:translateY(9px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.day-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.day-title h3{font-size:23px;margin:0}
+.timeline{position:relative;margin-left:9px;padding-left:28px;border-left:3px solid #E8DCCB}
+.event{position:relative;padding:0 0 22px}
+.event:last-child{padding-bottom:0}
+.event:before{content:"";position:absolute;left:-37px;top:3px;width:15px;height:15px;border:3px solid var(--ink);border-radius:50%;background:var(--pink)}
+.event:nth-child(2):before{background:var(--yellow)}.event:nth-child(3):before{background:var(--blue)}.event:nth-child(4):before{background:var(--green)}
+.event-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.time{font-size:15px;font-weight:bold;min-width:48px}
+.event-name{font-size:17px;font-weight:bold}
+.event p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.tag{display:inline-block;padding:4px 9px;border:1.5px solid var(--ink);border-radius:20px;font-size:11px}
+.tag.must{background:var(--pink)}.tag.walk{background:var(--green)}.tag.train{background:var(--blue)}.tag.bus{background:var(--yellow)}.tag.other{background:#eee5d8}
+.add-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+input[type=text],input[type=time],textarea{width:100%;border:2px solid var(--ink);border-radius:12px;padding:10px 12px;background:#FFFCF6;outline:none}
+input:focus,textarea:focus{box-shadow:0 0 0 3px #F6D27A}
+.add-fields{display:grid;grid-template-columns:95px 1fr 115px;gap:8px;flex:1 1 100%}
+.btn{border:2px solid var(--ink);border-radius:13px;background:var(--yellow);padding:10px 15px;cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+.btn:hover{transform:translateY(-2px)}
+.todo-card{background:#F4F8EF}
+.todo-list{display:grid;gap:10px}
+.todo{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border:2px solid var(--ink);border-radius:13px}
+.todo input{accent-color:#83B56C;width:18px;height:18px}
+.todo.done span{text-decoration:line-through;color:#9a958d}
+.todo button{margin-left:auto;border:0;background:transparent;cursor:pointer;font-size:18px;color:#9a7770}
+.todo-add{display:flex;gap:8px;margin-top:13px}
+.todo-add input{min-width:0}
+.progress{height:10px;border:2px solid var(--ink);border-radius:20px;background:#fff;overflow:hidden;margin:14px 0 4px}
+.progress span{display:block;height:100%;width:0;background:var(--green);transition:width .2s}
+.stay-card{background:#F2F8FB}
+.stay-illustration{width:100%;height:110px;display:block;margin-bottom:8px}
+.footer{text-align:center;padding:35px 0 50px;color:var(--muted);font-size:13px}
+.footer .heart{color:#D77E72}
+.note{font-size:13px;color:var(--muted);line-height:1.7}
+@media(max-width:700px){
+ .nav{height:60px}.brand{font-size:17px}nav{gap:0}nav a{font-size:12px;padding:7px 9px}
+ main{padding-top:60px}.hero{padding-top:25px}
+ .hero-card{grid-template-columns:1fr;padding:25px 20px 18px;min-height:0}
+ .hero-art{max-width:310px;grid-row:1;width:88%;margin-bottom:-5px}
+ .hero-copy{grid-row:2}.lead{font-size:16px}
+ section{padding:35px 0}.grid2{grid-template-columns:1fr}
+ .section-head{align-items:start;flex-direction:column}h2{font-size:27px}
+ .day-panel{padding:17px}.day-title{align-items:flex-start;flex-direction:column}
+ .add-fields{grid-template-columns:78px 1fr}.add-fields select{grid-column:1/-1}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+ <a class="brand" href="#top"><span>✿</span>旅途慢慢來</a>
+ <nav aria-label="主選單"><a href="#flight">航班</a><a href="#days">每日行程</a><a href="#todo">待辦</a><a href="#stay">住宿</a></nav>
+</div></header>
+<main id="top">
+<section class="hero"><div class="wrap"><div class="hero-card">
+ <div class="hero-copy">
+  <span class="eyebrow">✦ MY LITTLE TRIP · 2027</span>
+  <h1>把日子，<br>過成一趟<em>旅行。</em></h1>
+  <p class="lead">目的地還在想，期待已經先出發。<br>留一點空白，等沿途的驚喜慢慢填滿。</p>
+  <span class="date-pill">📅 2027.01.14 — 01.20</span>
+  <div class="countdown"><div class="count-number"><strong id="daysLeft">—</strong><small>距離出發日</small></div><span class="muted">天<br>一起期待吧！</span></div>
+ </div>
+ <svg class="hero-art" viewBox="0 0 440 330" role="img" aria-label="可愛行李箱、飛機與雲朵插畫">
+  <path d="M26 260 Q90 230 150 256 T280 252 T420 255" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round"/>
+  <g fill="#fff" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round">
+   <path d="M75 90 Q75 68 98 68 Q108 40 139 54 Q155 25 184 48 Q207 44 213 68 Q240 65 243 91 Q239 112 215 112 H99 Q74 111 75 90Z"/>
+   <path d="M286 75 Q286 55 306 55 Q320 27 346 46 Q369 35 380 61 Q405 59 407 82 Q403 101 383 101 H307 Q286 100 286 75Z"/>
+  </g>
+  <g transform="translate(285 24) rotate(-10)">
+   <path d="M0 29 L47 0 L37 34 L0 29Z" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+   <path d="M0 29 L37 34 L25 48 L17 33Z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+   <path d="M20 28 L28 18" stroke="#3E3A39" stroke-width="3"/>
+  </g>
+  <g transform="translate(112 116)">
+   <path d="M38 0 H160 Q176 0 176 18 V178 Q176 195 160 195 H38 Q22 195 22 178 V18 Q22 0 38 0Z" fill="#F2A497" stroke="#3E3A39" stroke-width="4"/>
+   <path d="M78 0 V-19 Q78 -31 90 -31 H108 Q120 -31 120 -19 V0" fill="none" stroke="#3E3A39" stroke-width="7" stroke-linecap="round"/>
+   <path d="M36 24 V169 M160 24 V169" stroke="#3E3A39" stroke-width="3" stroke-dasharray="5 7"/>
+   <rect x="73" y="67" width="74" height="61" rx="13" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+   <path d="M92 93 Q110 75 128 93 Q110 111 92 93Z" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/>
+   <circle cx="110" cy="93" r="5" fill="#3E3A39"/>
+   <circle cx="57" cy="194" r="10" fill="#3E3A39"/><circle cx="151" cy="194" r="10" fill="#3E3A39"/>
+  </g>
+  <g fill="#F6D27A" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round">
+   <path d="M57 153 l5 13 14 1 -11 9 4 14 -12 -8 -12 8 4 -14 -11 -9 14 -1Z"/>
+   <path d="M347 165 l4 10 11 1 -9 7 3 11 -9 -6 -9 6 3 -11 -9 -7 11 -1Z"/>
+  </g>
+  <g fill="#B9DAA5" stroke="#3E3A39" stroke-width="2.5"><path d="M40 240 Q27 213 49 199 Q65 221 40 240Z"/><path d="M387 243 Q372 216 395 201 Q412 224 387 243Z"/></g>
+  <path d="M60 52 l5 12 13 1 -10 8 3 13 -11 -7 -11 7 4 -13 -11 -8 13 -1Z" fill="#F2A497" stroke="#3E3A39" stroke-width="2"/>
+ </svg>
+</div></div></section>
+
+<section id="flight"><div class="wrap">
+ <div class="section-head"><div><div class="kicker">✈ LET'S GO</div><h2>出發情報</h2><p class="sub">先把重要資訊收好，確認後再填進來。</p></div></div>
+ <div class="grid2">
+  <article class="card"><h3><span class="iconbox" style="background:#F6D27A">✈</span>去程航班</h3>
+   <div class="flight-row"><div class="flight-city"><strong>— —</strong><small>出發機場</small></div><div class="plane">✈</div><div class="flight-city" style="text-align:right"><strong>— —</strong><small>抵達機場</small></div></div>
+   <div class="info-line"><span>日期</span><b>2027 / 01 / 14</b></div><div class="info-line"><span>航班 / 時間</span><span class="placeholder">待確認</span></div>
+  </article>
+  <article class="card"><h3><span class="iconbox" style="background:#A8D3E6">🛬</span>回程航班</h3>
+   <div class="flight-row"><div class="flight-city"><strong>— —</strong><small>出發機場</small></div><div class="plane">✈</div><div class="flight-city" style="text-align:right"><strong>— —</strong><small>抵達機場</small></div></div>
+   <div class="info-line"><span>日期</span><b>2027 / 01 / 20</b></div><div class="info-line"><span>航班 / 時間</span><span class="placeholder">待確認</span></div>
+  </article>
+ </div>
+</div></section>
+
+<section id="days"><div class="wrap">
+ <div class="section-head"><div><div class="kicker">✿ DAY BY DAY</div><h2>每日小旅行</h2><p class="sub">點選日期切換，新增的行程會保存在這台裝置。</p></div><span class="placeholder">目的地：尚未決定</span></div>
+ <div class="date-tabs" id="dateTabs" role="tablist" aria-label="選擇日期"></div>
+ <div class="day-panel" id="dayPanel" role="tabpanel">
+  <div class="day-title"><div><div class="kicker" id="dayKicker">DAY 1</div><h3 id="dayHeading">1 月 14 日（四）</h3></div><span class="placeholder">今天想去哪裡呢？</span></div>
+  <div class="timeline" id="timeline"></div>
+  <div class="add-row">
+   <div class="add-fields"><input id="newTime" type="time" aria-label="行程時間" value="10:00"><input id="newPlace" type="text" placeholder="想去的地方／活動…" aria-label="行程名稱"><select id="newTransport" aria-label="交通方式" style="border:2px solid var(--ink);border-radius:12px;background:#FFFCF6;padding:8px"><option value="other">其他</option><option value="walk">步行</option><option value="train">電車／鐵路</option><option value="bus">巴士</option><option value="taxi">計程車</option></select></div>
+   <button class="btn" id="addEvent">＋ 加入行程</button>
+  </div>
+ </div>
+</div></section>
+
+<section id="todo"><div class="wrap"><div class="section-head"><div><div class="kicker">✎ BEFORE WE GO</div><h2>出發前待辦</h2><p class="sub">一件一件完成，旅行就越來越近了。</p></div></div>
+ <div class="grid2">
+  <article class="card todo-card"><h3><span class="iconbox" style="background:#B9DAA5">✓</span>準備清單</h3>
+   <div class="todo-list" id="todoList">
+    <label class="todo"><input type="checkbox"><span>確認目的地與旅遊路線</span></label>
+    <label class="todo"><input type="checkbox"><span>訂購來回機票</span></label>
+    <label class="todo"><input type="checkbox"><span>預訂住宿</span></label>
+    <label class="todo"><input type="checkbox"><span>確認護照效期與入境規定</span></label>
+    <label class="todo"><input type="checkbox"><span>安排網路／SIM 卡</span></label>
+    <label class="todo"><input type="checkbox"><span>準備換匯與支付方式</span></label>
+    <label class="todo"><input type="checkbox"><span>整理行李與旅行用品</span></label>
+   </div>
+   <div class="progress"><span id="progressBar"></span></div><div class="muted" id="progressText">完成 0 / 7 項</div>
+   <div class="todo-add"><input id="todoInput" type="text" placeholder="新增一件待辦…"><button class="btn" id="addTodo">新增</button></div>
+  </article>
+  <article class="card stay-card" id="stay"><h3><span class="iconbox" style="background:#A8D3E6">⌂</span>住宿小據點</h3>
+   <svg class="stay-illustration" viewBox="0 0 320 115" aria-label="小房子插畫"><path d="M52 55 L160 8 L268 55" fill="#F2A497" stroke="#3E3A39" stroke-width="4" stroke-linejoin="round"/><rect x="72" y="52" width="176" height="57" rx="5" fill="#fff" stroke="#3E3A39" stroke-width="4"/><rect x="143" y="72" width="38" height="37" rx="4" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/><rect x="91" y="67" width="30" height="25" rx="3" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3"/><rect x="199" y="67" width="30" height="25" rx="3" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3"/><path d="M150 8 V-1 H170 V12" fill="none" stroke="#3E3A39" stroke-width="3"/></svg>
+   <div class="info-line"><span>住宿名稱</span><span class="placeholder">尚未預訂</span></div><div class="info-line"><span>入住日期</span><b>01 / 14</b></div><div class="info-line"><span>退房日期</span><b>01 / 20</b></div><div class="info-line"><span>地址／備註</span><span class="muted">待補充</span></div>
+   <p class="note">小提醒：如果旅途中會更換住宿，可以把每一間住宿與入住日期補在這裡，方便隨時查看。</p>
+  </article>
+ </div>
+</div></section>
+</main>
+<footer class="footer"><div class="wrap">慢慢計畫，也好好期待。 <span class="heart">♥</span><br>願這趟 2027 的小旅行，裝滿剛剛好的美好。</div></footer>
+
+<script>
+const dates=[
+ ['2027-01-14','四'],['2027-01-15','五'],['2027-01-16','六'],
+ ['2027-01-17','日'],['2027-01-18','一'],['2027-01-19','二'],['2027-01-20','三']
+];
+const seed=dates.map(()=>[]);
+let plans=JSON.parse(localStorage.getItem('littleTripPlans')||'null')||seed;
+let selected=0;
+const transport={walk:['步行','walk'],train:['電車／鐵路','train'],bus:['巴士','bus'],taxi:['計程車','other'],other:['其他','other']};
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem('littleTripPlans',JSON.stringify(plans))}
+function renderTabs(){
+ $('dateTabs').innerHTML='';
+ dates.forEach((d,i)=>{
+  const day=Number(d[0].slice(-2));
+  const b=document.createElement('button');b.className='day-tab'+(i===selected?' active':'');
+  b.setAttribute('role','tab');b.setAttribute('aria-selected',i===selected?'true':'false');
+  b.innerHTML=`<b>${day}</b><small>1 月 ${d[1]}</small>`;
+  b.addEventListener('click',()=>{selected=i;renderTabs();renderDay()});
+  $('dateTabs').appendChild(b);
+ });
+}
+function renderDay(){
+ const d=dates[selected],day=Number(d[0].slice(-2));
+ $('dayKicker').textContent='DAY '+(selected+1);
+ $('dayHeading').textContent=`1 月 ${day} 日（${d[1]}）`;
+ const timeline=$('timeline');timeline.innerHTML='';
+ if(!plans[selected].length){
+  const empty=document.createElement('p');empty.className='muted';empty.textContent='這一天還沒有安排行程，先留白也很好。想到哪裡想去，就加在下方吧！';timeline.appendChild(empty);return;
+ }
+ plans[selected].sort((a,b)=>a.time.localeCompare(b.time));
+ plans[selected].forEach((item,idx)=>{
+  const ev=document.createElement('div');ev.className='event';
+  const top=document.createElement('div');top.className='event-top';
+  const time=document.createElement('span');time.className='time';time.textContent=item.time;
+  const name=document.createElement('span');name.className='event-name';name.textContent=item.name;
+  const tag=document.createElement('span');tag.className='tag '+(transport[item.transport]||transport.other)[1];tag.textContent=(transport[item.transport]||transport.other)[0];
+  top.append(time,name,tag);
+  const del=document.createElement('button');del.textContent='移除';del.className='tag';del.style.marginLeft='auto';del.style.background='#fff';del.style.cursor='pointer';del.setAttribute('aria-label','移除'+item.name);
+  del.onclick=()=>{plans[selected].splice(idx,1);save();renderDay()};
+  top.appendChild(del);ev.appendChild(top);timeline.appendChild(ev);
+ });
+}
+$('addEvent').onclick=()=>{
+ const name=$('newPlace').value.trim();if(!name){$('newPlace').focus();return}
+ plans[selected].push({time:$('newTime').value||'10:00',name,transport:$('newTransport').value});
+ save();$('newPlace').value='';renderDay();
+};
+$('newPlace').addEventListener('keydown',e=>{if(e.key==='Enter')$('addEvent').click()});
+function updateProgress(){
+ const boxes=[...$('todoList').querySelectorAll('input[type=checkbox]')],done=boxes.filter(x=>x.checked).length;
+ $('progressBar').style.width=(boxes.length?done/boxes.length*100:0)+'%';
+ $('progressText').textContent=`完成 ${done} / ${boxes.length} 項`;
+}
+function bindTodo(label){
+ label.querySelector('input').addEventListener('change',()=>{label.classList.toggle('done',label.querySelector('input').checked);updateProgress()});
+ const del=document.createElement('button');del.type='button';del.textContent='×';del.setAttribute('aria-label','刪除待辦');del.onclick=()=>{label.remove();updateProgress()};label.appendChild(del);
+}
+[...$('todoList').children].forEach(bindTodo);updateProgress();
+$('addTodo').onclick=()=>{
+ const val=$('todoInput').value.trim();if(!val)return;
+ const label=document.createElement('label');label.className='todo';
+ const check=document.createElement('input');check.type='checkbox';
+ const span=document.createElement('span');span.textContent=val;
+ label.append(check,span);$('todoList').appendChild(label);bindTodo(label);$('todoInput').value='';updateProgress();
+};
+$('todoInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('addTodo').click()});
+const tripDate=new Date('2027-01-14T00:00:00');
+function countdown(){const now=new Date();const diff=Math.ceil((tripDate-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/86400000);$('daysLeft').textContent=diff>=0?diff:'出發中';}
+countdown();renderTabs();renderDay();
+</script>
+</body>
+</html>
