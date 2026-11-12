@@ -111,7 +111,7 @@ h2{font-size:22px;margin-bottom:14px;display:inline-block;background:#D2C4B4;bor
 .stay:nth-child(1) .ic{background:var(--sky)} .stay:nth-child(2) .ic{background:var(--blue)} .stay:nth-child(3) .ic{background:var(--sand)}
 .stay h3{font-size:16px;font-weight:400;line-height:1.4;margin-bottom:2px}
 .stay .d{font-size:12px;line-height:1.6}
-.btn{display:inline-block;border:var(--line);border-radius:999px;padding:4px 18px;text-decoration:none;background:var(--sand);font-size:13px;cursor:pointer;line-height:1.6}
+.btn{display:inline-block;border:var(--line);border-radius:999px;padding:0 14px;text-decoration:none;background:var(--sand);font-size:12px;cursor:pointer;line-height:1.7}
 .btn:active{background:var(--taupe)}
 footer{text-align:center;margin-top:40px;font-size:12px}
 
@@ -151,7 +151,7 @@ footer{text-align:center;margin-top:40px;font-size:12px}
 .m-walk{background:var(--paper)}
 .fld{font:inherit;font-size:14px;color:var(--ink);border:var(--line);border-radius:var(--r);padding:7px 12px;background:var(--paper);width:100%}
 .fld::placeholder{color:#3E3A3980}
-.mini{font:inherit;font-size:11px;color:var(--ink);border:var(--line);border-radius:999px;padding:3px 10px;background:var(--paper);cursor:pointer;line-height:1.7;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.mini{font:inherit;font-size:11px;color:var(--ink);border:var(--line);border-radius:999px;padding:3px 12px;background:var(--paper);cursor:pointer;line-height:1.7;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
 .mini:active{background:var(--taupe)}
 .mini.map-btn{background:var(--sky)}
 .mini.sort-btn{padding:2px 8px;font-weight:700}
@@ -164,12 +164,12 @@ footer{text-align:center;margin-top:40px;font-size:12px}
 .addrow{display:flex;gap:8px;margin-top:12px}
 .addrow .btn{margin-top:0;flex:0 0 auto;padding:0 18px;background:var(--sky)}
 
-/* 彈出視窗（Dialog / Bottom Sheet）保持主頁面極度乾淨 */
-.paper-modal{border:2px solid var(--ink);border-radius:20px;padding:0;max-width:520px;width:92%;box-shadow:4px 6px 0 var(--ink);background:var(--paper) var(--tex);color:var(--ink);margin:auto}
-.paper-modal::backdrop{background:rgba(0,0,0,.45);backdrop-filter:blur(2px)}
+/* 彈出視窗（Dialog）原汁原味紙質美學 */
+.paper-modal{border:2px solid var(--ink);border-radius:18px;padding:0;max-width:520px;width:92%;background:var(--paper) var(--tex);color:var(--ink);margin:auto}
+.paper-modal::backdrop{background:rgba(0,0,0,.45)}
 .modal-box{padding:20px}
 .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.modal-head h3{font-size:18px;font-weight:700}
+.modal-head h3{font-size:18px;font-weight:400}
 .modal-close{width:32px;height:32px;font:inherit;font-size:18px;line-height:1;border:var(--line);border-radius:10px;background:var(--paper);cursor:pointer;display:grid;place-content:center}
 .modal-close:active{background:var(--taupe)}
 .modal-form{display:grid;gap:12px}
@@ -185,12 +185,24 @@ footer{text-align:center;margin-top:40px;font-size:12px}
 .chip input:focus-visible + span{outline:3px solid var(--blue);outline-offset:2px}
 .fbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 
-/* 觸發新增按鈕 */
-.add-action-wrap{text-align:center;margin:16px 0 8px}
-.add-trigger-btn{background:var(--sand);padding:8px 24px;font-size:14px;box-shadow:2px 2px 0 var(--ink);font-weight:500}
-.add-trigger-btn:hover{background:var(--taupe)}
+/* 「＋ 新增行程」與「＋ 記一筆花費」與原介面保持一致的顏色與風格 */
+.add-action-wrap{text-align:center;margin:14px 0 6px}
+.add-trigger-btn{
+  display:inline-block;
+  border:var(--line);
+  border-radius:999px;
+  padding:2px 20px;
+  text-decoration:none;
+  background:var(--sand);
+  color:var(--ink);
+  font:inherit;
+  font-size:13px;
+  line-height:1.8;
+  cursor:pointer;
+}
+.add-trigger-btn:active{background:var(--taupe)}
 
-/* 匯率合計、今天／下一個、更多設定 */
+/* 匯率合計、今天／下一個 */
 .rate-row{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12px}
 .rate-row .fld{flex:0 0 100px;width:100px}
 .cstat.total{margin-top:10px;background:var(--blue)}
@@ -199,12 +211,7 @@ footer{text-align:center;margin-top:40px;font-size:12px}
 .tl li.next::before{background:var(--sky)}
 .tl li.next .box{background:var(--sky);border-width:2px}
 .next-tag{background:var(--blue)}
-.more-body{display:grid;gap:14px;max-height:none}
-.more-group{display:grid;gap:8px}
-.more-group.danger{border-top:1.5px dashed var(--ink);padding-top:12px}
 .hint{font-size:12px;opacity:.85;line-height:1.6}
-textarea.fld{resize:vertical;min-height:72px}
-#settings{padding-top:20px}
 
 /* 繪本・文青感插圖動畫 */
 .cloud{animation:drift 16s ease-in-out infinite alternate}
@@ -567,9 +574,9 @@ textarea.fld{resize:vertical;min-height:72px}
     <div class="payer-summary" id="payerSummary"></div>
   </div>
 
-  <!-- 簡潔的「記一筆花費」按鈕，取代原先冗長常駐的表單 -->
+  <!-- 與原介面按鈕相同顏色與膠囊設計的「＋ 記一筆花費」按鈕 -->
   <div class="add-action-wrap">
-    <button type="button" class="btn add-trigger-btn" id="openAddExpBtn" style="background:var(--sky)">＋ 記一筆花費</button>
+    <button type="button" class="add-trigger-btn" id="openAddExpBtn">＋ 記一筆花費</button>
   </div>
 
   <details class="exp-drawer" id="expDrawer">
@@ -614,7 +621,7 @@ textarea.fld{resize:vertical;min-height:72px}
         </div>
       </div>
       <div class="fbtns" style="margin-top:6px">
-        <button class="btn" type="submit" style="background:var(--blue);flex:1">儲存行程</button>
+        <button class="btn" type="submit" style="background:var(--sky);flex:1">儲存行程</button>
         <button class="btn" type="button" id="cancelDayDialogBtn" style="background:var(--taupe)">取消</button>
       </div>
     </form>
@@ -670,37 +677,6 @@ textarea.fld{resize:vertical;min-height:72px}
     </form>
   </div>
 </dialog>
-
-<section id="settings">
-  <details class="exp-drawer" id="moreDrawer">
-    <summary><span>⚙ 更多設定（旅團同步・備份・重設）</span><span class="exp-arrow" aria-hidden="true">▾</span></summary>
-    <div class="exp-body more-body">
-      <div class="more-group">
-        <div class="ftitle">旅團雲端即時同步</div>
-        <p class="hint">目前所有開啟此網址的手機皆連線至 <b>fuji2027</b> 旅團房間，享有即時共同編輯。</p>
-        <div class="fbtns">
-          <button type="button" class="mini" id="btnCopyShare">📋 複製分享網址給旅伴</button>
-          <button type="button" class="mini" id="btnForcePush">強制將此手機內容覆蓋至雲端</button>
-        </div>
-        <p class="hint" id="shareMsg" style="font-weight:700"></p>
-      </div>
-
-      <div class="more-group" style="border-top:1.5px dashed var(--ink);padding-top:12px">
-        <div class="ftitle">備份與匯出</div>
-        <p class="hint">若處於離線狀態，資料只存在這支手機的瀏覽器裡。建議出發前與旅途中定期備份。</p>
-        <div class="fbtns"><button type="button" class="mini" id="bkFile">下載備份檔</button><button type="button" class="mini" id="bkCopy">複製備份文字</button></div>
-        <textarea class="fld" id="bkText" rows="4" placeholder="匯入：把備份文字貼在這裡" aria-label="備份文字"></textarea>
-        <div class="fbtns"><button type="button" class="mini" id="bkImport">匯入貼上的文字</button><label class="mini" for="bkPick">選擇備份檔…</label><input type="file" id="bkPick" accept="application/json,.json" style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none"></div>
-        <p class="hint" id="bkMsg" role="status"></p>
-      </div>
-
-      <div class="more-group danger">
-        <div class="ftitle">重設（無法復原）</div>
-        <div class="fbtns"><button type="button" class="mini" id="resetDays">恢復預設行程</button><button type="button" class="mini" id="resetTodo">恢復預設待辦</button><button type="button" class="mini" id="resetCost">清空花費紀錄</button></div>
-      </div>
-    </div>
-  </details>
-</section>
 
 <footer>
   <p style="opacity:.65;font-size:11px">🏔️ 2027 富士旅行團・雲端即時同步中 <span id="syncDot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#4ade80;vertical-align:middle;margin-left:2px"></span></p>
@@ -826,15 +802,13 @@ textarea.fld{resize:vertical;min-height:72px}
         if(it.tbd)h+='<span class="tag">待安排</span>';
         h+='</div><p>'+esc(it.tx)+'</p><div class="acts">';
         if(url)h+='<a class="mini map-btn" href="'+esc(url)+'" target="_blank" rel="noopener" aria-label="地圖：'+esc(it.tx)+'">📍 地圖</a>';
-        // 排序按鈕：上移、下移
         if(k>0)h+='<button type="button" class="mini sort-btn" data-act="up" data-k="'+k+'" title="上移">▲</button>';
         if(k<day.items.length-1)h+='<button type="button" class="mini sort-btn" data-act="down" data-k="'+k+'" title="下移">▼</button>';
         h+='<button type="button" class="mini" data-act="edit" data-k="'+k+'" aria-label="編輯：'+esc(it.tx)+'">編輯</button><button type="button" class="mini" data-act="del" data-k="'+k+'" aria-label="刪除：'+esc(it.tx)+'">刪除</button></div></div></li>';
       });
       h+='</ul>';
     }
-    // 乾淨的彈出觸發按鈕，取代原本長串的頁底表單
-    h+='<div class="add-action-wrap"><button type="button" class="btn add-trigger-btn" data-act="openAdd" data-day="'+i+'">＋ 新增行程</button></div>';
+    h+='<div class="add-action-wrap"><button type="button" class="add-trigger-btn" data-act="openAdd" data-day="'+i+'">＋ 新增行程</button></div>';
     p.innerHTML=h;
   }
 
@@ -910,7 +884,6 @@ textarea.fld{resize:vertical;min-height:72px}
   document.getElementById("closeDayDialogBtn").onclick=closeDayModal;
   document.getElementById("cancelDayDialogBtn").onclick=closeDayModal;
 
-  // 監聽面板事件：新增、編輯、排序、刪除
   panels.addEventListener("click",function(e){
     var b=e.target.closest("button[data-act]");if(!b)return;
     var i=cur,act=b.dataset.act,k=+b.dataset.k;
@@ -956,11 +929,6 @@ textarea.fld{resize:vertical;min-height:72px}
     closeDayModal();
   });
 
-  document.getElementById("resetDays").onclick=function(){
-    if(!confirm("要把每日行程恢復成預設內容嗎？你新增與修改的內容會消失。"))return;
-    days=clone(DEF);save(DK,days);days.forEach(function(_,i){renderPanel(i)});pushCloud();
-  };
-
   /* ===== 出發前待辦 ===== */
   var TD=["換日幣","購買富士回遊券","購買 Skyliner 車票","購買京成特快車票","準備行李","確認護照效期與行程文件","租借或申請網路（eSIM／WiFi）","確認上野飯店並完成訂房"];
   var TK="tokyo2027-todo2";
@@ -991,10 +959,6 @@ textarea.fld{resize:vertical;min-height:72px}
     var inp=document.getElementById("todoNew"),v=inp.value.trim();if(!v)return;
     todos.push({t:v,d:false});inp.value="";save(TK,todos);renderTodo();pushCloud();
   });
-  document.getElementById("resetTodo").onclick=function(){
-    if(!confirm("要把待辦清單恢復成預設內容嗎？"))return;
-    todos=TD.map(function(t){return {t:t,d:false}});save(TK,todos);renderTodo();pushCloud();
-  };
   renderTodo();
 
   /* ===== 總花費紀錄 ===== */
@@ -1077,7 +1041,6 @@ textarea.fld{resize:vertical;min-height:72px}
   var expForm=document.getElementById("expForm");
   function openExpModal(){
     expForm.reset();
-    // 自動帶入當前瀏覽的日期
     if(days[cur])expDay.value=days[cur].d;
     if(typeof expDialog.showModal==="function")expDialog.showModal();
     else expDialog.setAttribute("open","");
@@ -1112,11 +1075,6 @@ textarea.fld{resize:vertical;min-height:72px}
     if(!confirm("確定要刪除這筆花費紀錄嗎？"))return;
     expenses.splice(+b.dataset.edel,1);save(EK,expenses);renderCost();pushCloud();
   });
-  document.getElementById("resetCost").onclick=function(){
-    if(!expenses.length)return;
-    if(!confirm("確定要清空所有花費紀錄嗎？"))return;
-    expenses=[];save(EK,expenses);renderCost();pushCloud();
-  };
   renderCost();
   var rateIn=document.getElementById("rateIn");
   rateIn.value=rate>0?rate:"";
@@ -1141,7 +1099,7 @@ textarea.fld{resize:vertical;min-height:72px}
 
   function applyRemote(data){
     if(!data)return;
-    if(dayDialog.open)return; // 若使用者正在彈窗編輯，不中斷
+    if(dayDialog.open)return;
     if(Array.isArray(data.days)&&data.days.length===DEF.length){
       days=data.days;save(DK,days);
       days.forEach(function(_,i){renderPanel(i)});
@@ -1223,28 +1181,6 @@ textarea.fld{resize:vertical;min-height:72px}
 
   startSyncStream();
 
-  /* 更多設定內的按鈕 */
-  var btnCopy=document.getElementById("btnCopyShare");
-  var btnPush=document.getElementById("btnForcePush");
-  var shareMsg=document.getElementById("shareMsg");
-  if(btnCopy){
-    btnCopy.onclick=function(){
-      var url=location.origin+location.pathname;
-      navigator.clipboard.writeText(url).then(function(){
-        if(shareMsg)shareMsg.textContent="✅ 網址已複製！直接傳給旅伴打開即可共同編輯！";
-      }).catch(function(){
-        prompt("請複製此網址：",url);
-      });
-    };
-  }
-  if(btnPush){
-    btnPush.onclick=function(){
-      if(!confirm("確定要將這支手機目前的行程、待辦、記帳全面覆蓋到雲端嗎？"))return;
-      pushCloud(true);
-      if(shareMsg)shareMsg.textContent="已強制覆蓋至雲端！";
-    };
-  }
-
   /* ===== 即時天氣預報 (Open-Meteo API) ===== */
   function loadWeather(){
     fetch("https://api.open-meteo.com/v1/forecast?latitude=35.6895,35.4988&longitude=139.6917,138.7686&current=temperature_2m,weather_code")
@@ -1277,52 +1213,6 @@ textarea.fld{resize:vertical;min-height:72px}
       .catch(function(){});
   }
   loadWeather();
-
-  /* ===== 備份與匯出 ===== */
-  var bkText=document.getElementById("bkText"),bkMsg=document.getElementById("bkMsg");
-  function msg(t){bkMsg.textContent=t}
-  function pad(n){return (n<10?"0":"")+n}
-  function snapshot(){
-    return JSON.stringify({app:"fuji-trip",v:2,at:new Date().toISOString(),days:days,todos:todos,expenses:expenses,rate:rate||""},null,1);
-  }
-  document.getElementById("bkFile").onclick=function(){
-    var blob=new Blob([snapshot()],{type:"application/json"});
-    var a=document.createElement("a"),d=new Date();
-    a.href=URL.createObjectURL(blob);
-    a.download="fuji-trip-backup-"+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+".json";
-    document.body.appendChild(a);a.click();a.remove();
-    setTimeout(function(){URL.revokeObjectURL(a.href)},3000);
-    msg("已產生備份檔。若手機沒有下載，請改用「複製備份文字」。");
-  };
-  document.getElementById("bkCopy").onclick=function(){
-    var t=snapshot();
-    function done(){msg("已複製備份文字，可貼到備忘錄或 LINE 保存。")}
-    function fallback(){bkText.value=t;bkText.focus();bkText.select();try{document.execCommand("copy");done()}catch(e){msg("請手動全選上方文字並複製。")}}
-    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,fallback);else fallback();
-  };
-  function doImport(text){
-    var o;
-    try{o=JSON.parse(text)}catch(e){msg("格式錯誤：這不是有效的備份文字。");return}
-    if(!o||o.app!=="fuji-trip"||!Array.isArray(o.days)||!Array.isArray(o.todos)||!Array.isArray(o.expenses)){msg("這不是本頁面的備份內容。");return}
-    if(o.days.length!==DEF.length||!o.days.every(function(d){return d&&Array.isArray(d.items)})){msg("行程資料與目前不符，無法匯入。");return}
-    if(!confirm("匯入會覆蓋目前的行程、待辦與花費，確定嗎？"))return;
-    save(DK,o.days);save(TK,o.todos);save(EK,o.expenses);save(RK,o.rate||"");
-    pushCloud(true);
-    location.reload();
-  }
-  document.getElementById("bkImport").onclick=function(){
-    var t=bkText.value.trim();
-    if(!t){msg("請先把備份文字貼到上方的欄位。");return}
-    doImport(t);
-  };
-  document.getElementById("bkPick").addEventListener("change",function(e){
-    var f=e.target.files&&e.target.files[0];if(!f)return;
-    var r=new FileReader();
-    r.onload=function(){doImport(String(r.result))};
-    r.onerror=function(){msg("讀取檔案失敗。")};
-    r.readAsText(f);
-    e.target.value="";
-  });
 })();
 </script>
 </body>
