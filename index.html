@@ -552,9 +552,9 @@ footer{text-align:center;margin-top:40px;font-size:12px}
     </article>
     <article class="card stay paper">
       <div class="ic"><svg width="32" height="32" viewBox="0 0 34 34" fill="none" stroke="#3E3A39" stroke-width="1.5" stroke-linejoin="round"><path d="M4 16l13-9 13 9z" fill="#FEFAF3"/><rect x="8" y="16" width="18" height="11" fill="#D2C4B4"/><path d="M15 27v-6h4v6"/></svg></div>
-      <div><h3>上野</h3>
-      <div class="d">・1/19 – 1/20・1 晚</div>
-      <span class="tag" style="border-style:dashed;margin-top:4px">尚未決定飯店</span></div>
+      <div><h3>旅家・椎名町</h3>
+      <div class="d">・1/19 – 1/20・1 晚<br>・check in 15:00/check out 11:00</div>
+      <a class="btn" href="https://maps.app.goo.gl/fBJsV9Ae69k28kpA6" target="_blank" rel="noopener">查看地圖</a></div>
     </article>
   </div>
 </section>
@@ -781,7 +781,7 @@ footer{text-align:center;margin-top:40px;font-size:12px}
     {d:"1/19",w:"二",t:"河口湖 → 上野",s:"上野",items:[
       {time:"上午",tx:"河口湖賞景，行程待安排",tbd:1},
       {time:"下午",tx:"返回東京，前往上野",tags:[["巴士","bus"],["電車","train"]]},
-      {time:"晚上",tx:"入住上野飯店（尚未決定）",tbd:1}
+      {time:"晚上",tx:"入住旅家・椎名町",tags:[["電車","train"]]}
     ]},
     {d:"1/20",w:"三",t:"返程日",s:"",items:[
       {time:"白天",tx:"退房、購買伴手禮，行程待安排",tbd:1},
@@ -962,7 +962,7 @@ footer{text-align:center;margin-top:40px;font-size:12px}
   });
 
   /* ===== 出發前待辦 ===== */
-  var TD=["換日幣","購買富士回遊券","購買 Skyliner 車票","購買京成特快車票","準備行李","確認護照效期與行程文件","租借或申請網路（eSIM／WiFi）","確認上野飯店並完成訂房"];
+  var TD=["換日幣","購買富士回遊券","購買 Skyliner 車票","購買京成特快車票","準備行李","確認護照效期與行程文件","租借或申請網路（eSIM／WiFi）"];
   var TK="tokyo2027-todo2";
   var todos=load(TK,null);
   if(!todos){var old=load("tokyo2027-todo",{});todos=TD.map(function(t,i){return {t:t,d:!!old[i]}});save(TK,todos)}
